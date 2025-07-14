@@ -1,0 +1,19 @@
+{
+  "name": "lightmind-ui-testing",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Visual and accessibility testing for LightMind UI framework",
+  "scripts": {
+    "test:visual": "node visual/test-runner.js",
+    "test:accessibility": "echo 'Accessibility tests would run here'",
+    "test:performance": "echo 'Performance tests would run here'",
+    "test:all": "npm run test:visual && npm run test:accessibility && npm run test:performance"
+  },
+  "keywords": [
+    "testing",
+    "visual",
+    "accessibility",
+    "ui",
+    "components"
+  ]
+}

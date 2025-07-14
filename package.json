@@ -1,0 +1,42 @@
+{
+  "name": "lightmind-ui-framework",
+  "version": "0.1.0",
+  "private": true,
+  "description": "A modern, backward-compatible UI framework built on shadcn/ui foundations",
+  "scripts": {
+    "build": "turbo build",
+    "dev": "turbo dev",
+    "lint": "turbo lint",
+    "type-check": "turbo type-check",
+    "clean": "turbo clean && rm -rf node_modules",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "gallery": "turbo dev --filter=gallery",
+    "examples": "turbo dev --filter=examples"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.5",
+    "prettier": "^3.1.1",
+    "turbo": "^1.11.2",
+    "typescript": "^5.3.3"
+  },
+  "packageManager": "npm@10.2.3",
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/lightmind-ui-framework.git"
+  },
+  "keywords": [
+    "ui",
+    "components",
+    "react",
+    "typescript",
+    "tailwindcss",
+    "shadcn",
+    "design-system"
+  ],
+  "author": "Your Name",
+  "license": "MIT"
+}

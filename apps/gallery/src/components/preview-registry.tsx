@@ -9,7 +9,21 @@ import { DropdownMenuPreview } from './previews/dropdown-menu-preview'
 import { PopoverPreview } from './previews/popover-preview'
 import { AlertPreview } from './previews/alert-preview'
 import { LabelPreview } from './previews/label-preview'
-import { CheckboxPreview } from './previews/checkbox-preview'
+import { CheckboxPreview, CheckboxVariantsPreview } from './previews/checkbox-preview'
+import { RadioGroupPreview, RadioGroupVariantsPreview } from './previews/radio-group-preview'
+import { SelectPreview, SelectVariantsPreview } from './previews/select-preview'
+import { TextareaPreview, TextareaVariantsPreview } from './previews/textarea-preview'
+import { SwitchPreview, SwitchVariantsPreview } from './previews/switch-preview'
+import { 
+  TablePreview, 
+  TableVariantsPreview, 
+  TableSizesPreview, 
+  TableSortablePreview, 
+  TableUsersPreview, 
+  TableInvoicesPreview, 
+  TableAnalyticsPreview, 
+  TableResponsivePreview 
+} from './previews/table-preview'
 
 // Registry of all preview components
 const previewComponents = {
@@ -23,6 +37,23 @@ const previewComponents = {
   AlertPreview,
   LabelPreview,
   CheckboxPreview,
+  CheckboxVariantsPreview,
+  RadioGroupPreview,
+  RadioGroupVariantsPreview,
+  SelectPreview,
+  SelectVariantsPreview,
+  TextareaPreview,
+  TextareaVariantsPreview,
+  SwitchPreview,
+  SwitchVariantsPreview,
+  TablePreview,
+  TableVariantsPreview,
+  TableSizesPreview,
+  TableSortablePreview,
+  TableUsersPreview,
+  TableInvoicesPreview,
+  TableAnalyticsPreview,
+  TableResponsivePreview,
 } as const
 
 interface PreviewComponentProps {

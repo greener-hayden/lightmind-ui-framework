@@ -200,6 +200,170 @@ const mockComponents = [
 <Checkbox size="lg" defaultChecked />
 <Checkbox indeterminate />`,
   },
+  {
+    id: 'radio-group',
+    name: 'Radio Group',
+    description: 'Radio group component for mutually exclusive selections with size variants and orientation support, built on Radix UI primitives',
+    category: 'form',
+    complexity: 'simple' as const,
+    tags: ['form', 'input', 'interactive', 'selection', 'accessibility', 'radio', 'group'],
+    preview: 'RadioGroupPreview',
+    codeExample: `<RadioGroup defaultValue="option-one">
+  <div className="flex items-center space-x-2">
+    <RadioGroupItem value="option-one" id="option-one" />
+    <Label htmlFor="option-one">Option One</Label>
+  </div>
+  <div className="flex items-center space-x-2">
+    <RadioGroupItem value="option-two" id="option-two" />
+    <Label htmlFor="option-two">Option Two</Label>
+  </div>
+</RadioGroup>
+
+<RadioGroup orientation="horizontal">
+  <RadioGroupItem value="sm" size="sm" />
+  <RadioGroupItem value="default" size="default" />
+  <RadioGroupItem value="lg" size="lg" />
+</RadioGroup>`,
+  },
+  {
+    id: 'select',
+    name: 'Select',
+    description: 'Dropdown select component with rich content support, size variants, groups, separators, and full keyboard navigation built on Radix UI primitives',
+    category: 'form',
+    complexity: 'medium' as const,
+    tags: ['form', 'input', 'dropdown', 'selection', 'accessibility', 'keyboard', 'overlay'],
+    preview: 'SelectPreview',
+    codeExample: `<Select>
+  <SelectTrigger className="w-[180px]">
+    <SelectValue placeholder="Select a fruit" />
+  </SelectTrigger>
+  <SelectContent>
+    <SelectItem value="apple">Apple</SelectItem>
+    <SelectItem value="banana">Banana</SelectItem>
+    <SelectItem value="grapes">Grapes</SelectItem>
+  </SelectContent>
+</Select>
+
+<Select>
+  <SelectTrigger>
+    <SelectValue placeholder="Framework" />
+  </SelectTrigger>
+  <SelectContent>
+    <SelectGroup>
+      <SelectLabel>Frontend</SelectLabel>
+      <SelectItem value="react">React</SelectItem>
+      <SelectItem value="vue">Vue</SelectItem>
+    </SelectGroup>
+    <SelectSeparator />
+    <SelectGroup>
+      <SelectLabel>Backend</SelectLabel>
+      <SelectItem value="node">Node.js</SelectItem>
+      <SelectItem value="python">Python</SelectItem>
+    </SelectGroup>
+  </SelectContent>
+</Select>`,
+  },
+  {
+    id: 'textarea',
+    name: 'Textarea',
+    description: 'Multi-line text input with auto-resize, character counting, and size variants for larger text content',
+    category: 'form',
+    complexity: 'simple' as const,
+    tags: ['form', 'input', 'text', 'multiline', 'auto-resize', 'validation'],
+    preview: 'TextareaPreview',
+    codeExample: `<div className="space-y-2">
+  <Label htmlFor="message">Your message</Label>
+  <Textarea 
+    id="message"
+    placeholder="Type your message here..." 
+  />
+</div>
+
+<Textarea 
+  autoResize
+  characterCount
+  maxLength={500}
+  placeholder="Auto-expanding with character limit..."
+/>`,
+  },
+  {
+    id: 'switch',
+    name: 'Switch',
+    description: 'Toggle switch component with size variants, color themes, and optional icon support for binary state controls',
+    category: 'form',
+    complexity: 'simple' as const,
+    tags: ['form', 'input', 'toggle', 'binary', 'accessibility', 'interactive'],
+    preview: 'SwitchPreview',
+    codeExample: `<div className="flex items-center space-x-2">
+  <Switch id="airplane-mode" />
+  <Label htmlFor="airplane-mode">Airplane Mode</Label>
+</div>
+
+<Switch 
+  variant="success"
+  size="lg"
+  checkedIcon={<Check size={12} />}
+  uncheckedIcon={<X size={12} />}
+/>`,
+  },
+  {
+    id: 'table',
+    name: 'Table',
+    description: 'Semantic HTML table component with variants, sorting, responsive design, and comprehensive data display features',
+    category: 'display',
+    complexity: 'medium' as const,
+    tags: ['table', 'data', 'display', 'sorting', 'responsive', 'semantic', 'accessibility'],
+    preview: 'TablePreview',
+    codeExample: `<Table>
+  <TableCaption>A list of your recent invoices.</TableCaption>
+  <TableHeader>
+    <TableRow>
+      <TableHead>Invoice</TableHead>
+      <TableHead>Status</TableHead>
+      <TableHead>Method</TableHead>
+      <TableHead className="text-right">Amount</TableHead>
+    </TableRow>
+  </TableHeader>
+  <TableBody>
+    <TableRow>
+      <TableCell className="font-medium">INV001</TableCell>
+      <TableCell>Paid</TableCell>
+      <TableCell>Credit Card</TableCell>
+      <TableCell className="text-right">$250.00</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell className="font-medium">INV002</TableCell>
+      <TableCell>Pending</TableCell>
+      <TableCell>PayPal</TableCell>
+      <TableCell className="text-right">$150.00</TableCell>
+    </TableRow>
+  </TableBody>
+</Table>
+
+// With sorting capability
+<Table>
+  <TableHeader>
+    <TableRow>
+      <TableHead 
+        sortable
+        sortDirection="asc"
+        onSort={() => handleSort('name')}
+      >
+        Name
+      </TableHead>
+      <TableHead>Email</TableHead>
+      <TableHead>Status</TableHead>
+    </TableRow>
+  </TableHeader>
+  <TableBody>
+    {/* Table rows */}
+  </TableBody>
+</Table>
+
+// Size and variant examples
+<Table size="sm" variant="striped">
+<Table size="lg" variant="bordered">`,
+  },
 ]
 
 export default function GalleryPage() {

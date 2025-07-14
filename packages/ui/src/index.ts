@@ -70,6 +70,47 @@ export {
   Checkbox,
   checkboxVariants,
 } from "./components/checkbox"
+export {
+  RadioGroup,
+  RadioGroupItem,
+  radioGroupVariants,
+  radioGroupItemVariants,
+} from "./components/radio-group"
+export {
+  Select,
+  SelectGroup,
+  SelectValue,
+  SelectTrigger,
+  SelectContent,
+  SelectLabel,
+  SelectItem,
+  SelectSeparator,
+  SelectScrollUpButton,
+  SelectScrollDownButton,
+  selectTriggerVariants,
+  selectContentVariants,
+} from "./components/select"
+export {
+  Textarea,
+  textareaVariants,
+} from "./components/textarea"
+export {
+  Switch,
+  switchVariants,
+} from "./components/switch"
+export {
+  Table,
+  TableHeader,
+  TableBody,
+  TableFooter,
+  TableHead,
+  TableRow,
+  TableCell,
+  TableCaption,
+  tableVariants,
+  tableHeadVariants,
+  tableCellVariants,
+} from "./components/table"
 
 // Types
 export type { ButtonProps } from "./components/button"
@@ -82,3 +123,15 @@ export type { PopoverContentProps } from "./components/popover"
 export type { AlertProps } from "./components/alert"
 export type { LabelProps } from "./components/label"
 export type { CheckboxProps } from "./components/checkbox"
+export type { RadioGroupProps, RadioGroupItemProps } from "./components/radio-group"
+export type { SelectTriggerProps, SelectContentProps } from "./components/select"
+export type { TextareaProps } from "./components/textarea"
+export type { SwitchProps } from "./components/switch"
+export type { 
+  TableProps, 
+  TableHeaderProps, 
+  TableBodyProps, 
+  TableRowProps, 
+  TableHeadProps, 
+  TableCellProps 
+} from "./components/table"
