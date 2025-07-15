@@ -7,7 +7,16 @@
       "mcp__browsermcp__browser_screenshot",
       "mcp__context7__resolve-library-id",
       "mcp__context7__get-library-docs",
-      "WebFetch(domain:ui.shadcn.com)"
+      "WebFetch(domain:ui.shadcn.com)",
+      "Bash(node test-registry.js)",
+      "Bash(npm run build:*)",
+      "mcp__browsermcp__browser_wait",
+      "mcp__browsermcp__browser_snapshot",
+      "mcp__browsermcp__browser_click",
+      "Bash(mv:*)",
+      "Bash(python3:*)",
+      "Bash(cut:*)",
+      "Bash(grep:*)"
     ],
     "deny": []
   }

@@ -1,17 +1,23 @@
-"use client";
+import { clsx } from 'clsx';
+import { twMerge } from 'tailwind-merge';
+import * as React6 from 'react';
+import { Slot } from '@radix-ui/react-slot';
+import { cva } from 'class-variance-authority';
+import { jsx, jsxs } from 'react/jsx-runtime';
+import * as DialogPrimitive from '@radix-ui/react-dialog';
+import { X, Check, Circle, ChevronRight, Minus, ChevronDown, ChevronUp } from 'lucide-react';
+import * as TooltipPrimitive from '@radix-ui/react-tooltip';
+import * as DropdownMenuPrimitive from '@radix-ui/react-dropdown-menu';
+import * as PopoverPrimitive from '@radix-ui/react-popover';
+import * as LabelPrimitive from '@radix-ui/react-label';
+import * as CheckboxPrimitive from '@radix-ui/react-checkbox';
+import * as RadioGroupPrimitive from '@radix-ui/react-radio-group';
+import * as SelectPrimitive from '@radix-ui/react-select';
+import * as SwitchPrimitive from '@radix-ui/react-switch';
 
-// src/lib/utils.ts
-import { clsx } from "clsx";
-import { twMerge } from "tailwind-merge";
 function cn(...inputs) {
   return twMerge(clsx(inputs));
 }
-
-// src/components/button.tsx
-import * as React from "react";
-import { Slot } from "@radix-ui/react-slot";
-import { cva } from "class-variance-authority";
-import { jsx } from "react/jsx-runtime";
 var buttonVariants = cva(
   "inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
   {
@@ -37,7 +43,7 @@ var buttonVariants = cva(
     }
   }
 );
-var Button = React.forwardRef(
+var Button = React6.forwardRef(
   ({ className, variant, size, asChild = false, ...props }, ref) => {
     const Comp = asChild ? Slot : "button";
     return /* @__PURE__ */ jsx(
@@ -51,11 +57,7 @@ var Button = React.forwardRef(
   }
 );
 Button.displayName = "Button";
-
-// src/components/card.tsx
-import * as React2 from "react";
-import { jsx as jsx2 } from "react/jsx-runtime";
-var Card = React2.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx2(
+var Card = React6.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   "div",
   {
     ref,
@@ -67,7 +69,7 @@ var Card = React2.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ j
   }
 ));
 Card.displayName = "Card";
-var CardHeader = React2.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx2(
+var CardHeader = React6.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   "div",
   {
     ref,
@@ -76,7 +78,7 @@ var CardHeader = React2.forwardRef(({ className, ...props }, ref) => /* @__PURE_
   }
 ));
 CardHeader.displayName = "CardHeader";
-var CardTitle = React2.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx2(
+var CardTitle = React6.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   "h3",
   {
     ref,
@@ -88,7 +90,7 @@ var CardTitle = React2.forwardRef(({ className, ...props }, ref) => /* @__PURE__
   }
 ));
 CardTitle.displayName = "CardTitle";
-var CardDescription = React2.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx2(
+var CardDescription = React6.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   "p",
   {
     ref,
@@ -97,9 +99,9 @@ var CardDescription = React2.forwardRef(({ className, ...props }, ref) => /* @__
   }
 ));
 CardDescription.displayName = "CardDescription";
-var CardContent = React2.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx2("div", { ref, className: cn("p-6 pt-0", className), ...props }));
+var CardContent = React6.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx("div", { ref, className: cn("p-6 pt-0", className), ...props }));
 CardContent.displayName = "CardContent";
-var CardFooter = React2.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx2(
+var CardFooter = React6.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   "div",
   {
     ref,
@@ -108,13 +110,9 @@ var CardFooter = React2.forwardRef(({ className, ...props }, ref) => /* @__PURE_
   }
 ));
 CardFooter.displayName = "CardFooter";
-
-// src/components/input.tsx
-import * as React3 from "react";
-import { jsx as jsx3 } from "react/jsx-runtime";
-var Input = React3.forwardRef(
+var Input = React6.forwardRef(
   ({ className, type, ...props }, ref) => {
-    return /* @__PURE__ */ jsx3(
+    return /* @__PURE__ */ jsx(
       "input",
       {
         type,
@@ -129,11 +127,7 @@ var Input = React3.forwardRef(
   }
 );
 Input.displayName = "Input";
-
-// src/components/badge.tsx
-import { cva as cva2 } from "class-variance-authority";
-import { jsx as jsx4 } from "react/jsx-runtime";
-var badgeVariants = cva2(
+var badgeVariants = cva(
   "inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2",
   {
     variants: {
@@ -150,20 +144,13 @@ var badgeVariants = cva2(
   }
 );
 function Badge({ className, variant, ...props }) {
-  return /* @__PURE__ */ jsx4("div", { className: cn(badgeVariants({ variant }), className), ...props });
+  return /* @__PURE__ */ jsx("div", { className: cn(badgeVariants({ variant }), className), ...props });
 }
-
-// src/components/dialog.tsx
-import * as React4 from "react";
-import * as DialogPrimitive from "@radix-ui/react-dialog";
-import { X } from "lucide-react";
-import { cva as cva3 } from "class-variance-authority";
-import { jsx as jsx5, jsxs } from "react/jsx-runtime";
 var Dialog = DialogPrimitive.Root;
 var DialogTrigger = DialogPrimitive.Trigger;
 var DialogPortal = DialogPrimitive.Portal;
 var DialogClose = DialogPrimitive.Close;
-var DialogOverlay = React4.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx5(
+var DialogOverlay = React6.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   DialogPrimitive.Overlay,
   {
     ref,
@@ -175,7 +162,7 @@ var DialogOverlay = React4.forwardRef(({ className, ...props }, ref) => /* @__PU
   }
 ));
 DialogOverlay.displayName = DialogPrimitive.Overlay.displayName;
-var dialogContentVariants = cva3(
+var dialogContentVariants = cva(
   "fixed left-[50%] top-[50%] z-50 grid w-full translate-x-[-50%] translate-y-[-50%] gap-4 border bg-background p-6 shadow-lg duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%] sm:rounded-lg",
   {
     variants: {
@@ -192,8 +179,8 @@ var dialogContentVariants = cva3(
     }
   }
 );
-var DialogContent = React4.forwardRef(({ className, children, size, ...props }, ref) => /* @__PURE__ */ jsxs(DialogPortal, { children: [
-  /* @__PURE__ */ jsx5(DialogOverlay, {}),
+var DialogContent = React6.forwardRef(({ className, children, size, ...props }, ref) => /* @__PURE__ */ jsxs(DialogPortal, { children: [
+  /* @__PURE__ */ jsx(DialogOverlay, {}),
   /* @__PURE__ */ jsxs(
     DialogPrimitive.Content,
     {
@@ -203,8 +190,8 @@ var DialogContent = React4.forwardRef(({ className, children, size, ...props }, 
       children: [
         children,
         /* @__PURE__ */ jsxs(DialogPrimitive.Close, { className: "absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground", children: [
-          /* @__PURE__ */ jsx5(X, { className: "h-4 w-4" }),
-          /* @__PURE__ */ jsx5("span", { className: "sr-only", children: "Close" })
+          /* @__PURE__ */ jsx(X, { className: "h-4 w-4" }),
+          /* @__PURE__ */ jsx("span", { className: "sr-only", children: "Close" })
         ] })
       ]
     }
@@ -214,7 +201,7 @@ DialogContent.displayName = DialogPrimitive.Content.displayName;
 var DialogHeader = ({
   className,
   ...props
-}) => /* @__PURE__ */ jsx5(
+}) => /* @__PURE__ */ jsx(
   "div",
   {
     className: cn(
@@ -228,7 +215,7 @@ DialogHeader.displayName = "DialogHeader";
 var DialogFooter = ({
   className,
   ...props
-}) => /* @__PURE__ */ jsx5(
+}) => /* @__PURE__ */ jsx(
   "div",
   {
     className: cn(
@@ -239,7 +226,7 @@ var DialogFooter = ({
   }
 );
 DialogFooter.displayName = "DialogFooter";
-var DialogTitle = React4.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx5(
+var DialogTitle = React6.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   DialogPrimitive.Title,
   {
     ref,
@@ -251,7 +238,7 @@ var DialogTitle = React4.forwardRef(({ className, ...props }, ref) => /* @__PURE
   }
 ));
 DialogTitle.displayName = DialogPrimitive.Title.displayName;
-var DialogDescription = React4.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx5(
+var DialogDescription = React6.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   DialogPrimitive.Description,
   {
     ref,
@@ -260,16 +247,10 @@ var DialogDescription = React4.forwardRef(({ className, ...props }, ref) => /* @
   }
 ));
 DialogDescription.displayName = DialogPrimitive.Description.displayName;
-
-// src/components/tooltip.tsx
-import * as React5 from "react";
-import * as TooltipPrimitive from "@radix-ui/react-tooltip";
-import { cva as cva4 } from "class-variance-authority";
-import { jsx as jsx6 } from "react/jsx-runtime";
 var TooltipProvider = TooltipPrimitive.Provider;
 var Tooltip = TooltipPrimitive.Root;
 var TooltipTrigger = TooltipPrimitive.Trigger;
-var tooltipContentVariants = cva4(
+var tooltipContentVariants = cva(
   "z-50 overflow-hidden rounded-md border bg-popover px-3 py-1.5 text-sm text-popover-foreground shadow-md animate-in fade-in-0 zoom-in-95 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2",
   {
     variants: {
@@ -292,7 +273,7 @@ var tooltipContentVariants = cva4(
     }
   }
 );
-var TooltipContent = React5.forwardRef(({ className, sideOffset = 4, variant, size, ...props }, ref) => /* @__PURE__ */ jsx6(
+var TooltipContent = React6.forwardRef(({ className, sideOffset = 4, variant, size, ...props }, ref) => /* @__PURE__ */ jsx(
   TooltipPrimitive.Content,
   {
     ref,
@@ -302,7 +283,7 @@ var TooltipContent = React5.forwardRef(({ className, sideOffset = 4, variant, si
   }
 ));
 TooltipContent.displayName = TooltipPrimitive.Content.displayName;
-var TooltipArrow = React5.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx6(
+var TooltipArrow = React6.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   TooltipPrimitive.Arrow,
   {
     ref,
@@ -311,20 +292,13 @@ var TooltipArrow = React5.forwardRef(({ className, ...props }, ref) => /* @__PUR
   }
 ));
 TooltipArrow.displayName = TooltipPrimitive.Arrow.displayName;
-
-// src/components/dropdown-menu.tsx
-import * as React6 from "react";
-import * as DropdownMenuPrimitive from "@radix-ui/react-dropdown-menu";
-import { Check, ChevronRight, Circle } from "lucide-react";
-import { cva as cva5 } from "class-variance-authority";
-import { jsx as jsx7, jsxs as jsxs2 } from "react/jsx-runtime";
 var DropdownMenu = DropdownMenuPrimitive.Root;
 var DropdownMenuTrigger = DropdownMenuPrimitive.Trigger;
 var DropdownMenuGroup = DropdownMenuPrimitive.Group;
 var DropdownMenuPortal = DropdownMenuPrimitive.Portal;
 var DropdownMenuSub = DropdownMenuPrimitive.Sub;
 var DropdownMenuRadioGroup = DropdownMenuPrimitive.RadioGroup;
-var dropdownMenuContentVariants = cva5(
+var dropdownMenuContentVariants = cva(
   "z-50 min-w-[8rem] overflow-hidden rounded-md border bg-popover p-1 text-popover-foreground shadow-md data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2",
   {
     variants: {
@@ -339,7 +313,7 @@ var dropdownMenuContentVariants = cva5(
     }
   }
 );
-var DropdownMenuContent = React6.forwardRef(({ className, sideOffset = 4, size, ...props }, ref) => /* @__PURE__ */ jsx7(DropdownMenuPrimitive.Portal, { children: /* @__PURE__ */ jsx7(
+var DropdownMenuContent = React6.forwardRef(({ className, sideOffset = 4, size, ...props }, ref) => /* @__PURE__ */ jsx(DropdownMenuPrimitive.Portal, { children: /* @__PURE__ */ jsx(
   DropdownMenuPrimitive.Content,
   {
     ref,
@@ -349,7 +323,7 @@ var DropdownMenuContent = React6.forwardRef(({ className, sideOffset = 4, size, 
   }
 ) }));
 DropdownMenuContent.displayName = DropdownMenuPrimitive.Content.displayName;
-var DropdownMenuItem = React6.forwardRef(({ className, inset, ...props }, ref) => /* @__PURE__ */ jsx7(
+var DropdownMenuItem = React6.forwardRef(({ className, inset, ...props }, ref) => /* @__PURE__ */ jsx(
   DropdownMenuPrimitive.Item,
   {
     ref,
@@ -362,7 +336,7 @@ var DropdownMenuItem = React6.forwardRef(({ className, inset, ...props }, ref) =
   }
 ));
 DropdownMenuItem.displayName = DropdownMenuPrimitive.Item.displayName;
-var DropdownMenuCheckboxItem = React6.forwardRef(({ className, children, checked, ...props }, ref) => /* @__PURE__ */ jsxs2(
+var DropdownMenuCheckboxItem = React6.forwardRef(({ className, children, checked, ...props }, ref) => /* @__PURE__ */ jsxs(
   DropdownMenuPrimitive.CheckboxItem,
   {
     ref,
@@ -373,13 +347,13 @@ var DropdownMenuCheckboxItem = React6.forwardRef(({ className, children, checked
     checked,
     ...props,
     children: [
-      /* @__PURE__ */ jsx7("span", { className: "absolute left-2 flex h-3.5 w-3.5 items-center justify-center", children: /* @__PURE__ */ jsx7(DropdownMenuPrimitive.ItemIndicator, { children: /* @__PURE__ */ jsx7(Check, { className: "h-4 w-4" }) }) }),
+      /* @__PURE__ */ jsx("span", { className: "absolute left-2 flex h-3.5 w-3.5 items-center justify-center", children: /* @__PURE__ */ jsx(DropdownMenuPrimitive.ItemIndicator, { children: /* @__PURE__ */ jsx(Check, { className: "h-4 w-4" }) }) }),
       children
     ]
   }
 ));
 DropdownMenuCheckboxItem.displayName = DropdownMenuPrimitive.CheckboxItem.displayName;
-var DropdownMenuRadioItem = React6.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxs2(
+var DropdownMenuRadioItem = React6.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxs(
   DropdownMenuPrimitive.RadioItem,
   {
     ref,
@@ -389,13 +363,13 @@ var DropdownMenuRadioItem = React6.forwardRef(({ className, children, ...props }
     ),
     ...props,
     children: [
-      /* @__PURE__ */ jsx7("span", { className: "absolute left-2 flex h-3.5 w-3.5 items-center justify-center", children: /* @__PURE__ */ jsx7(DropdownMenuPrimitive.ItemIndicator, { children: /* @__PURE__ */ jsx7(Circle, { className: "h-2 w-2 fill-current" }) }) }),
+      /* @__PURE__ */ jsx("span", { className: "absolute left-2 flex h-3.5 w-3.5 items-center justify-center", children: /* @__PURE__ */ jsx(DropdownMenuPrimitive.ItemIndicator, { children: /* @__PURE__ */ jsx(Circle, { className: "h-2 w-2 fill-current" }) }) }),
       children
     ]
   }
 ));
 DropdownMenuRadioItem.displayName = DropdownMenuPrimitive.RadioItem.displayName;
-var DropdownMenuLabel = React6.forwardRef(({ className, inset, ...props }, ref) => /* @__PURE__ */ jsx7(
+var DropdownMenuLabel = React6.forwardRef(({ className, inset, ...props }, ref) => /* @__PURE__ */ jsx(
   DropdownMenuPrimitive.Label,
   {
     ref,
@@ -408,7 +382,7 @@ var DropdownMenuLabel = React6.forwardRef(({ className, inset, ...props }, ref) 
   }
 ));
 DropdownMenuLabel.displayName = DropdownMenuPrimitive.Label.displayName;
-var DropdownMenuSeparator = React6.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx7(
+var DropdownMenuSeparator = React6.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   DropdownMenuPrimitive.Separator,
   {
     ref,
@@ -421,7 +395,7 @@ var DropdownMenuShortcut = ({
   className,
   ...props
 }) => {
-  return /* @__PURE__ */ jsx7(
+  return /* @__PURE__ */ jsx(
     "span",
     {
       className: cn("ml-auto text-xs tracking-widest opacity-60", className),
@@ -430,7 +404,7 @@ var DropdownMenuShortcut = ({
   );
 };
 DropdownMenuShortcut.displayName = "DropdownMenuShortcut";
-var DropdownMenuSubTrigger = React6.forwardRef(({ className, inset, children, ...props }, ref) => /* @__PURE__ */ jsxs2(
+var DropdownMenuSubTrigger = React6.forwardRef(({ className, inset, children, ...props }, ref) => /* @__PURE__ */ jsxs(
   DropdownMenuPrimitive.SubTrigger,
   {
     ref,
@@ -442,12 +416,12 @@ var DropdownMenuSubTrigger = React6.forwardRef(({ className, inset, children, ..
     ...props,
     children: [
       children,
-      /* @__PURE__ */ jsx7(ChevronRight, { className: "ml-auto h-4 w-4" })
+      /* @__PURE__ */ jsx(ChevronRight, { className: "ml-auto h-4 w-4" })
     ]
   }
 ));
 DropdownMenuSubTrigger.displayName = DropdownMenuPrimitive.SubTrigger.displayName;
-var DropdownMenuSubContent = React6.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx7(
+var DropdownMenuSubContent = React6.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   DropdownMenuPrimitive.SubContent,
   {
     ref,
@@ -459,18 +433,11 @@ var DropdownMenuSubContent = React6.forwardRef(({ className, ...props }, ref) =>
   }
 ));
 DropdownMenuSubContent.displayName = DropdownMenuPrimitive.SubContent.displayName;
-
-// src/components/popover.tsx
-import * as React7 from "react";
-import * as PopoverPrimitive from "@radix-ui/react-popover";
-import { X as X2 } from "lucide-react";
-import { cva as cva6 } from "class-variance-authority";
-import { jsx as jsx8, jsxs as jsxs3 } from "react/jsx-runtime";
 var Popover = PopoverPrimitive.Root;
 var PopoverTrigger = PopoverPrimitive.Trigger;
 var PopoverAnchor = PopoverPrimitive.Anchor;
 var PopoverClose = PopoverPrimitive.Close;
-var popoverContentVariants = cva6(
+var popoverContentVariants = cva(
   "z-50 w-72 rounded-md border bg-popover p-4 text-popover-foreground shadow-md outline-none data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2",
   {
     variants: {
@@ -497,7 +464,7 @@ var popoverContentVariants = cva6(
     }
   }
 );
-var PopoverContent = React7.forwardRef(({ className, align = "center", sideOffset = 4, size, variant, showClose = false, children, ...props }, ref) => /* @__PURE__ */ jsx8(PopoverPrimitive.Portal, { children: /* @__PURE__ */ jsxs3(
+var PopoverContent = React6.forwardRef(({ className, align = "center", sideOffset = 4, size, variant, showClose = false, children, ...props }, ref) => /* @__PURE__ */ jsx(PopoverPrimitive.Portal, { children: /* @__PURE__ */ jsxs(
   PopoverPrimitive.Content,
   {
     ref,
@@ -506,16 +473,16 @@ var PopoverContent = React7.forwardRef(({ className, align = "center", sideOffse
     className: cn(popoverContentVariants({ size, variant, className })),
     ...props,
     children: [
-      showClose && /* @__PURE__ */ jsxs3(PopoverPrimitive.Close, { className: "absolute right-2 top-2 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground", children: [
-        /* @__PURE__ */ jsx8(X2, { className: "h-4 w-4" }),
-        /* @__PURE__ */ jsx8("span", { className: "sr-only", children: "Close" })
+      showClose && /* @__PURE__ */ jsxs(PopoverPrimitive.Close, { className: "absolute right-2 top-2 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground", children: [
+        /* @__PURE__ */ jsx(X, { className: "h-4 w-4" }),
+        /* @__PURE__ */ jsx("span", { className: "sr-only", children: "Close" })
       ] }),
       children
     ]
   }
 ) }));
 PopoverContent.displayName = PopoverPrimitive.Content.displayName;
-var PopoverArrow = React7.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx8(
+var PopoverArrow = React6.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   PopoverPrimitive.Arrow,
   {
     ref,
@@ -527,7 +494,7 @@ PopoverArrow.displayName = PopoverPrimitive.Arrow.displayName;
 var PopoverHeader = ({
   className,
   ...props
-}) => /* @__PURE__ */ jsx8(
+}) => /* @__PURE__ */ jsx(
   "div",
   {
     className: cn(
@@ -538,7 +505,7 @@ var PopoverHeader = ({
   }
 );
 PopoverHeader.displayName = "PopoverHeader";
-var PopoverTitle = React7.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx8(
+var PopoverTitle = React6.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   "h4",
   {
     ref,
@@ -547,7 +514,7 @@ var PopoverTitle = React7.forwardRef(({ className, ...props }, ref) => /* @__PUR
   }
 ));
 PopoverTitle.displayName = "PopoverTitle";
-var PopoverDescription = React7.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx8(
+var PopoverDescription = React6.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   "p",
   {
     ref,
@@ -559,7 +526,7 @@ PopoverDescription.displayName = "PopoverDescription";
 var PopoverFooter = ({
   className,
   ...props
-}) => /* @__PURE__ */ jsx8(
+}) => /* @__PURE__ */ jsx(
   "div",
   {
     className: cn(
@@ -570,13 +537,7 @@ var PopoverFooter = ({
   }
 );
 PopoverFooter.displayName = "PopoverFooter";
-
-// src/components/alert.tsx
-import * as React8 from "react";
-import { cva as cva7 } from "class-variance-authority";
-import { X as X3 } from "lucide-react";
-import { jsx as jsx9, jsxs as jsxs4 } from "react/jsx-runtime";
-var alertVariants = cva7(
+var alertVariants = cva(
   "relative w-full rounded-lg border p-4 transition-all duration-200 [&>svg~*]:pl-7 [&>svg+div]:translate-y-[-3px] [&>svg]:absolute [&>svg]:left-4 [&>svg]:top-4 [&>svg]:text-foreground",
   {
     variants: {
@@ -599,17 +560,17 @@ var alertVariants = cva7(
     }
   }
 );
-var Alert = React8.forwardRef(
+var Alert = React6.forwardRef(
   ({ className, variant, size, dismissible = false, onDismiss, children, ...props }, ref) => {
-    const [isVisible, setIsVisible] = React8.useState(true);
-    const handleDismiss = React8.useCallback(() => {
+    const [isVisible, setIsVisible] = React6.useState(true);
+    const handleDismiss = React6.useCallback(() => {
       setIsVisible(false);
       onDismiss?.();
     }, [onDismiss]);
     if (!isVisible) {
       return null;
     }
-    return /* @__PURE__ */ jsxs4(
+    return /* @__PURE__ */ jsxs(
       "div",
       {
         ref,
@@ -618,7 +579,7 @@ var Alert = React8.forwardRef(
         ...props,
         children: [
           children,
-          dismissible && /* @__PURE__ */ jsxs4(
+          dismissible && /* @__PURE__ */ jsxs(
             "button",
             {
               type: "button",
@@ -626,8 +587,8 @@ var Alert = React8.forwardRef(
               className: "absolute right-2 top-2 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none",
               "aria-label": "Dismiss alert",
               children: [
-                /* @__PURE__ */ jsx9(X3, { className: "h-4 w-4" }),
-                /* @__PURE__ */ jsx9("span", { className: "sr-only", children: "Close" })
+                /* @__PURE__ */ jsx(X, { className: "h-4 w-4" }),
+                /* @__PURE__ */ jsx("span", { className: "sr-only", children: "Close" })
               ]
             }
           )
@@ -637,7 +598,7 @@ var Alert = React8.forwardRef(
   }
 );
 Alert.displayName = "Alert";
-var AlertTitle = React8.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx9(
+var AlertTitle = React6.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   "h5",
   {
     ref,
@@ -646,7 +607,7 @@ var AlertTitle = React8.forwardRef(({ className, ...props }, ref) => /* @__PURE_
   }
 ));
 AlertTitle.displayName = "AlertTitle";
-var AlertDescription = React8.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx9(
+var AlertDescription = React6.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   "div",
   {
     ref,
@@ -655,13 +616,7 @@ var AlertDescription = React8.forwardRef(({ className, ...props }, ref) => /* @_
   }
 ));
 AlertDescription.displayName = "AlertDescription";
-
-// src/components/label.tsx
-import * as React9 from "react";
-import * as LabelPrimitive from "@radix-ui/react-label";
-import { cva as cva8 } from "class-variance-authority";
-import { jsx as jsx10 } from "react/jsx-runtime";
-var labelVariants = cva8(
+var labelVariants = cva(
   "text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70",
   {
     variants: {
@@ -683,7 +638,7 @@ var labelVariants = cva8(
     }
   }
 );
-var Label2 = React9.forwardRef(({ className, variant, size, ...props }, ref) => /* @__PURE__ */ jsx10(
+var Label2 = React6.forwardRef(({ className, variant, size, ...props }, ref) => /* @__PURE__ */ jsx(
   LabelPrimitive.Root,
   {
     ref,
@@ -692,14 +647,7 @@ var Label2 = React9.forwardRef(({ className, variant, size, ...props }, ref) => 
   }
 ));
 Label2.displayName = LabelPrimitive.Root.displayName;
-
-// src/components/checkbox.tsx
-import * as React10 from "react";
-import * as CheckboxPrimitive from "@radix-ui/react-checkbox";
-import { Check as Check2, Minus } from "lucide-react";
-import { cva as cva9 } from "class-variance-authority";
-import { jsx as jsx11 } from "react/jsx-runtime";
-var checkboxVariants = cva9(
+var checkboxVariants = cva(
   "peer shrink-0 rounded-sm border border-primary ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground data-[state=indeterminate]:bg-primary data-[state=indeterminate]:text-primary-foreground",
   {
     variants: {
@@ -714,7 +662,7 @@ var checkboxVariants = cva9(
     }
   }
 );
-var checkboxIconVariants = cva9("flex items-center justify-center text-current", {
+var checkboxIconVariants = cva("flex items-center justify-center text-current", {
   variants: {
     size: {
       sm: "h-2.5 w-2.5",
@@ -726,25 +674,18 @@ var checkboxIconVariants = cva9("flex items-center justify-center text-current",
     size: "default"
   }
 });
-var Checkbox = React10.forwardRef(({ className, size, indeterminate, ...props }, ref) => /* @__PURE__ */ jsx11(
+var Checkbox = React6.forwardRef(({ className, size, indeterminate, ...props }, ref) => /* @__PURE__ */ jsx(
   CheckboxPrimitive.Root,
   {
     ref,
     className: cn(checkboxVariants({ size, className })),
     ...props,
     "data-state": indeterminate ? "indeterminate" : props.checked ? "checked" : "unchecked",
-    children: /* @__PURE__ */ jsx11(CheckboxPrimitive.Indicator, { className: cn("flex items-center justify-center text-current"), children: indeterminate ? /* @__PURE__ */ jsx11(Minus, { className: cn(checkboxIconVariants({ size })) }) : /* @__PURE__ */ jsx11(Check2, { className: cn(checkboxIconVariants({ size })) }) })
+    children: /* @__PURE__ */ jsx(CheckboxPrimitive.Indicator, { className: cn("flex items-center justify-center text-current"), children: indeterminate ? /* @__PURE__ */ jsx(Minus, { className: cn(checkboxIconVariants({ size })) }) : /* @__PURE__ */ jsx(Check, { className: cn(checkboxIconVariants({ size })) }) })
   }
 ));
 Checkbox.displayName = CheckboxPrimitive.Root.displayName;
-
-// src/components/radio-group.tsx
-import * as React11 from "react";
-import * as RadioGroupPrimitive from "@radix-ui/react-radio-group";
-import { Circle as Circle2 } from "lucide-react";
-import { cva as cva10 } from "class-variance-authority";
-import { jsx as jsx12 } from "react/jsx-runtime";
-var radioGroupVariants = cva10(
+var radioGroupVariants = cva(
   "grid gap-2",
   {
     variants: {
@@ -758,7 +699,7 @@ var radioGroupVariants = cva10(
     }
   }
 );
-var radioGroupItemVariants = cva10(
+var radioGroupItemVariants = cva(
   "aspect-square rounded-full border border-primary text-primary ring-offset-background focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground",
   {
     variants: {
@@ -773,7 +714,7 @@ var radioGroupItemVariants = cva10(
     }
   }
 );
-var radioGroupIndicatorVariants = cva10(
+var radioGroupIndicatorVariants = cva(
   "flex items-center justify-center",
   {
     variants: {
@@ -788,8 +729,8 @@ var radioGroupIndicatorVariants = cva10(
     }
   }
 );
-var RadioGroup2 = React11.forwardRef(({ className, orientation, ...props }, ref) => {
-  return /* @__PURE__ */ jsx12(
+var RadioGroup2 = React6.forwardRef(({ className, orientation, ...props }, ref) => {
+  return /* @__PURE__ */ jsx(
     RadioGroupPrimitive.Root,
     {
       className: cn(radioGroupVariants({ orientation, className })),
@@ -799,29 +740,22 @@ var RadioGroup2 = React11.forwardRef(({ className, orientation, ...props }, ref)
   );
 });
 RadioGroup2.displayName = RadioGroupPrimitive.Root.displayName;
-var RadioGroupItem = React11.forwardRef(({ className, size, ...props }, ref) => {
-  return /* @__PURE__ */ jsx12(
+var RadioGroupItem = React6.forwardRef(({ className, size, ...props }, ref) => {
+  return /* @__PURE__ */ jsx(
     RadioGroupPrimitive.Item,
     {
       ref,
       className: cn(radioGroupItemVariants({ size, className })),
       ...props,
-      children: /* @__PURE__ */ jsx12(RadioGroupPrimitive.Indicator, { className: "flex items-center justify-center", children: /* @__PURE__ */ jsx12(Circle2, { className: cn(radioGroupIndicatorVariants({ size }), "fill-current text-current") }) })
+      children: /* @__PURE__ */ jsx(RadioGroupPrimitive.Indicator, { className: "flex items-center justify-center", children: /* @__PURE__ */ jsx(Circle, { className: cn(radioGroupIndicatorVariants({ size }), "fill-current text-current") }) })
     }
   );
 });
 RadioGroupItem.displayName = RadioGroupPrimitive.Item.displayName;
-
-// src/components/select.tsx
-import * as React12 from "react";
-import * as SelectPrimitive from "@radix-ui/react-select";
-import { Check as Check3, ChevronDown, ChevronUp } from "lucide-react";
-import { cva as cva11 } from "class-variance-authority";
-import { jsx as jsx13, jsxs as jsxs5 } from "react/jsx-runtime";
 var Select = SelectPrimitive.Root;
 var SelectGroup = SelectPrimitive.Group;
 var SelectValue = SelectPrimitive.Value;
-var selectTriggerVariants = cva11(
+var selectTriggerVariants = cva(
   "flex w-full items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1",
   {
     variants: {
@@ -836,7 +770,7 @@ var selectTriggerVariants = cva11(
     }
   }
 );
-var selectContentVariants = cva11(
+var selectContentVariants = cva(
   "relative z-50 max-h-96 min-w-[8rem] overflow-hidden rounded-md border bg-popover text-popover-foreground shadow-md data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2",
   {
     variants: {
@@ -851,7 +785,7 @@ var selectContentVariants = cva11(
     }
   }
 );
-var SelectTrigger = React12.forwardRef(({ className, children, size, ...props }, ref) => /* @__PURE__ */ jsxs5(
+var SelectTrigger = React6.forwardRef(({ className, children, size, ...props }, ref) => /* @__PURE__ */ jsxs(
   SelectPrimitive.Trigger,
   {
     ref,
@@ -859,12 +793,12 @@ var SelectTrigger = React12.forwardRef(({ className, children, size, ...props },
     ...props,
     children: [
       children,
-      /* @__PURE__ */ jsx13(SelectPrimitive.Icon, { asChild: true, children: /* @__PURE__ */ jsx13(ChevronDown, { className: "h-4 w-4 opacity-50" }) })
+      /* @__PURE__ */ jsx(SelectPrimitive.Icon, { asChild: true, children: /* @__PURE__ */ jsx(ChevronDown, { className: "h-4 w-4 opacity-50" }) })
     ]
   }
 ));
 SelectTrigger.displayName = SelectPrimitive.Trigger.displayName;
-var SelectScrollUpButton = React12.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx13(
+var SelectScrollUpButton = React6.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   SelectPrimitive.ScrollUpButton,
   {
     ref,
@@ -873,11 +807,11 @@ var SelectScrollUpButton = React12.forwardRef(({ className, ...props }, ref) => 
       className
     ),
     ...props,
-    children: /* @__PURE__ */ jsx13(ChevronUp, { className: "h-4 w-4" })
+    children: /* @__PURE__ */ jsx(ChevronUp, { className: "h-4 w-4" })
   }
 ));
 SelectScrollUpButton.displayName = SelectPrimitive.ScrollUpButton.displayName;
-var SelectScrollDownButton = React12.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx13(
+var SelectScrollDownButton = React6.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   SelectPrimitive.ScrollDownButton,
   {
     ref,
@@ -886,11 +820,11 @@ var SelectScrollDownButton = React12.forwardRef(({ className, ...props }, ref) =
       className
     ),
     ...props,
-    children: /* @__PURE__ */ jsx13(ChevronDown, { className: "h-4 w-4" })
+    children: /* @__PURE__ */ jsx(ChevronDown, { className: "h-4 w-4" })
   }
 ));
 SelectScrollDownButton.displayName = SelectPrimitive.ScrollDownButton.displayName;
-var SelectContent = React12.forwardRef(({ className, children, position = "popper", size, ...props }, ref) => /* @__PURE__ */ jsx13(SelectPrimitive.Portal, { children: /* @__PURE__ */ jsxs5(
+var SelectContent = React6.forwardRef(({ className, children, position = "popper", size, ...props }, ref) => /* @__PURE__ */ jsx(SelectPrimitive.Portal, { children: /* @__PURE__ */ jsxs(
   SelectPrimitive.Content,
   {
     ref,
@@ -898,8 +832,8 @@ var SelectContent = React12.forwardRef(({ className, children, position = "poppe
     position,
     ...props,
     children: [
-      /* @__PURE__ */ jsx13(SelectScrollUpButton, {}),
-      /* @__PURE__ */ jsx13(
+      /* @__PURE__ */ jsx(SelectScrollUpButton, {}),
+      /* @__PURE__ */ jsx(
         SelectPrimitive.Viewport,
         {
           className: cn(
@@ -909,12 +843,12 @@ var SelectContent = React12.forwardRef(({ className, children, position = "poppe
           children
         }
       ),
-      /* @__PURE__ */ jsx13(SelectScrollDownButton, {})
+      /* @__PURE__ */ jsx(SelectScrollDownButton, {})
     ]
   }
 ) }));
 SelectContent.displayName = SelectPrimitive.Content.displayName;
-var SelectLabel = React12.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx13(
+var SelectLabel = React6.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   SelectPrimitive.Label,
   {
     ref,
@@ -923,7 +857,7 @@ var SelectLabel = React12.forwardRef(({ className, ...props }, ref) => /* @__PUR
   }
 ));
 SelectLabel.displayName = SelectPrimitive.Label.displayName;
-var SelectItem = React12.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxs5(
+var SelectItem = React6.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxs(
   SelectPrimitive.Item,
   {
     ref,
@@ -933,13 +867,13 @@ var SelectItem = React12.forwardRef(({ className, children, ...props }, ref) => 
     ),
     ...props,
     children: [
-      /* @__PURE__ */ jsx13("span", { className: "absolute left-2 flex h-3.5 w-3.5 items-center justify-center", children: /* @__PURE__ */ jsx13(SelectPrimitive.ItemIndicator, { children: /* @__PURE__ */ jsx13(Check3, { className: "h-4 w-4" }) }) }),
-      /* @__PURE__ */ jsx13(SelectPrimitive.ItemText, { children })
+      /* @__PURE__ */ jsx("span", { className: "absolute left-2 flex h-3.5 w-3.5 items-center justify-center", children: /* @__PURE__ */ jsx(SelectPrimitive.ItemIndicator, { children: /* @__PURE__ */ jsx(Check, { className: "h-4 w-4" }) }) }),
+      /* @__PURE__ */ jsx(SelectPrimitive.ItemText, { children })
     ]
   }
 ));
 SelectItem.displayName = SelectPrimitive.Item.displayName;
-var SelectSeparator = React12.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx13(
+var SelectSeparator = React6.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   SelectPrimitive.Separator,
   {
     ref,
@@ -948,12 +882,7 @@ var SelectSeparator = React12.forwardRef(({ className, ...props }, ref) => /* @_
   }
 ));
 SelectSeparator.displayName = SelectPrimitive.Separator.displayName;
-
-// src/components/textarea.tsx
-import * as React13 from "react";
-import { cva as cva12 } from "class-variance-authority";
-import { jsx as jsx14, jsxs as jsxs6 } from "react/jsx-runtime";
-var textareaVariants = cva12(
+var textareaVariants = cva(
   "flex min-h-[80px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50",
   {
     variants: {
@@ -975,7 +904,7 @@ var textareaVariants = cva12(
     }
   }
 );
-var Textarea = React13.forwardRef(
+var Textarea = React6.forwardRef(
   ({
     className,
     size,
@@ -989,21 +918,20 @@ var Textarea = React13.forwardRef(
     onChange,
     ...props
   }, ref) => {
-    const [internalValue, setInternalValue] = React13.useState(value || "");
-    const textareaRef = React13.useRef(null);
-    const mergedRef = React13.useMemo(
+    const [internalValue, setInternalValue] = React6.useState(value || "");
+    const textareaRef = React6.useRef(null);
+    const mergedRef = React6.useMemo(
       () => (node) => {
         textareaRef.current = node;
         if (typeof ref === "function") {
           ref(node);
         } else if (ref && "current" in ref) {
-          ;
           ref.current = node;
         }
       },
       [ref]
     );
-    const adjustHeight = React13.useCallback(() => {
+    const adjustHeight = React6.useCallback(() => {
       const textarea = textareaRef.current;
       if (!textarea || !autoResize) return;
       textarea.style.height = "auto";
@@ -1021,7 +949,7 @@ var Textarea = React13.forwardRef(
       }
       textarea.style.height = `${newHeight}px`;
     }, [autoResize, minRows, maxRows]);
-    const handleChange = React13.useCallback(
+    const handleChange = React6.useCallback(
       (e) => {
         const newValue = e.target.value;
         setInternalValue(newValue);
@@ -1032,20 +960,20 @@ var Textarea = React13.forwardRef(
       },
       [onChange, autoResize, adjustHeight]
     );
-    React13.useEffect(() => {
+    React6.useEffect(() => {
       if (autoResize) {
         adjustHeight();
       }
     }, [autoResize, adjustHeight, value]);
-    React13.useEffect(() => {
+    React6.useEffect(() => {
       if (value !== void 0) {
         setInternalValue(value);
       }
     }, [value]);
     const currentValue = value !== void 0 ? value : internalValue;
     const charCount = typeof currentValue === "string" ? currentValue.length : 0;
-    return /* @__PURE__ */ jsxs6("div", { className: "relative w-full", children: [
-      /* @__PURE__ */ jsx14(
+    return /* @__PURE__ */ jsxs("div", { className: "relative w-full", children: [
+      /* @__PURE__ */ jsx(
         "textarea",
         {
           className: cn(
@@ -1060,7 +988,7 @@ var Textarea = React13.forwardRef(
           ...props
         }
       ),
-      characterCount && /* @__PURE__ */ jsxs6("div", { className: "absolute bottom-2 right-2 text-xs text-muted-foreground", children: [
+      characterCount && /* @__PURE__ */ jsxs("div", { className: "absolute bottom-2 right-2 text-xs text-muted-foreground", children: [
         charCount,
         maxLength && `/${maxLength}`
       ] })
@@ -1068,13 +996,7 @@ var Textarea = React13.forwardRef(
   }
 );
 Textarea.displayName = "Textarea";
-
-// src/components/switch.tsx
-import * as React14 from "react";
-import * as SwitchPrimitive from "@radix-ui/react-switch";
-import { cva as cva13 } from "class-variance-authority";
-import { jsx as jsx15, jsxs as jsxs7 } from "react/jsx-runtime";
-var switchVariants = cva13(
+var switchVariants = cva(
   "peer inline-flex shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:cursor-not-allowed disabled:opacity-50",
   {
     variants: {
@@ -1095,7 +1017,7 @@ var switchVariants = cva13(
     }
   }
 );
-var switchThumbVariants = cva13(
+var switchThumbVariants = cva(
   "pointer-events-none block rounded-full bg-background shadow-lg ring-0 transition-transform data-[state=unchecked]:translate-x-0",
   {
     variants: {
@@ -1110,7 +1032,7 @@ var switchThumbVariants = cva13(
     }
   }
 );
-var switchIconVariants = cva13(
+var switchIconVariants = cva(
   "absolute inset-0 flex items-center justify-center transition-opacity",
   {
     variants: {
@@ -1130,9 +1052,9 @@ var switchIconVariants = cva13(
     }
   }
 );
-var Switch = React14.forwardRef(({ className, size, variant, checkedIcon, uncheckedIcon, checked, ...props }, ref) => {
-  const [isChecked, setIsChecked] = React14.useState(checked || false);
-  React14.useEffect(() => {
+var Switch = React6.forwardRef(({ className, size, variant, checkedIcon, uncheckedIcon, checked, ...props }, ref) => {
+  const [isChecked, setIsChecked] = React6.useState(checked || false);
+  React6.useEffect(() => {
     if (checked !== void 0) {
       setIsChecked(checked);
     }
@@ -1141,7 +1063,7 @@ var Switch = React14.forwardRef(({ className, size, variant, checkedIcon, unchec
     setIsChecked(newChecked);
     props.onCheckedChange?.(newChecked);
   };
-  return /* @__PURE__ */ jsxs7(
+  return /* @__PURE__ */ jsxs(
     SwitchPrimitive.Root,
     {
       className: cn(switchVariants({ size, variant }), className),
@@ -1150,21 +1072,21 @@ var Switch = React14.forwardRef(({ className, size, variant, checkedIcon, unchec
       ...props,
       ref,
       children: [
-        checkedIcon && /* @__PURE__ */ jsx15("div", { className: cn(
+        checkedIcon && /* @__PURE__ */ jsx("div", { className: cn(
           switchIconVariants({
             size,
             state: isChecked ? "checked" : "unchecked"
           }),
           "left-1 text-primary-foreground"
         ), children: checkedIcon }),
-        uncheckedIcon && /* @__PURE__ */ jsx15("div", { className: cn(
+        uncheckedIcon && /* @__PURE__ */ jsx("div", { className: cn(
           switchIconVariants({
             size,
             state: isChecked ? "unchecked" : "checked"
           }),
           "right-1 text-muted-foreground"
         ), children: uncheckedIcon }),
-        /* @__PURE__ */ jsx15(
+        /* @__PURE__ */ jsx(
           SwitchPrimitive.Thumb,
           {
             className: cn(switchThumbVariants({ size }))
@@ -1175,12 +1097,7 @@ var Switch = React14.forwardRef(({ className, size, variant, checkedIcon, unchec
   );
 });
 Switch.displayName = SwitchPrimitive.Root.displayName;
-
-// src/components/table.tsx
-import * as React15 from "react";
-import { cva as cva14 } from "class-variance-authority";
-import { jsx as jsx16, jsxs as jsxs8 } from "react/jsx-runtime";
-var tableVariants = cva14(
+var tableVariants = cva(
   "w-full caption-bottom text-sm",
   {
     variants: {
@@ -1201,7 +1118,7 @@ var tableVariants = cva14(
     }
   }
 );
-var tableHeaderVariants = cva14(
+var tableHeaderVariants = cva(
   "",
   {
     variants: {
@@ -1216,7 +1133,7 @@ var tableHeaderVariants = cva14(
     }
   }
 );
-var tableBodyVariants = cva14(
+var tableBodyVariants = cva(
   "",
   {
     variants: {
@@ -1231,7 +1148,7 @@ var tableBodyVariants = cva14(
     }
   }
 );
-var tableRowVariants = cva14(
+var tableRowVariants = cva(
   "border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted",
   {
     variants: {
@@ -1245,7 +1162,7 @@ var tableRowVariants = cva14(
     }
   }
 );
-var tableHeadVariants = cva14(
+var tableHeadVariants = cva(
   "text-left align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0",
   {
     variants: {
@@ -1265,7 +1182,7 @@ var tableHeadVariants = cva14(
     }
   }
 );
-var tableCellVariants = cva14(
+var tableCellVariants = cva(
   "align-middle [&:has([role=checkbox])]:pr-0",
   {
     variants: {
@@ -1280,8 +1197,8 @@ var tableCellVariants = cva14(
     }
   }
 );
-var Table = React15.forwardRef(
-  ({ className, size, variant, ...props }, ref) => /* @__PURE__ */ jsx16("div", { className: "relative w-full overflow-auto", children: /* @__PURE__ */ jsx16(
+var Table = React6.forwardRef(
+  ({ className, size, variant, ...props }, ref) => /* @__PURE__ */ jsx("div", { className: "relative w-full overflow-auto", children: /* @__PURE__ */ jsx(
     "table",
     {
       ref,
@@ -1291,8 +1208,8 @@ var Table = React15.forwardRef(
   ) })
 );
 Table.displayName = "Table";
-var TableHeader = React15.forwardRef(
-  ({ className, size, ...props }, ref) => /* @__PURE__ */ jsx16(
+var TableHeader = React6.forwardRef(
+  ({ className, size, ...props }, ref) => /* @__PURE__ */ jsx(
     "thead",
     {
       ref,
@@ -1302,8 +1219,8 @@ var TableHeader = React15.forwardRef(
   )
 );
 TableHeader.displayName = "TableHeader";
-var TableBody = React15.forwardRef(
-  ({ className, size, ...props }, ref) => /* @__PURE__ */ jsx16(
+var TableBody = React6.forwardRef(
+  ({ className, size, ...props }, ref) => /* @__PURE__ */ jsx(
     "tbody",
     {
       ref,
@@ -1313,7 +1230,7 @@ var TableBody = React15.forwardRef(
   )
 );
 TableBody.displayName = "TableBody";
-var TableFooter = React15.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx16(
+var TableFooter = React6.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   "tfoot",
   {
     ref,
@@ -1325,8 +1242,8 @@ var TableFooter = React15.forwardRef(({ className, ...props }, ref) => /* @__PUR
   }
 ));
 TableFooter.displayName = "TableFooter";
-var TableRow = React15.forwardRef(
-  ({ className, variant, ...props }, ref) => /* @__PURE__ */ jsx16(
+var TableRow = React6.forwardRef(
+  ({ className, variant, ...props }, ref) => /* @__PURE__ */ jsx(
     "tr",
     {
       ref,
@@ -1336,8 +1253,8 @@ var TableRow = React15.forwardRef(
   )
 );
 TableRow.displayName = "TableRow";
-var TableHead = React15.forwardRef(
-  ({ className, size, sortable, sortDirection, onSort, children, ...props }, ref) => /* @__PURE__ */ jsx16(
+var TableHead = React6.forwardRef(
+  ({ className, size, sortable, sortDirection, onSort, children, ...props }, ref) => /* @__PURE__ */ jsx(
     "th",
     {
       ref,
@@ -1353,10 +1270,10 @@ var TableHead = React15.forwardRef(
       } : void 0,
       "aria-sort": sortable ? sortDirection === "asc" ? "ascending" : sortDirection === "desc" ? "descending" : "none" : void 0,
       ...props,
-      children: /* @__PURE__ */ jsxs8("div", { className: "flex items-center gap-2", children: [
+      children: /* @__PURE__ */ jsxs("div", { className: "flex items-center gap-2", children: [
         children,
-        sortable && /* @__PURE__ */ jsxs8("div", { className: "flex flex-col", children: [
-          /* @__PURE__ */ jsx16(
+        sortable && /* @__PURE__ */ jsxs("div", { className: "flex flex-col", children: [
+          /* @__PURE__ */ jsx(
             "svg",
             {
               className: cn(
@@ -1365,7 +1282,7 @@ var TableHead = React15.forwardRef(
               ),
               fill: "currentColor",
               viewBox: "0 0 20 20",
-              children: /* @__PURE__ */ jsx16(
+              children: /* @__PURE__ */ jsx(
                 "path",
                 {
                   fillRule: "evenodd",
@@ -1375,7 +1292,7 @@ var TableHead = React15.forwardRef(
               )
             }
           ),
-          /* @__PURE__ */ jsx16(
+          /* @__PURE__ */ jsx(
             "svg",
             {
               className: cn(
@@ -1384,7 +1301,7 @@ var TableHead = React15.forwardRef(
               ),
               fill: "currentColor",
               viewBox: "0 0 20 20",
-              children: /* @__PURE__ */ jsx16(
+              children: /* @__PURE__ */ jsx(
                 "path",
                 {
                   fillRule: "evenodd",
@@ -1400,8 +1317,8 @@ var TableHead = React15.forwardRef(
   )
 );
 TableHead.displayName = "TableHead";
-var TableCell = React15.forwardRef(
-  ({ className, size, ...props }, ref) => /* @__PURE__ */ jsx16(
+var TableCell = React6.forwardRef(
+  ({ className, size, ...props }, ref) => /* @__PURE__ */ jsx(
     "td",
     {
       ref,
@@ -1411,7 +1328,7 @@ var TableCell = React15.forwardRef(
   )
 );
 TableCell.displayName = "TableCell";
-var TableCaption = React15.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx16(
+var TableCaption = React6.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   "caption",
   {
     ref,
@@ -1420,99 +1337,7 @@ var TableCaption = React15.forwardRef(({ className, ...props }, ref) => /* @__PU
   }
 ));
 TableCaption.displayName = "TableCaption";
-export {
-  Alert,
-  AlertDescription,
-  AlertTitle,
-  Badge,
-  Button,
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-  Checkbox,
-  Dialog,
-  DialogClose,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogOverlay,
-  DialogPortal,
-  DialogTitle,
-  DialogTrigger,
-  DropdownMenu,
-  DropdownMenuCheckboxItem,
-  DropdownMenuContent,
-  DropdownMenuGroup,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuPortal,
-  DropdownMenuRadioGroup,
-  DropdownMenuRadioItem,
-  DropdownMenuSeparator,
-  DropdownMenuShortcut,
-  DropdownMenuSub,
-  DropdownMenuSubContent,
-  DropdownMenuSubTrigger,
-  DropdownMenuTrigger,
-  Input,
-  Label2 as Label,
-  Popover,
-  PopoverAnchor,
-  PopoverArrow,
-  PopoverClose,
-  PopoverContent,
-  PopoverDescription,
-  PopoverFooter,
-  PopoverHeader,
-  PopoverTitle,
-  PopoverTrigger,
-  RadioGroup2 as RadioGroup,
-  RadioGroupItem,
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectLabel,
-  SelectScrollDownButton,
-  SelectScrollUpButton,
-  SelectSeparator,
-  SelectTrigger,
-  SelectValue,
-  Switch,
-  Table,
-  TableBody,
-  TableCaption,
-  TableCell,
-  TableFooter,
-  TableHead,
-  TableHeader,
-  TableRow,
-  Textarea,
-  Tooltip,
-  TooltipArrow,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-  alertVariants,
-  badgeVariants,
-  buttonVariants,
-  checkboxVariants,
-  cn,
-  labelVariants,
-  popoverContentVariants,
-  radioGroupItemVariants,
-  radioGroupVariants,
-  selectContentVariants,
-  selectTriggerVariants,
-  switchVariants,
-  tableCellVariants,
-  tableHeadVariants,
-  tableVariants,
-  textareaVariants,
-  tooltipContentVariants
-};
+
+export { Alert, AlertDescription, AlertTitle, Badge, Button, Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle, Checkbox, Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogOverlay, DialogPortal, DialogTitle, DialogTrigger, DropdownMenu, DropdownMenuCheckboxItem, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel, DropdownMenuPortal, DropdownMenuRadioGroup, DropdownMenuRadioItem, DropdownMenuSeparator, DropdownMenuShortcut, DropdownMenuSub, DropdownMenuSubContent, DropdownMenuSubTrigger, DropdownMenuTrigger, Input, Label2 as Label, Popover, PopoverAnchor, PopoverArrow, PopoverClose, PopoverContent, PopoverDescription, PopoverFooter, PopoverHeader, PopoverTitle, PopoverTrigger, RadioGroup2 as RadioGroup, RadioGroupItem, Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectScrollDownButton, SelectScrollUpButton, SelectSeparator, SelectTrigger, SelectValue, Switch, Table, TableBody, TableCaption, TableCell, TableFooter, TableHead, TableHeader, TableRow, Textarea, Tooltip, TooltipArrow, TooltipContent, TooltipProvider, TooltipTrigger, alertVariants, badgeVariants, buttonVariants, checkboxVariants, cn, labelVariants, popoverContentVariants, radioGroupItemVariants, radioGroupVariants, selectContentVariants, selectTriggerVariants, switchVariants, tableCellVariants, tableHeadVariants, tableVariants, textareaVariants, tooltipContentVariants };
+//# sourceMappingURL=index.mjs.map
 //# sourceMappingURL=index.mjs.map

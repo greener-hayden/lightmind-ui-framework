@@ -13,6 +13,12 @@ import {
   TableRow,
   TableFooter
 } from '@/components/ui/table'
+import { SelectableTable, useTableSelection } from '@/components/ui/selectable-table'
+import { FilterableTable, useTableFilters, createFilterOptions } from '@/components/ui/filterable-table'
+import { SortableTable, useTableSort } from '@/components/ui/sortable-table'
+import { TablePagination, usePagination } from '@/components/ui/table-pagination'
+import { getUsers, getProducts, getOrders, getAnalytics } from '@/lib/fake-data'
+import { useTableData, createColumnDef } from '@/lib/table-utils'
 
 // Sample data for demonstrations
 const users = [
@@ -245,98 +251,70 @@ export function TableSizesPreview() {
 }
 
 export function TableSortablePreview() {
-  const [sortConfig, setSortConfig] = useState<{ key: string; direction: 'asc' | 'desc' | null }>({
-    key: '',
-    direction: null,
-  })
-
-  const handleSort = (key: string) => {
-    setSortConfig(prev => ({
-      key,
-      direction: prev.key === key && prev.direction === 'asc' ? 'desc' : 'asc'
-    }))
-  }
-
-  const sortedUsers = [...users].sort((a, b) => {
-    if (sortConfig.direction === null) return 0
-
-    const aValue = a[sortConfig.key as keyof typeof a]
-    const bValue = b[sortConfig.key as keyof typeof b]
-
-    if (aValue < bValue) return sortConfig.direction === 'asc' ? -1 : 1
-    if (aValue > bValue) return sortConfig.direction === 'asc' ? 1 : -1
-    return 0
-  })
+  const users = getUsers(20)
+  const columns = [
+    {
+      id: 'name',
+      header: 'Name',
+      accessor: 'name' as keyof typeof users[0],
+      sortable: true,
+      sortType: 'string' as const,
+      cell: (value: any) => <span className="font-medium">{value}</span>
+    },
+    {
+      id: 'email',
+      header: 'Email',
+      accessor: 'email' as keyof typeof users[0],
+      sortable: true,
+      sortType: 'string' as const
+    },
+    {
+      id: 'role',
+      header: 'Role',
+      accessor: 'role' as keyof typeof users[0],
+      sortable: true,
+      sortType: 'string' as const,
+      cell: (value: any) => (
+        <Badge variant={value === 'Admin' ? 'default' : 'secondary'}>
+          {value}
+        </Badge>
+      )
+    },
+    {
+      id: 'status',
+      header: 'Status',
+      accessor: 'status' as keyof typeof users[0],
+      sortable: true,
+      sortType: 'string' as const,
+      cell: (value: any) => (
+        <Badge variant={
+          value === 'Active' ? 'default' : 
+          value === 'Inactive' ? 'secondary' : 
+          'outline'
+        }>
+          {value}
+        </Badge>
+      )
+    },
+    {
+      id: 'lastLogin',
+      header: 'Last Login',
+      accessor: 'lastLogin' as keyof typeof users[0],
+      sortable: true,
+      sortType: 'date' as const
+    }
+  ]
 
   return (
     <div className="p-4">
-      <Table>
-        <TableCaption>Click column headers to sort the data.</TableCaption>
-        <TableHeader>
-          <TableRow>
-            <TableHead 
-              sortable
-              sortDirection={sortConfig.key === 'name' ? sortConfig.direction : null}
-              onSort={() => handleSort('name')}
-            >
-              Name
-            </TableHead>
-            <TableHead 
-              sortable
-              sortDirection={sortConfig.key === 'email' ? sortConfig.direction : null}
-              onSort={() => handleSort('email')}
-            >
-              Email
-            </TableHead>
-            <TableHead 
-              sortable
-              sortDirection={sortConfig.key === 'role' ? sortConfig.direction : null}
-              onSort={() => handleSort('role')}
-            >
-              Role
-            </TableHead>
-            <TableHead 
-              sortable
-              sortDirection={sortConfig.key === 'status' ? sortConfig.direction : null}
-              onSort={() => handleSort('status')}
-            >
-              Status
-            </TableHead>
-            <TableHead 
-              sortable
-              sortDirection={sortConfig.key === 'lastLogin' ? sortConfig.direction : null}
-              onSort={() => handleSort('lastLogin')}
-            >
-              Last Login
-            </TableHead>
-          </TableRow>
-        </TableHeader>
-        <TableBody>
-          {sortedUsers.map((user) => (
-            <TableRow key={user.id}>
-              <TableCell className="font-medium">{user.name}</TableCell>
-              <TableCell>{user.email}</TableCell>
-              <TableCell>
-                <Badge variant={user.role === 'Admin' ? 'default' : 'secondary'}>
-                  {user.role}
-                </Badge>
-              </TableCell>
-              <TableCell>
-                <Badge 
-                  variant={
-                    user.status === 'Active' ? 'default' : 
-                    user.status === 'Inactive' ? 'secondary' : 
-                    'outline'
-                  }
-                >
-                  {user.status}
-                </Badge>
-              </TableCell>
-              <TableCell>{user.lastLogin}</TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
+      <SortableTable
+        data={users}
+        columns={columns}
+        multiColumnSort={true}
+        showSortPriority={true}
+        maxSortColumns={3}
+        defaultSort={[{ key: 'name', direction: 'asc', priority: 0 }]}
+      />
     </div>
   )
 }
@@ -453,19 +431,23 @@ export function TableInvoicesPreview() {
 }
 
 export function TableAnalyticsPreview() {
-  const getChangeColor = (change: string) => {
-    if (change.startsWith('+')) return 'text-green-600'
-    if (change.startsWith('-') && !change.includes('Bounce')) return 'text-red-600'
-    if (change.startsWith('-') && change.includes('Bounce')) return 'text-green-600' // Bounce rate decrease is good
-    return 'text-muted-foreground'
+  const analyticsData = getAnalytics(10)
+  
+  const getChangeColor = (changeType: string) => {
+    switch (changeType) {
+      case 'increase': return 'text-green-600'
+      case 'decrease': return 'text-red-600'
+      default: return 'text-muted-foreground'
+    }
   }
 
-  const formatValue = (metric: string, value: number) => {
-    switch (metric) {
-      case 'Bounce Rate':
-      case 'Conversion Rate':
+  const formatValue = (value: number, unit: string) => {
+    switch (unit) {
+      case 'percentage':
         return `${value}%`
-      case 'Avg. Session Duration':
+      case 'currency':
+        return `$${value.toLocaleString()}`
+      case 'time':
         return `${Math.floor(value / 60)}m ${value % 60}s`
       default:
         return value.toLocaleString()
@@ -485,13 +467,13 @@ export function TableAnalyticsPreview() {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {analytics.map((row) => (
-            <TableRow key={row.metric}>
+          {analyticsData.map((row) => (
+            <TableRow key={row.id}>
               <TableCell className="font-medium">{row.metric}</TableCell>
-              <TableCell>{formatValue(row.metric, row.current)}</TableCell>
-              <TableCell>{formatValue(row.metric, row.previous)}</TableCell>
-              <TableCell className={`text-right font-medium ${getChangeColor(row.change)}`}>
-                {row.change}
+              <TableCell>{formatValue(row.value, row.unit)}</TableCell>
+              <TableCell>{formatValue(row.previousValue, row.unit)}</TableCell>
+              <TableCell className={`text-right font-medium ${getChangeColor(row.changeType)}`}>
+                {row.change > 0 ? '+' : ''}{row.change.toFixed(1)}%
               </TableCell>
             </TableRow>
           ))}
@@ -501,55 +483,376 @@ export function TableAnalyticsPreview() {
   )
 }
 
+// New advanced table preview components
+export function TableSelectablePreview() {
+  const users = getUsers(15)
+  const {
+    selectedRows,
+    isAllSelected,
+    isIndeterminate,
+    handleRowSelect,
+    handleSelectAll,
+    clearSelection,
+    selectedCount
+  } = useTableSelection(users, (user) => user.id)
+
+  const columns = [
+    {
+      id: 'name',
+      header: 'Name',
+      accessor: 'name' as keyof typeof users[0],
+      cell: (value: any) => <span className="font-medium">{value}</span>
+    },
+    {
+      id: 'email',
+      header: 'Email',
+      accessor: 'email' as keyof typeof users[0]
+    },
+    {
+      id: 'role',
+      header: 'Role',
+      accessor: 'role' as keyof typeof users[0],
+      cell: (value: any) => (
+        <Badge variant={value === 'Admin' ? 'default' : 'secondary'}>
+          {value}
+        </Badge>
+      )
+    },
+    {
+      id: 'status',
+      header: 'Status',
+      accessor: 'status' as keyof typeof users[0],
+      cell: (value: any) => (
+        <Badge variant={
+          value === 'Active' ? 'default' : 
+          value === 'Inactive' ? 'secondary' : 
+          'outline'
+        }>
+          {value}
+        </Badge>
+      )
+    }
+  ]
+
+  const selectionActions = [
+    {
+      label: 'Export Selected',
+      action: (selectedRows: Set<string>) => {
+        console.log('Exporting:', selectedRows)
+      }
+    },
+    {
+      label: 'Bulk Edit',
+      action: (selectedRows: Set<string>) => {
+        console.log('Bulk editing:', selectedRows)
+      }
+    },
+    {
+      label: 'Delete Selected',
+      action: (selectedRows: Set<string>) => {
+        console.log('Deleting:', selectedRows)
+      },
+      variant: 'destructive' as const
+    }
+  ]
+
+  return (
+    <div className="p-4">
+      <SelectableTable
+        data={users}
+        columns={columns}
+        selectedRows={selectedRows}
+        onRowSelect={handleRowSelect}
+        onSelectAll={handleSelectAll}
+        isAllSelected={isAllSelected}
+        isIndeterminate={isIndeterminate}
+        getRowId={(user) => user.id}
+        selectionActions={selectionActions}
+        enableBulkActions={true}
+        showSelectionCount={true}
+      />
+    </div>
+  )
+}
+
+export function TableFilterablePreview() {
+  const users = getUsers(50)
+  const { filters, updateFilter, clearAllFilters } = useTableFilters()
+
+  const columns = [
+    {
+      id: 'name',
+      header: 'Name',
+      accessor: 'name' as keyof typeof users[0],
+      cell: (value: any) => <span className="font-medium">{value}</span>,
+      filter: {
+        id: 'name' as keyof typeof users[0],
+        type: 'text' as const,
+        label: 'Name',
+        placeholder: 'Search names...'
+      }
+    },
+    {
+      id: 'department',
+      header: 'Department',
+      accessor: 'department' as keyof typeof users[0],
+      filter: {
+        id: 'department' as keyof typeof users[0],
+        type: 'select' as const,
+        label: 'Department',
+        options: createFilterOptions(users, 'department')
+      }
+    },
+    {
+      id: 'role',
+      header: 'Role',
+      accessor: 'role' as keyof typeof users[0],
+      cell: (value: any) => (
+        <Badge variant={value === 'Admin' ? 'default' : 'secondary'}>
+          {value}
+        </Badge>
+      ),
+      filter: {
+        id: 'role' as keyof typeof users[0],
+        type: 'multiselect' as const,
+        label: 'Role',
+        options: createFilterOptions(users, 'role')
+      }
+    },
+    {
+      id: 'status',
+      header: 'Status',
+      accessor: 'status' as keyof typeof users[0],
+      cell: (value: any) => (
+        <Badge variant={
+          value === 'Active' ? 'default' : 
+          value === 'Inactive' ? 'secondary' : 
+          'outline'
+        }>
+          {value}
+        </Badge>
+      ),
+      filter: {
+        id: 'status' as keyof typeof users[0],
+        type: 'select' as const,
+        label: 'Status',
+        options: createFilterOptions(users, 'status')
+      }
+    },
+    {
+      id: 'lastLogin',
+      header: 'Last Login',
+      accessor: 'lastLogin' as keyof typeof users[0],
+      filter: {
+        id: 'lastLogin' as keyof typeof users[0],
+        type: 'date' as const,
+        label: 'Last Login'
+      }
+    }
+  ]
+
+  return (
+    <div className="p-4">
+      <FilterableTable
+        data={users}
+        columns={columns}
+        filters={filters}
+        onFiltersChange={(newFilters) => Object.entries(newFilters).forEach(([key, value]) => updateFilter(key, value))}
+        showFilterBar={true}
+        showFilterCount={true}
+        showClearFilters={true}
+      />
+    </div>
+  )
+}
+
+export function TablePaginatedPreview() {
+  const allProducts = getProducts(100)
+  const { currentPage, pageSize, handlePageChange, handlePageSizeChange } = usePagination(allProducts.length, 10)
+
+  const startIndex = (currentPage - 1) * pageSize
+  const endIndex = startIndex + pageSize
+  const currentProducts = allProducts.slice(startIndex, endIndex)
+
+  const columns = [
+    {
+      id: 'name',
+      header: 'Product',
+      accessor: 'name' as keyof typeof allProducts[0],
+      cell: (value: any) => <span className="font-medium">{value}</span>
+    },
+    {
+      id: 'category',
+      header: 'Category',
+      accessor: 'category' as keyof typeof allProducts[0],
+      cell: (value: any) => (
+        <Badge variant="secondary">{value}</Badge>
+      )
+    },
+    {
+      id: 'price',
+      header: 'Price',
+      accessor: 'price' as keyof typeof allProducts[0],
+      cell: (value: any) => `$${value.toFixed(2)}`
+    },
+    {
+      id: 'stock',
+      header: 'Stock',
+      accessor: 'stock' as keyof typeof allProducts[0],
+      cell: (value: any) => (
+        <span className={value < 10 ? 'text-red-600' : value < 50 ? 'text-yellow-600' : 'text-green-600'}>
+          {value}
+        </span>
+      )
+    },
+    {
+      id: 'status',
+      header: 'Status',
+      accessor: 'status' as keyof typeof allProducts[0],
+      cell: (value: any) => (
+        <Badge variant={
+          value === 'In Stock' ? 'default' : 
+          value === 'Low Stock' ? 'destructive' : 
+          'outline'
+        }>
+          {value}
+        </Badge>
+      )
+    }
+  ]
+
+  return (
+    <div className="p-4 space-y-4">
+      <Table>
+        <TableCaption>Product inventory with pagination</TableCaption>
+        <TableHeader>
+          <TableRow>
+            {columns.map((column) => (
+              <TableHead key={column.id}>{column.header}</TableHead>
+            ))}
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          {currentProducts.map((product) => (
+            <TableRow key={product.id}>
+              {columns.map((column) => {
+                const value = product[column.accessor]
+                return (
+                  <TableCell key={column.id}>
+                    {column.cell ? column.cell(value) : value}
+                  </TableCell>
+                )
+              })}
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+
+      <TablePagination
+        currentPage={currentPage}
+        totalPages={Math.ceil(allProducts.length / pageSize)}
+        pageSize={pageSize}
+        totalItems={allProducts.length}
+        onPageChange={handlePageChange}
+        onPageSizeChange={handlePageSizeChange}
+        showPageSizeSelector={true}
+        showPageJumper={true}
+        showInfo={true}
+        showFirstLastButtons={true}
+      />
+    </div>
+  )
+}
+
 export function TableResponsivePreview() {
+  const orders = getOrders(15)
+  const columns = [
+    {
+      id: 'orderNumber',
+      header: 'Order #',
+      accessor: 'orderNumber' as keyof typeof orders[0],
+      width: 100,
+      cell: (value: any) => <span className="font-medium">{value}</span>
+    },
+    {
+      id: 'status',
+      header: 'Status',
+      accessor: 'status' as keyof typeof orders[0],
+      cell: (value: any) => (
+        <Badge variant={
+          value === 'Delivered' ? 'default' : 
+          value === 'Shipped' ? 'secondary' : 
+          value === 'Cancelled' ? 'destructive' : 
+          'outline'
+        }>
+          {value}
+        </Badge>
+      )
+    },
+    {
+      id: 'customer',
+      header: 'Customer',
+      accessor: 'customer' as keyof typeof orders[0]
+    },
+    {
+      id: 'customerEmail',
+      header: 'Email',
+      accessor: 'customerEmail' as keyof typeof orders[0]
+    },
+    {
+      id: 'paymentMethod',
+      header: 'Payment',
+      accessor: 'paymentMethod' as keyof typeof orders[0]
+    },
+    {
+      id: 'items',
+      header: 'Items',
+      accessor: 'items' as keyof typeof orders[0],
+      align: 'center' as const
+    },
+    {
+      id: 'total',
+      header: 'Total',
+      accessor: 'total' as keyof typeof orders[0],
+      align: 'right' as const,
+      cell: (value: any) => `$${value.toFixed(2)}`
+    }
+  ]
+
   return (
     <div className="p-4">
       <div className="rounded-md border">
         <Table>
-          <TableCaption>Responsive table with horizontal scroll</TableCaption>
+          <TableCaption>Responsive order table with horizontal scroll</TableCaption>
           <TableHeader>
             <TableRow>
-              <TableHead className="w-[100px]">Invoice</TableHead>
-              <TableHead>Status</TableHead>
-              <TableHead>Method</TableHead>
-              <TableHead>Customer</TableHead>
-              <TableHead>Email</TableHead>
-              <TableHead>Phone</TableHead>
-              <TableHead>Address</TableHead>
-              <TableHead className="text-right">Amount</TableHead>
+              {columns.map((column) => (
+                <TableHead 
+                  key={column.id}
+                  className={column.align === 'right' ? 'text-right' : column.align === 'center' ? 'text-center' : ''}
+                  style={{ width: column.width }}
+                >
+                  {column.header}
+                </TableHead>
+              ))}
             </TableRow>
           </TableHeader>
           <TableBody>
-            <TableRow>
-              <TableCell className="font-medium">INV001</TableCell>
-              <TableCell>Paid</TableCell>
-              <TableCell>Credit Card</TableCell>
-              <TableCell>John Doe</TableCell>
-              <TableCell>john@example.com</TableCell>
-              <TableCell>+1 (555) 123-4567</TableCell>
-              <TableCell>123 Main St, New York, NY 10001</TableCell>
-              <TableCell className="text-right">$250.00</TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell className="font-medium">INV002</TableCell>
-              <TableCell>Pending</TableCell>
-              <TableCell>PayPal</TableCell>
-              <TableCell>Jane Smith</TableCell>
-              <TableCell>jane@example.com</TableCell>
-              <TableCell>+1 (555) 987-6543</TableCell>
-              <TableCell>456 Oak Ave, Los Angeles, CA 90210</TableCell>
-              <TableCell className="text-right">$150.00</TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell className="font-medium">INV003</TableCell>
-              <TableCell>Unpaid</TableCell>
-              <TableCell>Bank Transfer</TableCell>
-              <TableCell>Bob Johnson</TableCell>
-              <TableCell>bob@example.com</TableCell>
-              <TableCell>+1 (555) 456-7890</TableCell>
-              <TableCell>789 Pine St, Chicago, IL 60601</TableCell>
-              <TableCell className="text-right">$350.00</TableCell>
-            </TableRow>
+            {orders.map((order, index) => (
+              <TableRow key={order.id}>
+                {columns.map((column) => {
+                  const value = order[column.accessor]
+                  return (
+                    <TableCell 
+                      key={column.id}
+                      className={column.align === 'right' ? 'text-right' : column.align === 'center' ? 'text-center' : ''}
+                    >
+                      {column.cell ? column.cell(value) : value}
+                    </TableCell>
+                  )
+                })}
+              </TableRow>
+            ))}
           </TableBody>
         </Table>
       </div>

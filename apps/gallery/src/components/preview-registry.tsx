@@ -22,7 +22,10 @@ import {
   TableUsersPreview, 
   TableInvoicesPreview, 
   TableAnalyticsPreview, 
-  TableResponsivePreview 
+  TableResponsivePreview,
+  TableSelectablePreview,
+  TableFilterablePreview,
+  TablePaginatedPreview
 } from './previews/table-preview'
 
 // Registry of all preview components
@@ -54,6 +57,9 @@ const previewComponents = {
   TableInvoicesPreview,
   TableAnalyticsPreview,
   TableResponsivePreview,
+  TableSelectablePreview,
+  TableFilterablePreview,
+  TablePaginatedPreview,
 } as const
 
 interface PreviewComponentProps {
