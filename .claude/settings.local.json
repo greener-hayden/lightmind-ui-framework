@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(mkdir:*)",
+      "mcp__browsermcp__browser_navigate",
+      "Bash(npm run dev:*)",
+      "mcp__browsermcp__browser_screenshot",
+      "mcp__context7__resolve-library-id",
+      "mcp__context7__get-library-docs",
+      "WebFetch(domain:ui.shadcn.com)"
+    ],
+    "deny": []
+  }
+}

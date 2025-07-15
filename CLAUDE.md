@@ -19,9 +19,12 @@ npm run gallery
 # Build all packages
 npm run build
 
-# Run visual tests with MCP browser automation
+# Run visual tests (simulated MCP browser automation)
 npm run test:visual
 node testing/visual/test-runner.js
+
+# Lint code
+npm run lint
 
 # Type checking across monorepo
 npm run type-check
@@ -38,58 +41,16 @@ npm run clean
 # Work on UI package only
 cd packages/ui && npm run dev
 
-# Work on gallery app only  
+# Work on gallery app only (runs on port 3001)
 cd apps/gallery && npm run dev
+
+# Work on examples app only
+cd apps/examples && npm run dev
 ```
 
 ## MCP Integration & Usage
 
-This project is configured with **3 MCP servers** for enhanced AI-assisted development:
-
-### 1. Browser MCP (`browsermcp`)
-**Purpose**: Visual testing, UI validation, screenshot capture
-```bash
-# Available browser tools:
-mcp__browsermcp__browser_navigate     # Navigate to URLs
-mcp__browsermcp__browser_screenshot   # Capture screenshots
-mcp__browsermcp__browser_click        # Interact with elements
-mcp__browsermcp__browser_type         # Fill forms and inputs
-```
-
-**Key Workflows**:
-- Visual regression testing of component gallery
-- Cross-browser compatibility validation
-- Automated UI interaction testing
-- Screenshot-based component verification
-
-### 2. Context7 MCP (`context7`)
-**Purpose**: Documentation and library integration
-```bash
-# Available context7 tools:
-mcp__context7__resolve-library-id     # Find library documentation
-mcp__context7__get-library-docs      # Fetch up-to-date docs
-```
-
-**Usage**: Research shadcn/ui updates, React patterns, Tailwind best practices
-
-### 3. Gemini MCP (`gemini-cli`)
-**Purpose**: Cost optimization, sub-agent orchestration, enhanced AI capabilities
-```bash
-# Available gemini tools:
-mcp__gemini-cli__ask-gemini          # Direct Gemini API access
-mcp__gemini-cli__sandbox-test        # Safe code execution
-```
-
-**Advanced Features**:
-- **Cost Optimization**: Use Gemini for large file analysis to save Claude credits
-- **Sub-Agent Control**: Delegate specific tasks to specialized AI models
-- **Self-Calling**: Gemini can call itself recursively for complex problems
-- **Model Selection**: Choose specific Gemini models via `-m` flag
-
-### Cross-MCP Workflows
-1. **Component Development**: Use Context7 for research → Browser MCP for testing → Gemini for optimization
-2. **Visual Validation**: Browser MCP screenshots → Gemini analysis → Context7 for best practices
-3. **Large Codebase Analysis**: Gemini with `@file` syntax for cost-effective file processing
+This project has MCP integration capabilities for enhanced AI-assisted development. The visual testing system simulates browser automation for component validation.
 
 ## Project Architecture
 
@@ -119,6 +80,8 @@ This framework extends shadcn/ui's copy-paste model:
 - Components are copied into `apps/gallery/src/components/ui/`
 - Preview components in `apps/gallery/src/components/previews/`
 - Registry system in `preview-registry.tsx` for dynamic loading
+- Uses class-variance-authority for component variants
+- All components use Radix UI primitives as base
 
 ## Component Development Workflow
 
@@ -136,13 +99,17 @@ This framework extends shadcn/ui's copy-paste model:
 # Update component data in apps/gallery/src/app/page.tsx
 ```
 
-### 3. Test with MCP
+**Important**: Component previews must be registered in `preview-registry.tsx` using the exact naming convention (e.g., `ButtonPreview`, `CardPreview`). The registry dynamically loads preview components based on the component name.
+
+### 3. Test with Visual Testing
 ```bash
 # Run visual tests
 npm run test:visual
 
-# Use browser MCP for manual validation
-# Check accessibility scores and performance metrics
+# Visual testing generates:
+# - Screenshots in testing/visual/screenshots/
+# - HTML report at testing/visual/test-report.html
+# - JSON report at testing/visual/test-report.json
 ```
 
 ### 4. Documentation
@@ -176,40 +143,42 @@ npm run test:visual
 - Strict mode enabled across monorepo
 - Project references for fast builds
 - Proper module resolution for component imports
+- Gallery app uses Next.js 14 with App Router
 
 ## Visual Testing Framework
 
-The testing system uses MCP browser automation:
-- **Config**: `testing/visual/config.json`
-- **Runner**: `testing/visual/test-runner.js`
-- **Reports**: Auto-generated HTML and JSON reports
-- **Screenshots**: Automated capture and comparison
+The testing system simulates browser automation for component validation:
+- **Config**: `testing/visual/config.json` - defines test suites and viewports
+- **Runner**: `testing/visual/test-runner.js` - Node.js script that simulates testing
+- **Reports**: Auto-generated HTML and JSON reports with metrics
+- **Screenshots**: Simulated capture and comparison workflow
 
 Test suites cover:
-- Component gallery functionality
-- Example page layouts
-- Responsive behavior
-- Accessibility compliance
+- Component gallery functionality (localhost:3001)
+- Example page layouts (localhost:3001/examples)
+- Responsive behavior across viewports
+- Accessibility compliance scoring
 
 ## Common Development Patterns
 
 ### Adding New shadcn/ui Component
 1. Copy from shadcn/ui documentation
-2. Place in `packages/ui/src/components/`
-3. Create preview component
-4. Add to gallery data
-5. Test with MCP browser tools
+2. Place in `apps/gallery/src/components/ui/` (note: not packages/ui)
+3. Create preview component in `apps/gallery/src/components/previews/`
+4. Register in `preview-registry.tsx`
+5. Add to gallery data in `apps/gallery/src/app/page.tsx`
+6. Test with visual testing suite
 
 ### Gallery Search/Filter Enhancement  
 1. Modify filter logic in `apps/gallery/src/app/page.tsx`
-2. Update FilterPanel component
-3. Test search functionality with browser MCP
-4. Verify responsive behavior
+2. Update FilterPanel component in `apps/gallery/src/components/filter-panel.tsx`
+3. Test search functionality with visual testing
+4. Verify responsive behavior across viewports
 
 ### Visual Testing Addition
 1. Add test case to `testing/visual/config.json`
-2. Run test suite to establish baseline
-3. Use browser MCP for screenshot validation
+2. Run test suite to establish baseline: `npm run test:visual`
+3. Review generated HTML report for validation
 4. Integrate into development workflow
 
 ## Performance Standards
