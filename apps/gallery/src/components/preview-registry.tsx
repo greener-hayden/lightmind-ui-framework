@@ -6,6 +6,7 @@ import { StatCardDemo } from './demos/stat-card.demo'
 // Legacy preview imports - will be phased out
 import { ButtonPreview, ButtonIconPreview, ButtonLoadingPreview } from './previews/button-preview'
 import { CardPreview } from './previews/card-preview'
+import { BadgePreview, BadgeVariantsPreview } from './previews/badge-preview'
 import { InputPreview } from './previews/input-preview'
 import { DialogPreview } from './previews/dialog-preview'
 import { TooltipPreview } from './previews/tooltip-preview'
@@ -36,7 +37,24 @@ import {
 const previewComponents = {
   'access-matrix': AccessMatrixDemo,
   'stat-card': StatCardDemo,
-  // Legacy previews
+  // Component previews mapped by component id
+  'button': ButtonPreview,
+  'card': CardPreview,
+  'input': InputPreview,
+  'dialog': DialogPreview,
+  'tooltip': TooltipPreview,
+  'dropdown-menu': DropdownMenuPreview,
+  'popover': PopoverPreview,
+  'alert': AlertPreview,
+  'label': LabelPreview,
+  'checkbox': CheckboxPreview,
+  'radio-group': RadioGroupPreview,
+  'select': SelectPreview,
+  'textarea': TextareaPreview,
+  'switch': SwitchPreview,
+  'table': TablePreview,
+  'badge': BadgePreview,
+  // Variant previews
   ButtonPreview,
   ButtonIconPreview,
   ButtonLoadingPreview,
