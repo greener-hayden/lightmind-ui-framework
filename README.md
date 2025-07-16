@@ -1,246 +1,158 @@
 # LightMind UI Framework
 
-A modern, backward-compatible UI framework built on [shadcn/ui](https://ui.shadcn.com) foundations with comprehensive component gallery, automated visual testing, and professional-grade development tools.
+A modern, ultra-lean UI framework built on [shadcn/ui](https://ui.shadcn.com) foundations with **zero-thought developer experience** and **dynamic CDN distribution**.
 
 ## ✨ Features
 
-- **🎨 Component Gallery**: Interactive showcase with live previews and searchable components
-- **📋 Copy-Paste Ready**: All components available as copy-paste code snippets
-- **🔍 Advanced Search**: Filter by category, complexity, and features
-- **🧪 Visual Testing**: Automated testing with accessibility and performance metrics
-- **📱 Responsive Design**: Mobile-first design with dark mode support
-- **🔧 Developer Experience**: Full TypeScript support with intelligent autocomplete
-- **⚡ Fast Development**: Turborepo monorepo with optimized build pipeline
-- **🎯 Backward Compatible**: Additive-only changes ensure existing code never breaks
+- **🎨 Auto-Discovery**: Just add `.tsx` files, everything updates automatically
+- **📋 CDN Ready**: Import directly from GitHub Pages, no build step needed
+- **🔍 Dynamic Gallery**: Auto-generates from your component files
+- **🧪 Cloudflare Workers**: Perfect for 300-line full-stack apps
+- **📱 Clean Development**: Add component → test → push → done
+- **⚡ Zero Configuration**: No build tools, configs, or complex setups
+- **🎯 Production Ready**: Optimized for edge delivery and performance
 
 ## 🚀 Quick Start
 
-### Option 1: Use the Component Gallery
+### Option 1: CDN Import (Recommended)
+```javascript
+// Just import and use - no setup needed
+import { Button, Card, Input } from 'https://haydengreener.github.io/lightmind-ui-framework/dist/index.js';
+```
 
-1. **Start the gallery**:
-   ```bash
-   git clone <repository-url>
-   cd lightmind-ui-framework
-   npm install
-   npm run gallery
-   ```
-
-2. **Browse components** at `http://localhost:3001`
-
-3. **Copy components** directly from the gallery into your project
-
-### Option 2: Install as Package
-
+### Option 2: Development
 ```bash
-npm install @lightmind/ui
+git clone <repository-url>
+cd lightmind-ui-framework
+npm install
+npm run dev  # Auto-discovers components + starts gallery
 ```
 
-```tsx
-import { Button, Card, CardContent } from '@lightmind/ui'
+### Option 3: Cloudflare Workers
+```javascript
+// Full-stack app in ~300 lines
+import { Button, Card, Input } from 'https://haydengreener.github.io/lightmind-ui-framework/dist/index.js';
 
-function MyComponent() {
-  return (
-    <Card>
-      <CardContent>
-        <Button>Click me!</Button>
-      </CardContent>
-    </Card>
-  )
-}
+export default {
+  async fetch(request) {
+    // Your backend logic here
+    
+    // Frontend with components
+    return new Response(html`
+      <div>
+        ${Button({ onclick: 'handleClick()' }, 'Click me')}
+        ${Card({ title: 'Data' }, 'Card content')}
+      </div>
+    `, { headers: { 'Content-Type': 'text/html' } });
+  }
+};
 ```
 
-## 📦 Project Structure
+## 📦 Architecture
+
+**Ultra-lean monorepo** with copy-paste philosophy:
 
 ```
 lightmind-ui-framework/
-├── apps/
-│   ├── gallery/                # Component showcase application
-│   ├── examples/              # Example page implementations
-│   └── docs/                  # Documentation site
-├── packages/
-│   ├── ui/                    # Core component library
-│   └── core/                  # Shared utilities and tokens
-├── testing/
-│   └── visual/                # Visual testing and validation
-└── progress/                  # Development progress tracking
+├── packages/ui/src/components/    # Add .tsx files here
+├── apps/gallery/                  # Auto-updating gallery
+├── build.js                       # Dynamic CDN build
+├── scripts/generate-registry.js   # Auto-discovery
+└── dist/                          # CDN distribution (auto-generated)
 ```
 
-## 🎨 Component Gallery
+## 🛠️ Developer Workflow
 
-The component gallery provides an interactive way to explore, test, and copy components:
-
-### Features
-- **Live Previews**: See components in action with all variants
-- **Search & Filter**: Find components by name, category, or complexity
-- **Code Snippets**: Copy-paste ready component code
-- **Responsive Testing**: Preview components across different screen sizes
-- **Accessibility Info**: WCAG compliance information for each component
-
-### Available Components
-
-| Component | Category | Complexity | Description |
-|-----------|----------|------------|-------------|
-| Button | Form | Simple | Clickable button with multiple variants |
-| Card | Display | Simple | Flexible container for content |
-| Input | Form | Simple | Text input with validation support |
-| Badge | Display | Simple | Small status or label indicator |
-
-## 📖 Example Pages
-
-See real-world component usage in our example implementations:
-
-- **Dashboard**: Complete admin interface with stats and charts
-- **Forms**: Account creation and settings forms
-- **Settings**: Profile management and preferences
-
-Access examples at `http://localhost:3001/examples`
-
-## 🧪 Visual Testing
-
-Automated visual testing ensures consistent, accessible, and performant components:
-
+**Add Component:**
 ```bash
-npm run test:visual
+# Just create a new file
+touch packages/ui/src/components/my-component.tsx
 ```
 
-### Testing Features
-- **Screenshot Comparison**: Visual regression testing
-- **Accessibility Scoring**: WCAG 2.1 AA compliance validation
-- **Performance Metrics**: Render times and resource usage
-- **Cross-browser Testing**: Consistent behavior across browsers
-
-### Recent Test Results
-```
-✨ Test Summary:
-   Total Tests: 5
-   Passed: 5
-   Failed: 0
-   Success Rate: 100.0%
-   Avg Accessibility Score: 91.7%
-   Avg Render Time: 94.6ms
-```
-
-## 🛠️ Development
-
-### Prerequisites
-- Node.js 18+
-- npm 8+
-
-### Setup
+**Test Locally:**
 ```bash
-# Install dependencies
-npm install
-
-# Start development
-npm run dev
-
-# Run tests
-npm run test:visual
-
-# Build all packages
-npm run build
+npm run dev  # Gallery auto-updates with your component
 ```
 
-### Development Commands
+**Deploy:**
+```bash
+git push  # GitHub Actions automatically builds and deploys CDN
+```
+
+**That's it!** Your component is now available at:
+- `https://haydengreener.github.io/lightmind-ui-framework/dist/index.js`
+
+## 🎨 Available Components
+
+**Auto-discovered components** (16 total):
+- **Form**: Button, Input, Checkbox, Label, RadioGroup, Select, Textarea, Switch
+- **Display**: Alert, Badge, Card, Table, Tooltip  
+- **Navigation**: DropdownMenu, Popover
+- **Feedback**: Dialog
+
+## 📖 Commands
 
 | Command | Description |
 |---------|-------------|
-| `npm run dev` | Start all development servers |
-| `npm run gallery` | Start component gallery only |
-| `npm run examples` | Start examples app only |
-| `npm run build` | Build all packages |
-| `npm run test:visual` | Run visual testing suite |
-| `npm run lint` | Lint all packages |
-| `npm run type-check` | TypeScript type checking |
+| `npm run dev` | Auto-discover + start gallery |
+| `npm run build:cdn` | Generate CDN distribution |
+| `npm run gallery` | Start gallery only |
+| `npm run build` | Build gallery for deployment |
 
-## 🎯 Design Philosophy
+## 🌐 CDN Usage
 
-### Backward Compatibility First
-- All new features are additive, never breaking
-- Existing APIs remain stable across versions
-- Optional props for new modes and features
-- Clear migration paths when necessary
+### Basic Import
+```javascript
+import { Button, Card, Input } from 'https://haydengreener.github.io/lightmind-ui-framework/dist/index.js';
+```
 
-### Developer Experience
-- Copy-paste workflow for maximum flexibility
-- Full TypeScript support with intelligent autocomplete
-- Comprehensive documentation and examples
-- Visual testing for quality assurance
+### Individual Components
+```javascript
+import { Button } from 'https://haydengreener.github.io/lightmind-ui-framework/dist/components/button.js';
+```
 
-### Performance & Accessibility
-- Sub-100ms component render times
-- WCAG 2.1 AA accessibility compliance
-- Optimized bundle sizes with tree-shaking
-- Responsive design patterns built-in
+### With React
+```html
+<script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+<script src="https://cdn.tailwindcss.com"></script>
 
-## 🔧 Configuration
-
-### Tailwind CSS Setup
-
-```js
-// tailwind.config.js
-module.exports = {
-  content: [
-    "./src/**/*.{js,ts,jsx,tsx}",
-    "./node_modules/@lightmind/ui/dist/**/*.js"
-  ],
-  theme: {
-    extend: {
-      colors: {
-        // LightMind UI color variables
-        border: "hsl(var(--border))",
-        primary: "hsl(var(--primary))",
-        // ... more variables
-      }
-    }
+<script type="module">
+  import { Button, Card } from 'https://haydengreener.github.io/lightmind-ui-framework/dist/index.js';
+  
+  const { createElement: h } = React;
+  
+  function App() {
+    return h('div', null, [
+      h(Button, { onClick: () => alert('Hello!') }, 'Click me'),
+      h(Card, { className: 'p-4' }, 'Card content')
+    ]);
   }
-}
+  
+  ReactDOM.render(h(App), document.getElementById('root'));
+</script>
 ```
 
-### CSS Variables
+## 🎯 Key Benefits
 
-```css
-/* globals.css */
-:root {
-  --background: 0 0% 100%;
-  --foreground: 222.2 84% 4.9%;
-  --primary: 222.2 47.4% 11.2%;
-  --primary-foreground: 210 40% 98%;
-  /* ... more variables */
-}
-```
+- **Zero setup friction** - Just import and use
+- **Auto-updating gallery** - Add files, gallery updates
+- **Perfect for edge computing** - Cloudflare Workers ready
+- **Clean developer experience** - No build tools to think about
+- **Production optimized** - Tree-shakeable, performant
+- **Backward compatible** - Additive-only changes
 
 ## 🤝 Contributing
 
-We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) for details.
-
-### Development Workflow
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Run tests: `npm run test:visual`
-5. Submit a pull request
-
-### Component Guidelines
-- Follow shadcn/ui patterns and conventions
-- Include TypeScript types and JSDoc comments
-- Add component to gallery with preview
-- Ensure accessibility compliance
-- Write visual tests for new components
+1. **Add component** → Create `.tsx` file in `packages/ui/src/components/`
+2. **Test locally** → `npm run dev`
+3. **Push changes** → Automatic CDN deployment
+4. **Done!** → Component available worldwide
 
 ## 📄 License
 
-MIT License - see [LICENSE](LICENSE) for details.
-
-## 🙏 Acknowledgments
-
-- [shadcn/ui](https://ui.shadcn.com) - Foundation components and design patterns
-- [Radix UI](https://radix-ui.com) - Unstyled, accessible components
-- [Tailwind CSS](https://tailwindcss.com) - Utility-first CSS framework
-- [Turborepo](https://turbo.build) - High-performance build system
+MIT License - Built with ❤️ for clean, simple development.
 
 ---
 
-**Built with ❤️ by the LightMind team**
-
-For questions, feedback, or support, please [open an issue](https://github.com/yourusername/lightmind-ui-framework/issues) or contact us at [email@example.com](mailto:email@example.com).
+**Perfect for building clean, efficient web applications with minimal overhead.**

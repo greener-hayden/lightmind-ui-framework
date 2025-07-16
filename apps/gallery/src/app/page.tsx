@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import { Search, ArrowRight, Grid, List, Package, Star, Zap } from 'lucide-react'
+import { Search, ArrowRight, Grid, List, Package, Star, Zap, Copy, Download, ExternalLink } from 'lucide-react'
 import { Header } from '@/components/header'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
@@ -46,6 +46,22 @@ export default function HomePage() {
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
             Production-ready components built on shadcn/ui foundations. Copy, paste, and customize to build your next application.
           </p>
+          
+          {/* Quick Action Buttons */}
+          <div className="flex flex-wrap justify-center gap-4 mt-6">
+            <Button size="lg" asChild>
+              <Link href="/search">
+                <Search className="mr-2 h-5 w-5" />
+                Browse Components
+              </Link>
+            </Button>
+            <Button variant="outline" size="lg" asChild>
+              <Link href="https://github.com/HaydenGreener/lightmind-ui-framework" target="_blank" rel="noopener noreferrer">
+                <ExternalLink className="mr-2 h-5 w-5" />
+                View on GitHub
+              </Link>
+            </Button>
+          </div>
           
           {/* Search Bar */}
           <div className="max-w-2xl mx-auto relative">
@@ -187,15 +203,40 @@ export default function HomePage() {
           </section>
         )}
 
-        {/* Getting Started */}
+        {/* Installation */}
         <section className="bg-muted/30 rounded-xl p-8 space-y-6">
           <div className="text-center space-y-2">
-            <h2 className="text-3xl font-bold">Getting Started</h2>
+            <h2 className="text-3xl font-bold">Quick Start</h2>
             <p className="text-muted-foreground">
-              Start building with LightMind UI components
+              Get started with LightMind UI components in minutes
             </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          
+          <div className="max-w-2xl mx-auto">
+            <div className="bg-muted rounded-lg p-4 font-mono text-sm">
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-muted-foreground">Install via npm:</span>
+                <Button size="sm" variant="ghost">
+                  <Copy className="h-4 w-4" />
+                </Button>
+              </div>
+              <code className="text-foreground">npm install @lightmind/ui</code>
+            </div>
+            
+            <div className="mt-4 bg-muted rounded-lg p-4 font-mono text-sm">
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-muted-foreground">Or copy individual components:</span>
+                <Button size="sm" variant="ghost">
+                  <Copy className="h-4 w-4" />
+                </Button>
+              </div>
+              <code className="text-foreground">
+                npx shadcn-ui@latest add button
+              </code>
+            </div>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
             <Card>
               <CardHeader>
                 <div className="w-12 h-12 bg-blue-500 rounded-lg flex items-center justify-center mb-2">

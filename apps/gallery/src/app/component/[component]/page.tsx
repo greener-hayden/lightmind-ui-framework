@@ -12,7 +12,8 @@ import {
   getComponentById, 
   getRelatedComponents,
   getComponentsByCategory,
-  getCategoryById
+  getCategoryById,
+  components
 } from '@/lib/component-registry'
 
 interface ComponentPageProps {
@@ -55,29 +56,11 @@ export async function generateMetadata({ params }: ComponentPageProps): Promise<
   }
 }
 
-// Generate static paths for all components
+// Generate static paths for all components dynamically
 export function generateStaticParams() {
-  // In a real app, you'd generate this from your component registry
-  return [
-    { component: 'button' },
-    { component: 'card' },
-    { component: 'input' },
-    { component: 'dialog' },
-    { component: 'tooltip' },
-    { component: 'dropdown-menu' },
-    { component: 'popover' },
-    { component: 'alert' },
-    { component: 'label' },
-    { component: 'checkbox' },
-    { component: 'radio-group' },
-    { component: 'select' },
-    { component: 'textarea' },
-    { component: 'switch' },
-    { component: 'table' },
-    { component: 'table-selectable' },
-    { component: 'table-filterable' },
-    { component: 'table-paginated' },
-  ]
+  return components.map(component => ({
+    component: component.id
+  }));
 }
 
 export default function ComponentPage({ params }: ComponentPageProps) {
