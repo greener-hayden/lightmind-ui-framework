@@ -16,7 +16,9 @@
       "Bash(mv:*)",
       "Bash(python3:*)",
       "Bash(cut:*)",
-      "Bash(grep:*)"
+      "Bash(grep:*)",
+      "Bash(find:*)",
+      "Bash(ls:*)"
     ],
     "deny": []
   }
