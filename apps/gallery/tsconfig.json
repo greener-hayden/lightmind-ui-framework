@@ -23,7 +23,9 @@
     "paths": {
       "@/*": ["./src/*"],
       "@/components/*": ["./src/components/*"],
-      "@/lib/*": ["./src/lib/*"]
+      "@/lib/*": ["./src/lib/*"],
+      "@lightmind/ui": ["../../packages/ui/src/index.ts"],
+      "@lightmind/ui/*": ["../../packages/ui/src/*"]
     }
   },
   "include": [

@@ -111,6 +111,14 @@ export {
   tableHeadVariants,
   tableCellVariants,
 } from "./components/table"
+export {
+  AccessMatrix,
+  accessMatrixVariants,
+  accessCellVariants,
+} from "./components/access-matrix"
+export {
+  StatCard,
+} from "./components/stat-card"
 
 // Types
 export type { ButtonProps } from "./components/button"
@@ -135,3 +143,12 @@ export type {
   TableHeadProps, 
   TableCellProps 
 } from "./components/table"
+export type { 
+  AccessMatrixProps, 
+  AccessMatrixData, 
+  AccessMatrixCell,
+  Permission 
+} from "./components/access-matrix"
+export type {
+  StatCardProps
+} from "./components/stat-card"

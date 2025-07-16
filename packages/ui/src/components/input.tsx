@@ -1,3 +1,12 @@
+/**
+ * @component Input
+ * @description Displays a text input field
+ * @category form
+ * @complexity simple
+ * @status stable
+ * @tags input, form, text, field
+ */
+
 import * as React from "react"
 
 import { cn } from "../lib/utils"

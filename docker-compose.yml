@@ -1,0 +1,22 @@
+services:
+  gallery:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    ports:
+      - "3001:3001"
+    volumes:
+      # Mount source code for hot reload
+      - ./packages:/app/packages
+      - ./apps:/app/apps
+      - ./scripts:/app/scripts
+      # Exclude node_modules to use container's dependencies
+      - /app/node_modules
+      - /app/packages/ui/node_modules
+      - /app/apps/gallery/node_modules
+    environment:
+      - NODE_ENV=development
+      - WATCHPACK_POLLING=true  # Enable polling for file changes in Docker
+    command: npm run dev:docker
+    tty: true
+    stdin_open: true

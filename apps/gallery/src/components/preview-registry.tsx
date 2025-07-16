@@ -1,5 +1,9 @@
 'use client'
 
+import { AccessMatrixDemo } from './demos/access-matrix.demo'
+import { StatCardDemo } from './demos/stat-card.demo'
+
+// Legacy preview imports - will be phased out
 import { ButtonPreview, ButtonIconPreview, ButtonLoadingPreview } from './previews/button-preview'
 import { CardPreview } from './previews/card-preview'
 import { InputPreview } from './previews/input-preview'
@@ -30,6 +34,9 @@ import {
 
 // Registry of all preview components
 const previewComponents = {
+  'access-matrix': AccessMatrixDemo,
+  'stat-card': StatCardDemo,
+  // Legacy previews
   ButtonPreview,
   ButtonIconPreview,
   ButtonLoadingPreview,

@@ -1,0 +1,76 @@
+/* Registry Style Variants */
+
+/* Default Style - Rounded corners, soft shadows */
+.style-default {
+  --radius: 0.5rem;
+}
+
+.style-default .rounded-none {
+  border-radius: var(--radius);
+}
+
+.style-default .shadow-sm {
+  box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+}
+
+/* New York Style - Sharp corners, high contrast */
+.style-new-york {
+  --radius: 0;
+}
+
+.style-new-york .rounded-md,
+.style-new-york .rounded-lg {
+  border-radius: 0;
+}
+
+.style-new-york .shadow-sm {
+  box-shadow: 0 2px 4px 0 rgb(0 0 0 / 0.1);
+}
+
+.style-new-york button {
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
+  font-weight: 500;
+}
+
+/* LightMind Style - Gradients, animations */
+.style-lightmind {
+  --radius: 0.75rem;
+}
+
+.style-lightmind .bg-primary {
+  background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary) / 0.9));
+}
+
+.style-lightmind button {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.style-lightmind button::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.style-lightmind button:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+.style-lightmind .card {
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.style-lightmind .card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px -5px rgb(0 0 0 / 0.1);
+}
