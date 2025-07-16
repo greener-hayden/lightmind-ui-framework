@@ -79,7 +79,7 @@ export function Header() {
           </a>
           <StyleSwitcher />
           <a
-            href="https://github.com/yourusername/lightmind-ui-framework"
+            href="https://github.com/HaydenGreener/lightmind-ui-framework"
             target="_blank"
             rel="noopener noreferrer"
             className="text-muted-foreground hover:text-foreground transition-colors"

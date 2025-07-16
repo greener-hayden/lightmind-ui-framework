@@ -1,7 +1,7 @@
 import { StatCard } from "@lightmind/ui"
 import { Users, DollarSign, ShoppingCart, TrendingUp } from "lucide-react"
 
-export default function StatCardDemo() {
+export function StatCardDemo() {
   return (
     <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
       <StatCard

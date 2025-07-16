@@ -4,317 +4,316 @@ import * as React from "react"
 import { 
   AccessMatrix, 
   type AccessMatrixData, 
-  type Permission,
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  Button,
-  Label,
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
+  type PermissionType,
 } from "@lightmind/ui"
-import { 
-  DropdownMenuItem, 
-  DropdownMenuLabel, 
-  DropdownMenuSeparator 
-} from "@lightmind/ui"
-import { Trash, Edit, Copy, Shield, Check, X } from "lucide-react"
-import { Badge } from "@lightmind/ui"
+import { Check, X, Shield, ArrowLeftRight, Ban, CheckCircle2, Activity } from "lucide-react"
 
-const initialData: AccessMatrixData = {
+// Firewall Rules Matrix
+const firewallData: AccessMatrixData = {
   rows: [
-    { id: "user-management", label: "User Management", description: "Create, edit, and delete users" },
-    { id: "content-management", label: "Content Management", description: "Create, edit, and publish content" },
-    { id: "billing", label: "Billing & Payments", description: "Access billing information and payment methods" },
-    { id: "analytics", label: "Analytics", description: "View analytics and reports" },
-    { id: "api-keys", label: "API Keys", description: "Manage API keys and access tokens" },
-    { id: "settings", label: "System Settings", description: "Configure system-wide settings" },
+    { id: "internal", label: "Internal", description: "Internal network zone" },
+    { id: "external", label: "External", description: "External/Internet zone" },
+    { id: "gateway", label: "Gateway", description: "Gateway/Router zone" },
+    { id: "vpn", label: "VPN", description: "VPN client zone" },
+    { id: "hotspot", label: "Hotspot", description: "Guest WiFi zone" },
+    { id: "dmz", label: "DMZ", description: "Demilitarized zone" },
   ],
   columns: [
-    { id: "admin", label: "Administrator", description: "Full system access" },
-    { id: "editor", label: "Editor", description: "Content creation and editing" },
-    { id: "viewer", label: "Viewer", description: "Read-only access" },
-    { id: "billing-admin", label: "Billing Admin", description: "Billing and payment management" },
-    { id: "developer", label: "Developer", description: "API and integration access" },
+    { id: "internal", label: "Internal" },
+    { id: "external", label: "External" },
+    { id: "gateway", label: "Gateway" },
+    { id: "vpn", label: "VPN" },
+    { id: "hotspot", label: "Hotspot" },
+    { id: "dmz", label: "DMZ" },
   ],
   cells: {
-    "user-management": {
-      admin: { permission: "allowed" },
-      editor: { permission: "denied" },
-      viewer: { permission: "denied" },
-      "billing-admin": { permission: "denied" },
-      developer: { permission: "partial", metadata: { note: "Can view users but not edit" } },
+    internal: { 
+      internal: { value: "allow-all" }, 
+      external: { value: "policy" }, 
+      gateway: { value: "allow-all" }, 
+      vpn: { value: "allow-all" }, 
+      hotspot: { value: "block" }, 
+      dmz: { value: "policy" } 
     },
-    "content-management": {
-      admin: { permission: "allowed" },
-      editor: { permission: "allowed" },
-      viewer: { permission: "partial", metadata: { note: "Can view published content only" } },
-      "billing-admin": { permission: "denied" },
-      developer: { permission: "partial", metadata: { note: "API read access only" } },
+    external: { 
+      internal: { value: "return" }, 
+      external: { value: "block" }, 
+      gateway: { value: "return" }, 
+      vpn: { value: "block" }, 
+      hotspot: { value: "block" }, 
+      dmz: { value: "policy" } 
     },
-    "billing": {
-      admin: { permission: "allowed" },
-      editor: { permission: "denied" },
-      viewer: { permission: "denied" },
-      "billing-admin": { permission: "allowed" },
-      developer: { permission: "denied" },
+    gateway: { 
+      internal: { value: "allow-all" }, 
+      external: { value: "policy" }, 
+      gateway: { value: "allow-all" }, 
+      vpn: { value: "allow-all" }, 
+      hotspot: { value: "policy" }, 
+      dmz: { value: "policy" } 
     },
-    "analytics": {
-      admin: { permission: "allowed" },
-      editor: { permission: "partial", metadata: { note: "Content analytics only" } },
-      viewer: { permission: "allowed" },
-      "billing-admin": { permission: "partial", metadata: { note: "Revenue analytics only" } },
-      developer: { permission: "allowed" },
+    vpn: { 
+      internal: { value: "allow-all" }, 
+      external: { value: "block" }, 
+      gateway: { value: "allow-all" }, 
+      vpn: { value: "allow-all" }, 
+      hotspot: { value: "block" }, 
+      dmz: { value: "block" } 
     },
-    "api-keys": {
-      admin: { permission: "allowed" },
-      editor: { permission: "denied" },
-      viewer: { permission: "denied" },
-      "billing-admin": { permission: "denied" },
-      developer: { permission: "allowed" },
+    hotspot: { 
+      internal: { value: "block" }, 
+      external: { value: "policy" }, 
+      gateway: { value: "policy" }, 
+      vpn: { value: "block" }, 
+      hotspot: { value: "allow-all" }, 
+      dmz: { value: "block" } 
     },
-    "settings": {
-      admin: { permission: "allowed" },
-      editor: { permission: "denied" },
-      viewer: { permission: "denied" },
-      "billing-admin": { permission: "partial", metadata: { note: "Billing settings only" } },
-      developer: { permission: "partial", metadata: { note: "API settings only" } },
+    dmz: { 
+      internal: { value: "return" }, 
+      external: { value: "policy" }, 
+      gateway: { value: "policy" }, 
+      vpn: { value: "block" }, 
+      hotspot: { value: "block" }, 
+      dmz: { value: "allow-all" } 
     },
-  },
+  }
 }
 
-export function AccessMatrixDemo() {
-  const [data, setData] = React.useState<AccessMatrixData>(initialData)
-  const [selectedCell, setSelectedCell] = React.useState<{
-    rowId: string
-    columnId: string
-    permission: Permission
-  } | null>(null)
-  const [editMode, setEditMode] = React.useState(false)
+const firewallPermissions: PermissionType[] = [
+  { value: "allow-all", label: "Allow All", color: "hsl(142 71% 45%)", backgroundColor: "hsl(142 71% 45% / 0.15)", icon: <CheckCircle2 className="h-4 w-4" /> },
+  { value: "policy", label: "Policies", color: "hsl(217 91% 60%)", backgroundColor: "hsl(217 91% 60% / 0.15)", icon: <Shield className="h-4 w-4" /> },
+  { value: "return", label: "Return Traffic", color: "hsl(38 92% 50%)", backgroundColor: "hsl(38 92% 50% / 0.15)", icon: <ArrowLeftRight className="h-4 w-4" /> },
+  { value: "block", label: "Block All", color: "hsl(0 84% 60%)", backgroundColor: "hsl(0 84% 60% / 0.15)", icon: <Ban className="h-4 w-4" /> },
+]
 
-  const handleCellEdit = (rowId: string, columnId: string, newPermission: Permission) => {
-    setData((prevData) => ({
+// NAS File Share ACL
+const nasData: AccessMatrixData = {
+  rows: [
+    { id: "documents", label: "Documents", description: "Shared documents folder" },
+    { id: "media", label: "Media Library", description: "Photos, videos, music" },
+    { id: "backups", label: "Backups", description: "System and user backups" },
+    { id: "software", label: "Software", description: "Applications and installers" },
+    { id: "personal", label: "Personal Folders", description: "User home directories" },
+    { id: "archive", label: "Archive", description: "Old project files" },
+  ],
+  columns: [
+    { id: "admin", label: "Admin", description: "System administrators" },
+    { id: "users", label: "Users", description: "Regular users" },
+    { id: "guests", label: "Guests", description: "Guest access" },
+    { id: "backup-service", label: "Backup Service", description: "Automated backup" },
+    { id: "media-server", label: "Media Server", description: "Plex/Jellyfin" },
+  ],
+  cells: {
+    documents: {
+      admin: { value: "read-write" },
+      users: { value: "read-write" },
+      guests: { value: "read" },
+      "backup-service": { value: "read" },
+      "media-server": { value: "deny" },
+    },
+    media: {
+      admin: { value: "read-write" },
+      users: { value: "read-write" },
+      guests: { value: "read" },
+      "backup-service": { value: "read" },
+      "media-server": { value: "read" },
+    },
+    backups: {
+      admin: { value: "read-write" },
+      users: { value: "deny" },
+      guests: { value: "deny" },
+      "backup-service": { value: "read-write" },
+      "media-server": { value: "deny" },
+    },
+    software: {
+      admin: { value: "read-write" },
+      users: { value: "read" },
+      guests: { value: "deny" },
+      "backup-service": { value: "read" },
+      "media-server": { value: "deny" },
+    },
+    personal: {
+      admin: { value: "read-write" },
+      users: { value: "owner" },
+      guests: { value: "deny" },
+      "backup-service": { value: "read" },
+      "media-server": { value: "deny" },
+    },
+    archive: {
+      admin: { value: "read-write" },
+      users: { value: "read" },
+      guests: { value: "deny" },
+      "backup-service": { value: "read" },
+      "media-server": { value: "deny" },
+    },
+  }
+}
+
+const nasPermissions: PermissionType[] = [
+  { value: "read-write", label: "Read/Write", color: "hsl(142 71% 45%)", backgroundColor: "hsl(142 71% 45% / 0.15)", icon: <Check className="h-4 w-4" /> },
+  { value: "read", label: "Read Only", color: "hsl(217 91% 60%)", backgroundColor: "hsl(217 91% 60% / 0.15)", icon: <Shield className="h-4 w-4" /> },
+  { value: "owner", label: "Owner Only", color: "hsl(38 92% 50%)", backgroundColor: "hsl(38 92% 50% / 0.15)", icon: <Activity className="h-4 w-4" /> },
+  { value: "deny", label: "No Access", color: "hsl(0 84% 60%)", backgroundColor: "hsl(0 84% 60% / 0.15)", icon: <X className="h-4 w-4" /> },
+]
+
+// Audio Routing Matrix (Flipped - outputs as rows, inputs as columns)
+const audioData: AccessMatrixData = {
+  rows: [
+    { id: "headphones", label: "Headphones", description: "Main headphone output" },
+    { id: "stream", label: "Broadcast Stream Mix", description: "Streaming software mix" },
+    { id: "line-out", label: "Line Out", description: "Line output" },
+    { id: "chat-mic", label: "Chat Mic", description: "Voice chat microphone" },
+  ],
+  columns: [
+    { id: "mic", label: "Mic", description: "Microphone input" },
+    { id: "chat", label: "Chat", description: "Voice chat audio" },
+    { id: "music", label: "Music", description: "Music/Media playback" },
+    { id: "game", label: "Game", description: "Game audio" },
+    { id: "console", label: "Console", description: "Console input" },
+    { id: "line-in", label: "Line In", description: "Line input" },
+    { id: "system", label: "System", description: "System sounds" },
+    { id: "samples", label: "Samples", description: "Sample pad/soundboard" },
+  ],
+  cells: {
+    headphones: {
+      mic: { value: "monitor" },
+      chat: { value: "on" },
+      music: { value: "on" },
+      game: { value: "on" },
+      console: { value: "on" },
+      "line-in": { value: "monitor" },
+      system: { value: "on" },
+      samples: { value: "on" },
+    },
+    stream: {
+      mic: { value: "on" },
+      chat: { value: "off" },
+      music: { value: "on" },
+      game: { value: "on" },
+      console: { value: "on" },
+      "line-in": { value: "off" },
+      system: { value: "off" },
+      samples: { value: "on" },
+    },
+    "line-out": {
+      mic: { value: "off" },
+      chat: { value: "off" },
+      music: { value: "on" },
+      game: { value: "off" },
+      console: { value: "off" },
+      "line-in": { value: "off" },
+      system: { value: "on" },
+      samples: { value: "off" },
+    },
+    "chat-mic": {
+      mic: { value: "on" },
+      chat: { value: "off" },
+      music: { value: "off" },
+      game: { value: "off" },
+      console: { value: "off" },
+      "line-in": { value: "off" },
+      system: { value: "off" },
+      samples: { value: "off" },
+    },
+  }
+}
+
+const audioPermissions: PermissionType[] = [
+  { value: "on", label: "On", color: "hsl(142 71% 45%)", backgroundColor: "hsl(142 71% 45% / 0.15)", icon: <CheckCircle2 className="h-4 w-4" /> },
+  { value: "monitor", label: "Monitor", color: "hsl(280 65% 60%)", backgroundColor: "hsl(280 65% 60% / 0.15)", icon: <Activity className="h-4 w-4" /> },
+  { value: "off", label: "Off", color: "hsl(var(--muted-foreground))", backgroundColor: "hsl(var(--muted))", icon: <X className="h-4 w-4" /> },
+]
+
+export function AccessMatrixDemo() {
+  const [firewallMatrix, setFirewallMatrix] = React.useState<AccessMatrixData>(firewallData)
+  const [nasMatrix, setNasMatrix] = React.useState<AccessMatrixData>(nasData)
+  const [audioMatrix, setAudioMatrix] = React.useState<AccessMatrixData>(audioData)
+
+  const handleFirewallChange = (rowId: string, columnId: string, newValue: string) => {
+    setFirewallMatrix((prevData) => ({
       ...prevData,
       cells: {
         ...prevData.cells,
         [rowId]: {
           ...prevData.cells[rowId],
-          [columnId]: { permission: newPermission },
+          [columnId]: { value: newValue },
         },
       },
     }))
   }
 
-  const handleCellClick = (rowId: string, columnId: string) => {
-    const cell = data.cells[rowId]?.[columnId] || { permission: "undefined" }
-    const row = data.rows.find(r => r.id === rowId)
-    const column = data.columns.find(c => c.id === columnId)
-    
-    setSelectedCell({
-      rowId,
-      columnId,
-      permission: cell.permission,
-    })
+  const handleNasChange = (rowId: string, columnId: string, newValue: string) => {
+    setNasMatrix((prevData) => ({
+      ...prevData,
+      cells: {
+        ...prevData.cells,
+        [rowId]: {
+          ...prevData.cells[rowId],
+          [columnId]: { value: newValue },
+        },
+      },
+    }))
   }
 
-  const renderRowActions = (row: AccessMatrixData["rows"][0]) => (
-    <>
-      <DropdownMenuLabel>Actions</DropdownMenuLabel>
-      <DropdownMenuSeparator />
-      <DropdownMenuItem>
-        <Edit className="mr-2 h-4 w-4" />
-        Edit Resource
-      </DropdownMenuItem>
-      <DropdownMenuItem>
-        <Copy className="mr-2 h-4 w-4" />
-        Duplicate Permissions
-      </DropdownMenuItem>
-      <DropdownMenuSeparator />
-      <DropdownMenuItem className="text-destructive">
-        <Trash className="mr-2 h-4 w-4" />
-        Remove Resource
-      </DropdownMenuItem>
-    </>
-  )
-
-  const renderColumnActions = (column: AccessMatrixData["columns"][0]) => (
-    <>
-      <DropdownMenuLabel>Role Actions</DropdownMenuLabel>
-      <DropdownMenuSeparator />
-      <DropdownMenuItem>
-        <Shield className="mr-2 h-4 w-4" />
-        Edit Role
-      </DropdownMenuItem>
-      <DropdownMenuItem>
-        <Copy className="mr-2 h-4 w-4" />
-        Clone Role
-      </DropdownMenuItem>
-      <DropdownMenuSeparator />
-      <DropdownMenuItem className="text-destructive">
-        <Trash className="mr-2 h-4 w-4" />
-        Delete Role
-      </DropdownMenuItem>
-    </>
-  )
+  const handleAudioChange = (rowId: string, columnId: string, newValue: string) => {
+    setAudioMatrix((prevData) => ({
+      ...prevData,
+      cells: {
+        ...prevData.cells,
+        [rowId]: {
+          ...prevData.cells[rowId],
+          [columnId]: { value: newValue },
+        },
+      },
+    }))
+  }
 
   return (
-    <div className="space-y-8">
-      <div className="flex items-center justify-between">
-        <div>
-          <h3 className="text-2xl font-semibold tracking-tight">Access Control Matrix</h3>
-          <p className="text-muted-foreground mt-1">
-            Define and manage permissions across different roles and resources in your application
-          </p>
-        </div>
-        <div className="flex items-center gap-2">
-          <Badge variant="outline" className="gap-1">
-            <div className="w-2 h-2 rounded-full bg-emerald-500" />
-            {Object.values(data.cells).reduce((acc, row) => 
-              acc + Object.values(row).filter(cell => cell.permission === "allowed").length, 0
-            )} Allowed
-          </Badge>
-          <Button
-            variant={editMode ? "default" : "outline"}
-            onClick={() => setEditMode(!editMode)}
-            className="gap-2"
-          >
-            {editMode ? (
-              <>
-                <Shield className="h-4 w-4" />
-                View Mode
-              </>
-            ) : (
-              <>
-                <Edit className="h-4 w-4" />
-                Edit Mode
-              </>
-            )}
-          </Button>
-        </div>
+    <div className="space-y-12">
+      <div>
+        <h3 className="text-2xl font-semibold tracking-tight mb-2">Firewall Zone Matrix</h3>
+        <p className="text-muted-foreground mb-6">
+          Configure traffic flow between network zones
+        </p>
+        <AccessMatrix
+          data={firewallMatrix}
+          permissions={firewallPermissions}
+          onCellChange={handleFirewallChange}
+          clickBehavior="cycle"
+          defaultValue="block"
+          displayMode="text"
+        />
       </div>
 
-      <AccessMatrix
-        data={data}
-        editable={editMode}
-        onCellEdit={handleCellEdit}
-        onCellClick={!editMode ? handleCellClick : undefined}
-        renderRowActions={renderRowActions}
-        renderColumnActions={renderColumnActions}
-      />
+      <div>
+        <h3 className="text-2xl font-semibold tracking-tight mb-2">NAS File Share Permissions</h3>
+        <p className="text-muted-foreground mb-6">
+          Manage access rights for shared folders
+        </p>
+        <AccessMatrix
+          data={nasMatrix}
+          permissions={nasPermissions}
+          onCellChange={handleNasChange}
+          clickBehavior="cycle"
+          defaultValue="deny"
+        />
+      </div>
 
-      <Dialog open={!!selectedCell} onOpenChange={() => setSelectedCell(null)}>
-        <DialogContent className="sm:max-w-[425px]">
-          <DialogHeader>
-            <DialogTitle>Permission Details</DialogTitle>
-            <DialogDescription>
-              Configure access control for this specific resource and role combination.
-            </DialogDescription>
-          </DialogHeader>
-          {selectedCell && (
-            <div className="space-y-4 py-4">
-              <div className="grid grid-cols-2 gap-4">
-                <div className="space-y-2">
-                  <Label className="text-xs text-muted-foreground uppercase tracking-wide">Resource</Label>
-                  <div className="p-3 rounded-lg bg-muted/50">
-                    <p className="font-medium">
-                      {data.rows.find(r => r.id === selectedCell.rowId)?.label}
-                    </p>
-                    <p className="text-xs text-muted-foreground mt-1">
-                      {data.rows.find(r => r.id === selectedCell.rowId)?.description}
-                    </p>
-                  </div>
-                </div>
-                <div className="space-y-2">
-                  <Label className="text-xs text-muted-foreground uppercase tracking-wide">Role</Label>
-                  <div className="p-3 rounded-lg bg-muted/50">
-                    <p className="font-medium">
-                      {data.columns.find(c => c.id === selectedCell.columnId)?.label}
-                    </p>
-                    <p className="text-xs text-muted-foreground mt-1">
-                      {data.columns.find(c => c.id === selectedCell.columnId)?.description}
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div className="space-y-2">
-                <Label className="text-xs text-muted-foreground uppercase tracking-wide">Permission Level</Label>
-                <Select
-                  value={selectedCell.permission}
-                  onValueChange={(value: Permission) => {
-                    if (selectedCell) {
-                      handleCellEdit(selectedCell.rowId, selectedCell.columnId, value)
-                      setSelectedCell({ ...selectedCell, permission: value })
-                    }
-                  }}
-                >
-                  <SelectTrigger>
-                    <SelectValue />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="allowed">Allowed</SelectItem>
-                    <SelectItem value="denied">Denied</SelectItem>
-                    <SelectItem value="partial">Partial</SelectItem>
-                    <SelectItem value="undefined">Undefined</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
-            </div>
-          )}
-          <DialogFooter>
-            <Button onClick={() => setSelectedCell(null)}>Close</Button>
-          </DialogFooter>
-        </DialogContent>
-      </Dialog>
-
-      <div className="rounded-lg border bg-card p-6">
-        <div className="flex items-center gap-2 mb-4">
-          <div className="w-2 h-2 rounded-full bg-primary" />
-          <h4 className="font-semibold">Permission Legend</h4>
-        </div>
-        <div className="grid grid-cols-2 gap-4">
-          <div className="flex items-center gap-3">
-            <div className="flex items-center justify-center w-10 h-10 rounded-full bg-emerald-100 dark:bg-emerald-900/50">
-              <Check className="h-5 w-5 text-emerald-600 dark:text-emerald-400 stroke-[3]" />
-            </div>
-            <div>
-              <p className="font-medium text-sm">Allowed</p>
-              <p className="text-xs text-muted-foreground">Full access granted</p>
-            </div>
-          </div>
-          <div className="flex items-center gap-3">
-            <div className="flex items-center justify-center w-10 h-10 rounded-full bg-red-100 dark:bg-red-900/50">
-              <X className="h-5 w-5 text-red-600 dark:text-red-400 stroke-[3]" />
-            </div>
-            <div>
-              <p className="font-medium text-sm">Denied</p>
-              <p className="text-xs text-muted-foreground">No access permitted</p>
-            </div>
-          </div>
-          <div className="flex items-center gap-3">
-            <div className="flex items-center justify-center w-10 h-10 rounded-full bg-amber-100 dark:bg-amber-900/50">
-              <Edit className="h-5 w-5 text-amber-600 dark:text-amber-400" />
-            </div>
-            <div>
-              <p className="font-medium text-sm">Partial</p>
-              <p className="text-xs text-muted-foreground">Limited access with restrictions</p>
-            </div>
-          </div>
-          <div className="flex items-center gap-3">
-            <div className="flex items-center justify-center w-10 h-10 rounded-full border-2 border-dashed border-gray-300 dark:border-gray-600">
-              <span className="text-sm text-gray-400 dark:text-gray-500">—</span>
-            </div>
-            <div>
-              <p className="font-medium text-sm">Undefined</p>
-              <p className="text-xs text-muted-foreground">Permission not configured</p>
-            </div>
-          </div>
-        </div>
+      <div>
+        <h3 className="text-2xl font-semibold tracking-tight mb-2">Audio Routing Matrix</h3>
+        <p className="text-muted-foreground mb-6">
+          Configure audio sources and output destinations
+        </p>
+        <AccessMatrix
+          data={audioMatrix}
+          permissions={audioPermissions}
+          onCellChange={handleAudioChange}
+          clickBehavior="cycle"
+          defaultValue="off"
+          rowTitle="Outputs"
+          columnTitle="Audio Sources"
+          verticalHeaders={true}
+          isHidden={(rowId, columnId) => rowId === "chat-mic" && columnId === "chat"}
+        />
       </div>
     </div>
   )

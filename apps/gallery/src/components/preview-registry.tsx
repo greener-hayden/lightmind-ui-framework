@@ -1,12 +1,24 @@
 'use client'
 
+import { AccessMatrixSimpleDemo } from './demos/access-matrix-simple.demo'
 import { AccessMatrixDemo } from './demos/access-matrix.demo'
+import { AlertDemo } from './demos/alert.demo'
+import { BadgeDemo } from './demos/badge.demo'
+import { ButtonDemo } from './demos/button.demo'
+import { CardDemo } from './demos/card.demo'
+import { CheckboxDemo } from './demos/checkbox.demo'
+import { DialogDemo } from './demos/dialog.demo'
+import { InputDemo } from './demos/input.demo'
+import { RadioGroupDemo } from './demos/radio-group.demo'
+import { SelectDemo } from './demos/select.demo'
 import { StatCardDemo } from './demos/stat-card.demo'
+import { SwitchDemo } from './demos/switch.demo'
+import { TextareaDemo } from './demos/textarea.demo'
+import { TooltipDemo } from './demos/tooltip.demo'
 
 // Legacy preview imports - will be phased out
 import { ButtonPreview, ButtonIconPreview, ButtonLoadingPreview } from './previews/button-preview'
 import { CardPreview } from './previews/card-preview'
-import { BadgePreview, BadgeVariantsPreview } from './previews/badge-preview'
 import { InputPreview } from './previews/input-preview'
 import { DialogPreview } from './previews/dialog-preview'
 import { TooltipPreview } from './previews/tooltip-preview'
@@ -35,26 +47,22 @@ import {
 
 // Registry of all preview components
 const previewComponents = {
+  'access-matrix-simple': AccessMatrixSimpleDemo,
   'access-matrix': AccessMatrixDemo,
+  'alert': AlertDemo,
+  'badge': BadgeDemo,
+  'button': ButtonDemo,
+  'card': CardDemo,
+  'checkbox': CheckboxDemo,
+  'dialog': DialogDemo,
+  'input': InputDemo,
+  'radio-group': RadioGroupDemo,
+  'select': SelectDemo,
   'stat-card': StatCardDemo,
-  // Component previews mapped by component id
-  'button': ButtonPreview,
-  'card': CardPreview,
-  'input': InputPreview,
-  'dialog': DialogPreview,
-  'tooltip': TooltipPreview,
-  'dropdown-menu': DropdownMenuPreview,
-  'popover': PopoverPreview,
-  'alert': AlertPreview,
-  'label': LabelPreview,
-  'checkbox': CheckboxPreview,
-  'radio-group': RadioGroupPreview,
-  'select': SelectPreview,
-  'textarea': TextareaPreview,
-  'switch': SwitchPreview,
-  'table': TablePreview,
-  'badge': BadgePreview,
-  // Variant previews
+  'switch': SwitchDemo,
+  'textarea': TextareaDemo,
+  'tooltip': TooltipDemo,
+  // Legacy previews
   ButtonPreview,
   ButtonIconPreview,
   ButtonLoadingPreview,

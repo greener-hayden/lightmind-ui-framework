@@ -5,72 +5,142 @@
   --radius: 0.5rem;
 }
 
-.style-default .rounded-none {
-  border-radius: var(--radius);
-}
-
-.style-default .shadow-sm {
-  box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-}
-
-/* New York Style - Sharp corners, high contrast */
+/* New York Style - Sharp corners, high contrast, more compact */
 .style-new-york {
-  --radius: 0;
+  --radius: 0rem;
 }
 
-.style-new-york .rounded-md,
-.style-new-york .rounded-lg {
-  border-radius: 0;
-}
-
-.style-new-york .shadow-sm {
-  box-shadow: 0 2px 4px 0 rgb(0 0 0 / 0.1);
-}
-
-.style-new-york button {
-  text-transform: uppercase;
-  letter-spacing: 0.025em;
-  font-weight: 500;
-}
-
-/* LightMind Style - Gradients, animations */
+/* LightMind Style - Currently same as Default */
 .style-lightmind {
-  --radius: 0.75rem;
+  --radius: 0.5rem;
 }
 
-.style-lightmind .bg-primary {
-  background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary) / 0.9));
+/* Global theme overrides for all components */
+
+/* Border radius overrides - use !important for stronger specificity */
+.style-new-york * {
+  border-radius: 0 !important;
+}
+.style-new-york .rounded-full { border-radius: 9999px !important; } /* Keep pills/circles round */
+
+/* Spacing adjustments for New York - more compact with !important */
+.style-new-york .p-6 { padding: 0.75rem !important; }
+.style-new-york .p-5 { padding: 0.625rem !important; }
+.style-new-york .p-4 { padding: 0.5rem !important; }
+.style-new-york .p-3 { padding: 0.375rem !important; }
+.style-new-york .p-2 { padding: 0.25rem !important; }
+.style-new-york .p-1 { padding: 0.125rem !important; }
+
+.style-new-york .px-6 { padding-left: 0.75rem !important; padding-right: 0.75rem !important; }
+.style-new-york .px-5 { padding-left: 0.625rem !important; padding-right: 0.625rem !important; }
+.style-new-york .px-4 { padding-left: 0.5rem !important; padding-right: 0.5rem !important; }
+.style-new-york .px-3 { padding-left: 0.375rem !important; padding-right: 0.375rem !important; }
+.style-new-york .px-2 { padding-left: 0.25rem !important; padding-right: 0.25rem !important; }
+
+.style-new-york .py-6 { padding-top: 0.75rem !important; padding-bottom: 0.75rem !important; }
+.style-new-york .py-5 { padding-top: 0.625rem !important; padding-bottom: 0.625rem !important; }
+.style-new-york .py-4 { padding-top: 0.5rem !important; padding-bottom: 0.5rem !important; }
+.style-new-york .py-3 { padding-top: 0.375rem !important; padding-bottom: 0.375rem !important; }
+.style-new-york .py-2 { padding-top: 0.25rem !important; padding-bottom: 0.25rem !important; }
+.style-new-york .py-1 { padding-top: 0.125rem !important; padding-bottom: 0.125rem !important; }
+
+.style-new-york .gap-6 { gap: 0.75rem !important; }
+.style-new-york .gap-5 { gap: 0.625rem !important; }
+.style-new-york .gap-4 { gap: 0.5rem !important; }
+.style-new-york .gap-3 { gap: 0.375rem !important; }
+.style-new-york .gap-2 { gap: 0.25rem !important; }
+
+.style-new-york .space-y-6 > :not([hidden]) ~ :not([hidden]) { margin-top: 0.75rem !important; }
+.style-new-york .space-y-5 > :not([hidden]) ~ :not([hidden]) { margin-top: 0.625rem !important; }
+.style-new-york .space-y-4 > :not([hidden]) ~ :not([hidden]) { margin-top: 0.5rem !important; }
+.style-new-york .space-y-3 > :not([hidden]) ~ :not([hidden]) { margin-top: 0.375rem !important; }
+.style-new-york .space-y-2 > :not([hidden]) ~ :not([hidden]) { margin-top: 0.25rem !important; }
+
+.style-new-york .space-x-4 > :not([hidden]) ~ :not([hidden]) { margin-left: 0.5rem !important; }
+.style-new-york .space-x-3 > :not([hidden]) ~ :not([hidden]) { margin-left: 0.375rem !important; }
+.style-new-york .space-x-2 > :not([hidden]) ~ :not([hidden]) { margin-left: 0.25rem !important; }
+
+/* Height adjustments for New York */
+.style-new-york .h-12 { height: 2.25rem !important; }
+.style-new-york .h-11 { height: 2rem !important; }
+.style-new-york .h-10 { height: 1.875rem !important; }
+.style-new-york .h-9 { height: 1.75rem !important; }
+.style-new-york .h-8 { height: 1.5rem !important; }
+.style-new-york .h-7 { height: 1.25rem !important; }
+.style-new-york .h-6 { height: 1rem !important; }
+
+.style-new-york .w-12 { width: 2.25rem !important; }
+.style-new-york .w-11 { width: 2rem !important; }
+.style-new-york .w-10 { width: 1.875rem !important; }
+.style-new-york .w-9 { width: 1.75rem !important; }
+.style-new-york .w-8 { width: 1.5rem !important; }
+.style-new-york .w-7 { width: 1.25rem !important; }
+.style-new-york .w-6 { width: 1rem !important; }
+
+/* Margin adjustments */
+.style-new-york .mb-6 { margin-bottom: 0.75rem !important; }
+.style-new-york .mb-5 { margin-bottom: 0.625rem !important; }
+.style-new-york .mb-4 { margin-bottom: 0.5rem !important; }
+.style-new-york .mb-3 { margin-bottom: 0.375rem !important; }
+.style-new-york .mb-2 { margin-bottom: 0.25rem !important; }
+
+.style-new-york .mt-6 { margin-top: 0.75rem !important; }
+.style-new-york .mt-5 { margin-top: 0.625rem !important; }
+.style-new-york .mt-4 { margin-top: 0.5rem !important; }
+.style-new-york .mt-3 { margin-top: 0.375rem !important; }
+.style-new-york .mt-2 { margin-top: 0.25rem !important; }
+
+/* Text adjustments for New York */
+.style-new-york .text-base { font-size: 0.875rem !important; line-height: 1.25rem !important; }
+.style-new-york .text-sm { font-size: 0.75rem !important; line-height: 1rem !important; }
+.style-new-york .text-xs { font-size: 0.625rem !important; line-height: 0.875rem !important; }
+
+/* Button specific for New York */
+.style-new-york button {
+  text-transform: uppercase !important;
+  letter-spacing: 0.025em !important;
+  font-weight: 600 !important;
+  font-size: 0.75rem !important;
+  padding: 0.25rem 0.75rem !important;
+  height: 1.875rem !important;
 }
 
-.style-lightmind button {
-  position: relative;
-  overflow: hidden;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+/* Table specific for New York */
+.style-new-york th {
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+  font-size: 0.625rem !important;
+  padding: 0.375rem !important;
 }
 
-.style-lightmind button::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 0;
-  height: 0;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.2);
-  transform: translate(-50%, -50%);
-  transition: width 0.6s, height 0.6s;
+.style-new-york td {
+  padding: 0.375rem !important;
+  font-size: 0.75rem !important;
 }
 
-.style-lightmind button:hover::before {
-  width: 300px;
-  height: 300px;
+/* Card and borders for New York */
+.style-new-york .border { border-width: 2px !important; }
+.style-new-york .shadow-sm { box-shadow: none !important; }
+.style-new-york .shadow { box-shadow: none !important; }
+.style-new-york .shadow-md { box-shadow: none !important; }
+.style-new-york .shadow-lg { box-shadow: none !important; }
+
+/* Access Matrix specific adjustments for New York */
+.style-new-york [role="table"] {
+  font-size: 0.75rem !important;
 }
 
-.style-lightmind .card {
-  transition: transform 0.2s, box-shadow 0.2s;
+.style-new-york [role="cell"] {
+  padding: 0.25rem !important;
+  height: 1.875rem !important;
 }
 
-.style-lightmind .card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 25px -5px rgb(0 0 0 / 0.1);
+.style-new-york [role="columnheader"],
+.style-new-york [role="rowheader"] {
+  padding: 0.25rem !important;
+  font-size: 0.625rem !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
 }
