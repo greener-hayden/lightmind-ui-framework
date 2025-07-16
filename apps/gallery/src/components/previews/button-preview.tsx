@@ -49,3 +49,41 @@ export function ButtonVariantsPreview() {
     </div>
   )
 }
+
+export function ButtonIconPreview() {
+  return (
+    <div className="flex flex-wrap gap-2 items-center justify-center p-4">
+      <Button variant="outline" size="sm">
+        <span className="mr-2">⬇️</span>
+        Download
+      </Button>
+      <Button variant="default">
+        <span className="mr-2">🔍</span>
+        Search
+      </Button>
+      <Button variant="secondary">
+        <span className="mr-2">📁</span>
+        Open File
+      </Button>
+    </div>
+  )
+}
+
+export function ButtonLoadingPreview() {
+  return (
+    <div className="flex flex-wrap gap-2 items-center justify-center p-4">
+      <Button disabled>
+        <span className="mr-2 animate-spin">⚪</span>
+        Please wait
+      </Button>
+      <Button variant="outline" disabled>
+        <span className="mr-2 animate-spin">⚪</span>
+        Loading...
+      </Button>
+      <Button variant="secondary" disabled>
+        <span className="mr-2 animate-spin">⚪</span>
+        Processing
+      </Button>
+    </div>
+  )
+}

@@ -1,6 +1,6 @@
 'use client'
 
-import { ButtonPreview } from './previews/button-preview'
+import { ButtonPreview, ButtonIconPreview, ButtonLoadingPreview } from './previews/button-preview'
 import { CardPreview } from './previews/card-preview'
 import { InputPreview } from './previews/input-preview'
 import { DialogPreview } from './previews/dialog-preview'
@@ -31,6 +31,8 @@ import {
 // Registry of all preview components
 const previewComponents = {
   ButtonPreview,
+  ButtonIconPreview,
+  ButtonLoadingPreview,
   CardPreview,
   InputPreview,
   DialogPreview,
