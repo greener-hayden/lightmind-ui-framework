@@ -1,3 +1,12 @@
+/**
+ * @component Button
+ * @description Displays a button or a component that looks like a button
+ * @category form
+ * @complexity simple
+ * @status stable
+ * @tags button, interactive, action, form
+ */
+
 import * as React from "react"
 import { Slot } from "@radix-ui/react-slot"
 import { cva, type VariantProps } from "class-variance-authority"

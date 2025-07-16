@@ -1,6 +1,6 @@
 /**
- * Component Registry - Auto-generated from filesystem
- * This file is automatically updated when components are added/removed
+ * Component Registry - Auto-generated
+ * DO NOT EDIT MANUALLY
  */
 
 export interface ComponentInfo {
@@ -54,6 +54,19 @@ export interface CategoryInfo {
 
 // Auto-generated components
 export const components: ComponentInfo[] = [
+  {
+    "id": "access-matrix",
+    "name": "AccessMatrix",
+    "description": "AccessMatrix component",
+    "category": "layout",
+    "complexity": "simple",
+    "status": "stable",
+    "tags": [
+      "access-matrix"
+    ],
+    "preview": "access-matrix",
+    "codeExample": "import { AccessMatrix } from '@lightmind/ui';\n\n<AccessMatrix />"
+  },
   {
     "id": "alert",
     "name": "Alert",
@@ -211,6 +224,19 @@ export const components: ComponentInfo[] = [
     "codeExample": "import { Select } from '@lightmind/ui';\n\n<Select />"
   },
   {
+    "id": "stat-card",
+    "name": "StatCard",
+    "description": "StatCard component",
+    "category": "layout",
+    "complexity": "simple",
+    "status": "stable",
+    "tags": [
+      "stat-card"
+    ],
+    "preview": "stat-card",
+    "codeExample": "import { StatCard } from '@lightmind/ui';\n\n<StatCard />"
+  },
+  {
     "id": "switch",
     "name": "Switch",
     "description": "Switch component",
@@ -303,7 +329,7 @@ export const categories: CategoryInfo[] = [
     name: 'Layout',
     description: 'Layout and structure components',
     icon: 'layout',
-    componentCount: 0,
+    componentCount: 2,
     color: 'bg-pink-500'
   }
 ];
@@ -329,10 +355,9 @@ export function getRelatedComponents(componentId: string): ComponentInfo[] {
   const component = getComponentById(componentId);
   if (!component) return [];
   
-  // Get components from the same category, excluding the current component
   return components
     .filter(c => c.category === component.category && c.id !== componentId)
-    .slice(0, 3); // Return max 3 related components
+    .slice(0, 3);
 }
 
 export function getAllCategories(): CategoryInfo[] {

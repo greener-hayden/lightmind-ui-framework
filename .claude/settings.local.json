@@ -18,7 +18,8 @@
       "Bash(cut:*)",
       "Bash(grep:*)",
       "Bash(find:*)",
-      "Bash(ls:*)"
+      "Bash(ls:*)",
+      "Bash(npm run:*)"
     ],
     "deny": []
   }

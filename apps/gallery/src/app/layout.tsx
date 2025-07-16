@@ -2,6 +2,8 @@ import './globals.css'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import { cn } from '@/lib/utils'
+import Script from 'next/script'
+import { themeInitScript } from '@/lib/theme-script'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -18,6 +20,9 @@ interface RootLayoutProps {
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
+      </head>
       <body className={cn(
         "min-h-screen bg-background font-sans antialiased",
         inter.className

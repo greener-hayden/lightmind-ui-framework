@@ -1,0 +1,28 @@
+# Development Dockerfile for hot reload
+FROM node:20-alpine
+
+WORKDIR /app
+
+# Install dependencies for better performance
+RUN apk add --no-cache git
+
+# Copy package files
+COPY package*.json ./
+COPY tsconfig.json ./
+COPY apps/gallery/package*.json ./apps/gallery/
+COPY packages/ui/package*.json ./packages/ui/
+
+# Install dependencies
+RUN npm install
+
+# Copy source code and configs
+COPY . .
+
+# Create demos directory
+RUN mkdir -p /app/apps/gallery/src/components/demos
+
+# Expose gallery port
+EXPOSE 3001
+
+# Run both component watcher and gallery dev server
+CMD ["sh", "-c", "node scripts/watch-components.js & cd apps/gallery && npm run dev"]

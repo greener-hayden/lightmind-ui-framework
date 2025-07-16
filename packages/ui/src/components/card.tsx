@@ -1,3 +1,12 @@
+/**
+ * @component Card
+ * @description Displays a card with header, content, and footer sections
+ * @category display
+ * @complexity simple
+ * @status stable
+ * @tags card, container, layout, content
+ */
+
 import * as React from "react"
 
 import { cn } from "../lib/utils"

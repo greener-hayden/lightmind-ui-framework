@@ -1,14 +1,40 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Moon, Sun, Github, ExternalLink } from 'lucide-react'
+import { StyleSwitcher } from './style-switcher'
 
 export function Header() {
   const [isDarkMode, setIsDarkMode] = useState(false)
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+    
+    // Check localStorage and system preference
+    const stored = localStorage.getItem('theme')
+    const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
+    
+    if (stored === 'dark' || (!stored && systemPrefersDark)) {
+      setIsDarkMode(true)
+      document.documentElement.classList.add('dark')
+    } else {
+      setIsDarkMode(false)
+      document.documentElement.classList.remove('dark')
+    }
+  }, [])
 
   const toggleDarkMode = () => {
-    setIsDarkMode(!isDarkMode)
-    document.documentElement.classList.toggle('dark')
+    const newMode = !isDarkMode
+    setIsDarkMode(newMode)
+    
+    if (newMode) {
+      document.documentElement.classList.add('dark')
+      localStorage.setItem('theme', 'dark')
+    } else {
+      document.documentElement.classList.remove('dark')
+      localStorage.setItem('theme', 'light')
+    }
   }
 
   return (
@@ -34,6 +60,12 @@ export function Header() {
 
         <nav className="flex items-center space-x-4">
           <a
+            href="/registry"
+            className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+          >
+            Registry
+          </a>
+          <a
             href="/examples"
             className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
           >
@@ -45,6 +77,7 @@ export function Header() {
           >
             Documentation
           </a>
+          <StyleSwitcher />
           <a
             href="https://github.com/yourusername/lightmind-ui-framework"
             target="_blank"
@@ -55,9 +88,14 @@ export function Header() {
           </a>
           <button
             onClick={toggleDarkMode}
-            className="text-muted-foreground hover:text-foreground transition-colors p-2"
+            className="text-muted-foreground hover:text-foreground transition-colors p-2 rounded-md hover:bg-accent"
+            aria-label="Toggle theme"
           >
-            {isDarkMode ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+            {mounted ? (
+              isDarkMode ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />
+            ) : (
+              <div className="h-5 w-5" />
+            )}
           </button>
         </nav>
       </div>

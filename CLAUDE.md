@@ -8,9 +8,13 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 # First time setup
 npm install
 
-# Development
-npm run gallery     # Start component gallery (port 3001)
-npm run dev        # Same as gallery
+# Development (using Docker)
+npm run dev              # Starts docker compose up
+docker compose logs -f   # View logs if needed
+docker compose down      # Stop development
+
+# Without Docker (local development)
+npm run dev:docker      # Runs watcher + gallery locally
 ```
 
 ## Architecture Overview
@@ -37,11 +41,19 @@ lightmind-ui-framework/
 
 ## Component Development
 
-When modifying components in `packages/ui/src/components/`:
+### Creating a New Component
+
+1. **Add the component file**: Create `packages/ui/src/components/my-component.tsx`
+2. **Add to exports**: Update `packages/ui/src/index.ts` to export your component
+3. **Create a demo**: Add `apps/gallery/src/components/demos/my-component.demo.tsx`
+4. **That's it!** The watcher auto-updates registries and hot reloads
+
+### Component Guidelines
 - Components use Radix UI primitives for accessibility
 - Styling uses Tailwind CSS with `cn()` utility for class merging
 - All components export TypeScript types
 - Follow existing patterns in adjacent components
+- Demo files must end with `.demo.tsx` for auto-discovery
 
 ## Lean Philosophy
 
