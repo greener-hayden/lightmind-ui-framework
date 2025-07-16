@@ -4,19 +4,13 @@
   "private": true,
   "description": "A modern, backward-compatible UI framework built on shadcn/ui foundations",
   "scripts": {
-    "build": "turbo build",
-    "dev": "turbo dev",
-    "lint": "turbo lint",
-    "type-check": "turbo type-check",
-    "clean": "turbo clean && rm -rf node_modules",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-    "gallery": "turbo dev --filter=gallery",
-    "examples": "turbo dev --filter=examples"
+    "dev": "npm run dev --workspace=apps/gallery",
+    "gallery": "npm run dev --workspace=apps/gallery",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
   "devDependencies": {
     "@types/node": "^24.0.14",
     "prettier": "^3.6.2",
-    "turbo": "^2.5.4",
     "typescript": "^5.8.3"
   },
   "packageManager": "npm@11.4.2",
