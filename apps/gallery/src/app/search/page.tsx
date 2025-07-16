@@ -35,8 +35,8 @@ function SearchContent() {
   const initialQuery = searchParams.get('q') || ''
   
   const [searchQuery, setSearchQuery] = useState(initialQuery)
-  const [selectedCategory, setSelectedCategory] = useState<string>('')
-  const [selectedComplexity, setSelectedComplexity] = useState<string>('')
+  const [selectedCategory, setSelectedCategory] = useState<string>('all')
+  const [selectedComplexity, setSelectedComplexity] = useState<string>('all')
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid')
   
   // Get all categories for filter dropdown
@@ -55,12 +55,12 @@ function SearchContent() {
     }
     
     // Apply category filter
-    if (selectedCategory) {
+    if (selectedCategory && selectedCategory !== 'all') {
       results = results.filter(component => component.category === selectedCategory)
     }
     
     // Apply complexity filter
-    if (selectedComplexity) {
+    if (selectedComplexity && selectedComplexity !== 'all') {
       results = results.filter(component => component.complexity === selectedComplexity)
     }
     
@@ -82,8 +82,8 @@ function SearchContent() {
 
   // Clear all filters
   const clearFilters = () => {
-    setSelectedCategory('')
-    setSelectedComplexity('')
+    setSelectedCategory('all')
+    setSelectedComplexity('all')
     setSearchQuery('')
     const newUrl = new URL(window.location.href)
     newUrl.searchParams.delete('q')
@@ -91,7 +91,7 @@ function SearchContent() {
   }
 
   // Check if any filters are active
-  const hasActiveFilters = searchQuery || selectedCategory || selectedComplexity
+  const hasActiveFilters = searchQuery || (selectedCategory && selectedCategory !== 'all') || (selectedComplexity && selectedComplexity !== 'all')
 
   return (
     <div className="min-h-screen bg-background">
@@ -143,7 +143,7 @@ function SearchContent() {
                 <SelectValue placeholder="All Categories" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="">All Categories</SelectItem>
+                <SelectItem value="all">All Categories</SelectItem>
                 {categories.map((category) => (
                   <SelectItem key={category.id} value={category.id}>
                     {category.name}
@@ -157,7 +157,7 @@ function SearchContent() {
                 <SelectValue placeholder="All Complexities" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="">All Complexities</SelectItem>
+                <SelectItem value="all">All Complexities</SelectItem>
                 <SelectItem value="simple">Simple</SelectItem>
                 <SelectItem value="medium">Medium</SelectItem>
                 <SelectItem value="complex">Complex</SelectItem>

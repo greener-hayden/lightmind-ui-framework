@@ -2,16 +2,24 @@
   "name": "lightmind-ui-framework",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "description": "A modern, backward-compatible UI framework built on shadcn/ui foundations",
   "scripts": {
-    "dev": "npm run dev --workspace=apps/gallery",
-    "gallery": "npm run dev --workspace=apps/gallery",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\""
+    "dev": "node scripts/generate-registry.js && cd apps/gallery && npm run dev",
+    "gallery": "node scripts/generate-registry.js && cd apps/gallery && npm run dev",
+    "build": "node scripts/generate-registry.js && cd apps/gallery && npm run build",
+    "build:cdn": "node build.js",
+    "start": "cd apps/gallery && npm run start",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "clean": "rm -rf node_modules package-lock.json && npm install",
+    "deploy": "npx vercel --prod",
+    "preview": "npx vercel"
   },
   "devDependencies": {
     "@types/node": "^24.0.14",
     "prettier": "^3.6.2",
-    "typescript": "^5.8.3"
+    "typescript": "^5.8.3",
+    "vercel": "^44.4.2"
   },
   "packageManager": "npm@11.4.2",
   "workspaces": [

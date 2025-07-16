@@ -4,9 +4,13 @@ const nextConfig = {
   experimental: {
     optimizePackageImports: ['@radix-ui/react-icons', 'lucide-react'],
   },
-  // WSL compatibility
-  async rewrites() {
-    return []
+  // GitHub Pages deployment
+  output: 'export',
+  basePath: process.env.NODE_ENV === 'production' ? '/lightmind-ui-framework' : '',
+  assetPrefix: process.env.NODE_ENV === 'production' ? '/lightmind-ui-framework' : '',
+  trailingSlash: true,
+  images: {
+    unoptimized: true,
   },
 }
 
