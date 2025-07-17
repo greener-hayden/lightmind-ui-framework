@@ -114,8 +114,15 @@ export {
 export {
   AccessMatrix,
   accessMatrixVariants,
-  accessCellVariants,
+  accessMatrixCellVariants,
+  accessMatrixRowVariants,
 } from "./components/access-matrix"
+// export {
+//   AccessMatrixEnhanced,
+//   EnhancedMatrixCell,
+//   CustomRuleModal,
+//   useMatrixSelection,
+// } from "./components/access-matrix-enhanced"
 export {
   StatCard,
 } from "./components/stat-card"
@@ -133,6 +140,233 @@ export {
   AvatarImage,
   AvatarFallback,
 } from "./components/avatar"
+export {
+  Skeleton,
+} from "./components/skeleton"
+// export {
+//   ContextMenu,
+//   ContextMenuTrigger,
+//   ContextMenuContent,
+//   ContextMenuItem,
+//   ContextMenuCheckboxItem,
+//   ContextMenuRadioItem,
+//   ContextMenuLabel,
+//   ContextMenuSeparator,
+//   ContextMenuShortcut,
+//   ContextMenuGroup,
+//   ContextMenuPortal,
+//   ContextMenuSub,
+//   ContextMenuSubContent,
+//   ContextMenuSubTrigger,
+//   ContextMenuRadioGroup,
+// } from "./components/context-menu"
+export {
+  Command,
+  CommandDialog,
+  CommandInput,
+  CommandList,
+  CommandEmpty,
+  CommandGroup,
+  CommandItem,
+  CommandShortcut,
+  CommandSeparator,
+} from "./components/command"
+// export {
+//   HoverCard,
+//   HoverCardTrigger,
+//   HoverCardContent,
+// } from "./components/hover-card"
+// export {
+//   Collapsible,
+//   CollapsibleTrigger,
+//   CollapsibleContent,
+// } from "./components/collapsible"
+// export {
+//   Toggle,
+//   toggleVariants,
+// } from "./components/toggle"
+export {
+  AlertDialog,
+  AlertDialogPortal,
+  AlertDialogOverlay,
+  AlertDialogTrigger,
+  AlertDialogContent,
+  AlertDialogHeader,
+  AlertDialogFooter,
+  AlertDialogTitle,
+  AlertDialogDescription,
+  AlertDialogAction,
+  AlertDialogCancel,
+} from "./components/alert-dialog"
+export {
+  Accordion,
+  AccordionItem,
+  AccordionTrigger,
+  AccordionContent,
+} from "./components/accordion"
+// export { AspectRatio } from "./components/aspect-ratio"
+export {
+  Breadcrumb,
+  BreadcrumbList,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+  BreadcrumbEllipsis,
+} from "./components/breadcrumb"
+// export { Calendar } from "./components/calendar"
+export { Combobox, type ComboboxOption } from "./components/combobox"
+// export { DataTable } from "./components/data-table"
+export {
+  Drawer,
+  DrawerPortal,
+  DrawerOverlay,
+  DrawerTrigger,
+  DrawerClose,
+  DrawerContent,
+  DrawerHeader,
+  DrawerFooter,
+  DrawerTitle,
+  DrawerDescription,
+} from "./components/drawer"
+export {
+  InputOTP,
+  InputOTPGroup,
+  InputOTPSlot,
+  InputOTPSeparator,
+} from "./components/input-otp"
+export {
+  navigationMenuTriggerStyle,
+  NavigationMenu,
+  NavigationMenuList,
+  NavigationMenuItem,
+  NavigationMenuContent,
+  NavigationMenuTrigger,
+  NavigationMenuLink,
+  NavigationMenuIndicator,
+  NavigationMenuViewport,
+} from "./components/navigation-menu"
+export {
+  Pagination,
+  PaginationContent,
+  PaginationEllipsis,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from "./components/pagination"
+export {
+  Sidebar,
+  SidebarContent,
+  SidebarFooter,
+  SidebarGroup,
+  SidebarGroupAction,
+  SidebarGroupContent,
+  SidebarGroupLabel,
+  SidebarHeader,
+  SidebarInset,
+  SidebarInput,
+  SidebarMenu,
+  SidebarMenuAction,
+  SidebarMenuBadge,
+  SidebarMenuButton,
+  SidebarMenuItem,
+  SidebarMenuSkeleton,
+  SidebarMenuSub,
+  SidebarMenuSubButton,
+  SidebarMenuSubItem,
+  SidebarProvider,
+  SidebarRail,
+  SidebarSeparator,
+  SidebarTrigger,
+  useSidebar,
+} from "./components/sidebar"
+export { ToggleGroup, ToggleGroupItem } from "./components/toggle-group"
+export {
+  TypographyH1,
+  TypographyH2,
+  TypographyH3,
+  TypographyH4,
+  TypographyP,
+  TypographyBlockquote,
+  TypographyList,
+  TypographyInlineCode,
+  TypographyLead,
+  TypographyLarge,
+  TypographySmall,
+  TypographyMuted,
+} from "./components/typography"
+export {
+  Progress,
+} from "./components/progress"
+export {
+  ScrollArea,
+  ScrollBar,
+} from "./components/scroll-area"
+export {
+  Slider,
+} from "./components/slider"
+export {
+  Sheet,
+  SheetPortal,
+  SheetOverlay,
+  SheetTrigger,
+  SheetClose,
+  SheetContent,
+  SheetHeader,
+  SheetFooter,
+  SheetTitle,
+  SheetDescription,
+} from "./components/sheet"
+export {
+  useFormField,
+  Form,
+  FormItem,
+  FormLabel,
+  FormControl,
+  FormDescription,
+  FormMessage,
+  FormField,
+} from "./components/form"
+export {
+  Menubar,
+  MenubarMenu,
+  MenubarTrigger,
+  MenubarContent,
+  MenubarItem,
+  MenubarSeparator,
+  MenubarLabel,
+  MenubarCheckboxItem,
+  MenubarRadioGroup,
+  MenubarRadioItem,
+  MenubarPortal,
+  MenubarSubContent,
+  MenubarSubTrigger,
+  MenubarGroup,
+  MenubarSub,
+  MenubarShortcut,
+} from "./components/menubar"
+export {
+  Toaster,
+} from "./components/sonner"
+export {
+  Toast,
+  ToastProvider,
+  ToastViewport,
+  ToastTitle,
+  ToastDescription,
+  ToastClose,
+  ToastAction,
+  type ToastProps,
+  type ToastActionElement,
+} from "./components/toast"
+export {
+  Toaster as ToasterComponent,
+} from "./components/toaster"
+export {
+  useToast,
+  toast,
+} from "./hooks/use-toast"
 
 // Types
 export type { ButtonProps } from "./components/button"
@@ -161,8 +395,24 @@ export type {
   AccessMatrixProps, 
   AccessMatrixData, 
   AccessMatrixCell,
-  PermissionType 
+  PermissionType,
+  PermissionValue
 } from "./components/access-matrix"
+export type {
+  AccessMatrixEnhancedProps,
+  AccessMatrixDataEnhanced,
+  AccessMatrixCellEnhanced,
+  AccessMatrixRowEnhanced,
+  UserContext,
+  CustomRule,
+  SelectionState,
+  MatrixDataSource,
+  ValidationResult,
+  ConfirmationConfig,
+  MatrixChangeLog,
+  UserRole,
+  PermissionLevel,
+} from "./components/access-matrix-enhanced"
 export type {
   StatCardProps
 } from "./components/stat-card"

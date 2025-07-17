@@ -55,6 +55,19 @@ export interface CategoryInfo {
 // Auto-generated components
 export const components: ComponentInfo[] = [
   {
+    "id": "access-matrix-main",
+    "name": "AccessMatrixMain",
+    "description": "AccessMatrixMain component",
+    "category": "layout",
+    "complexity": "simple",
+    "status": "stable",
+    "tags": [
+      "access-matrix-main"
+    ],
+    "preview": "access-matrix-main",
+    "codeExample": "import { AccessMatrixMain } from '@lightmind/ui';\n\n<AccessMatrixMain />"
+  },
+  {
     "id": "access-matrix",
     "name": "AccessMatrix",
     "description": "AccessMatrix component",
@@ -68,6 +81,32 @@ export const components: ComponentInfo[] = [
     "codeExample": "import { AccessMatrix } from '@lightmind/ui';\n\n<AccessMatrix />"
   },
   {
+    "id": "accordion",
+    "name": "Accordion",
+    "description": "Accordion component",
+    "category": "layout",
+    "complexity": "simple",
+    "status": "stable",
+    "tags": [
+      "accordion"
+    ],
+    "preview": "accordion",
+    "codeExample": "import { Accordion } from '@lightmind/ui';\n\n<Accordion />"
+  },
+  {
+    "id": "alert-dialog",
+    "name": "AlertDialog",
+    "description": "AlertDialog component",
+    "category": "layout",
+    "complexity": "simple",
+    "status": "stable",
+    "tags": [
+      "alert-dialog"
+    ],
+    "preview": "alert-dialog",
+    "codeExample": "import { AlertDialog } from '@lightmind/ui';\n\n<AlertDialog />"
+  },
+  {
     "id": "alert",
     "name": "Alert",
     "description": "Alert component",
@@ -79,6 +118,19 @@ export const components: ComponentInfo[] = [
     ],
     "preview": "alert",
     "codeExample": "import { Alert } from '@lightmind/ui';\n\n<Alert />"
+  },
+  {
+    "id": "aspect-ratio",
+    "name": "AspectRatio",
+    "description": "AspectRatio component",
+    "category": "layout",
+    "complexity": "simple",
+    "status": "stable",
+    "tags": [
+      "aspect-ratio"
+    ],
+    "preview": "aspect-ratio",
+    "codeExample": "import { AspectRatio } from '@lightmind/ui';\n\n<AspectRatio />"
   },
   {
     "id": "avatar",
@@ -107,6 +159,19 @@ export const components: ComponentInfo[] = [
     "codeExample": "import { Badge } from '@lightmind/ui';\n\n<Badge />"
   },
   {
+    "id": "breadcrumb",
+    "name": "Breadcrumb",
+    "description": "Breadcrumb component",
+    "category": "layout",
+    "complexity": "simple",
+    "status": "stable",
+    "tags": [
+      "breadcrumb"
+    ],
+    "preview": "breadcrumb",
+    "codeExample": "import { Breadcrumb } from '@lightmind/ui';\n\n<Breadcrumb />"
+  },
+  {
     "id": "button",
     "name": "Button",
     "description": "Button component",
@@ -118,6 +183,19 @@ export const components: ComponentInfo[] = [
     ],
     "preview": "button",
     "codeExample": "import { Button } from '@lightmind/ui';\n\n<Button />"
+  },
+  {
+    "id": "calendar",
+    "name": "Calendar",
+    "description": "Calendar component",
+    "category": "layout",
+    "complexity": "simple",
+    "status": "stable",
+    "tags": [
+      "calendar"
+    ],
+    "preview": "calendar",
+    "codeExample": "import { Calendar } from '@lightmind/ui';\n\n<Calendar />"
   },
   {
     "id": "card",
@@ -146,6 +224,71 @@ export const components: ComponentInfo[] = [
     "codeExample": "import { Checkbox } from '@lightmind/ui';\n\n<Checkbox />"
   },
   {
+    "id": "collapsible",
+    "name": "Collapsible",
+    "description": "Collapsible component",
+    "category": "layout",
+    "complexity": "simple",
+    "status": "stable",
+    "tags": [
+      "collapsible"
+    ],
+    "preview": "collapsible",
+    "codeExample": "import { Collapsible } from '@lightmind/ui';\n\n<Collapsible />"
+  },
+  {
+    "id": "combobox",
+    "name": "Combobox",
+    "description": "Combobox component",
+    "category": "layout",
+    "complexity": "simple",
+    "status": "stable",
+    "tags": [
+      "combobox"
+    ],
+    "preview": "combobox",
+    "codeExample": "import { Combobox } from '@lightmind/ui';\n\n<Combobox />"
+  },
+  {
+    "id": "command",
+    "name": "Command",
+    "description": "Command component",
+    "category": "layout",
+    "complexity": "simple",
+    "status": "stable",
+    "tags": [
+      "command"
+    ],
+    "preview": "command",
+    "codeExample": "import { Command } from '@lightmind/ui';\n\n<Command />"
+  },
+  {
+    "id": "context-menu",
+    "name": "ContextMenu",
+    "description": "ContextMenu component",
+    "category": "layout",
+    "complexity": "simple",
+    "status": "stable",
+    "tags": [
+      "context-menu"
+    ],
+    "preview": "context-menu",
+    "codeExample": "import { ContextMenu } from '@lightmind/ui';\n\n<ContextMenu />"
+  },
+  {
+    "id": "data-table",
+    "name": "DataTable",
+    "description": "DataTable component",
+    "category": "layout",
+    "complexity": "simple",
+    "status": "stable",
+    "tags": [
+      "data-table"
+    ],
+    "preview": "data-table",
+    "codeExample": "import { DataTable } from '@lightmind/ui';\n\n<DataTable />"
+  },
+  {
     "id": "dialog",
     "name": "Dialog",
     "description": "Dialog component",
@@ -159,6 +302,19 @@ export const components: ComponentInfo[] = [
     "codeExample": "import { Dialog } from '@lightmind/ui';\n\n<Dialog />"
   },
   {
+    "id": "drawer",
+    "name": "Drawer",
+    "description": "Drawer component",
+    "category": "layout",
+    "complexity": "simple",
+    "status": "stable",
+    "tags": [
+      "drawer"
+    ],
+    "preview": "drawer",
+    "codeExample": "import { Drawer } from '@lightmind/ui';\n\n<Drawer />"
+  },
+  {
     "id": "dropdown-menu",
     "name": "DropdownMenu",
     "description": "DropdownMenu component",
@@ -170,6 +326,45 @@ export const components: ComponentInfo[] = [
     ],
     "preview": "dropdown-menu",
     "codeExample": "import { DropdownMenu } from '@lightmind/ui';\n\n<DropdownMenu />"
+  },
+  {
+    "id": "form",
+    "name": "Form",
+    "description": "Form component",
+    "category": "layout",
+    "complexity": "simple",
+    "status": "stable",
+    "tags": [
+      "form"
+    ],
+    "preview": "form",
+    "codeExample": "import { Form } from '@lightmind/ui';\n\n<Form />"
+  },
+  {
+    "id": "hover-card",
+    "name": "HoverCard",
+    "description": "HoverCard component",
+    "category": "layout",
+    "complexity": "simple",
+    "status": "stable",
+    "tags": [
+      "hover-card"
+    ],
+    "preview": "hover-card",
+    "codeExample": "import { HoverCard } from '@lightmind/ui';\n\n<HoverCard />"
+  },
+  {
+    "id": "input-otp",
+    "name": "InputOtp",
+    "description": "InputOtp component",
+    "category": "layout",
+    "complexity": "simple",
+    "status": "stable",
+    "tags": [
+      "input-otp"
+    ],
+    "preview": "input-otp",
+    "codeExample": "import { InputOtp } from '@lightmind/ui';\n\n<InputOtp />"
   },
   {
     "id": "input",
@@ -198,6 +393,45 @@ export const components: ComponentInfo[] = [
     "codeExample": "import { Label } from '@lightmind/ui';\n\n<Label />"
   },
   {
+    "id": "menubar",
+    "name": "Menubar",
+    "description": "Menubar component",
+    "category": "layout",
+    "complexity": "simple",
+    "status": "stable",
+    "tags": [
+      "menubar"
+    ],
+    "preview": "menubar",
+    "codeExample": "import { Menubar } from '@lightmind/ui';\n\n<Menubar />"
+  },
+  {
+    "id": "navigation-menu",
+    "name": "NavigationMenu",
+    "description": "NavigationMenu component",
+    "category": "layout",
+    "complexity": "simple",
+    "status": "stable",
+    "tags": [
+      "navigation-menu"
+    ],
+    "preview": "navigation-menu",
+    "codeExample": "import { NavigationMenu } from '@lightmind/ui';\n\n<NavigationMenu />"
+  },
+  {
+    "id": "pagination",
+    "name": "Pagination",
+    "description": "Pagination component",
+    "category": "layout",
+    "complexity": "simple",
+    "status": "stable",
+    "tags": [
+      "pagination"
+    ],
+    "preview": "pagination",
+    "codeExample": "import { Pagination } from '@lightmind/ui';\n\n<Pagination />"
+  },
+  {
     "id": "popover",
     "name": "Popover",
     "description": "Popover component",
@@ -211,6 +445,19 @@ export const components: ComponentInfo[] = [
     "codeExample": "import { Popover } from '@lightmind/ui';\n\n<Popover />"
   },
   {
+    "id": "progress",
+    "name": "Progress",
+    "description": "Progress component",
+    "category": "layout",
+    "complexity": "simple",
+    "status": "stable",
+    "tags": [
+      "progress"
+    ],
+    "preview": "progress",
+    "codeExample": "import { Progress } from '@lightmind/ui';\n\n<Progress />"
+  },
+  {
     "id": "radio-group",
     "name": "RadioGroup",
     "description": "RadioGroup component",
@@ -222,6 +469,19 @@ export const components: ComponentInfo[] = [
     ],
     "preview": "radio-group",
     "codeExample": "import { RadioGroup } from '@lightmind/ui';\n\n<RadioGroup />"
+  },
+  {
+    "id": "scroll-area",
+    "name": "ScrollArea",
+    "description": "ScrollArea component",
+    "category": "layout",
+    "complexity": "simple",
+    "status": "stable",
+    "tags": [
+      "scroll-area"
+    ],
+    "preview": "scroll-area",
+    "codeExample": "import { ScrollArea } from '@lightmind/ui';\n\n<ScrollArea />"
   },
   {
     "id": "select",
@@ -248,6 +508,71 @@ export const components: ComponentInfo[] = [
     ],
     "preview": "separator",
     "codeExample": "import { Separator } from '@lightmind/ui';\n\n<Separator />"
+  },
+  {
+    "id": "sheet",
+    "name": "Sheet",
+    "description": "Sheet component",
+    "category": "layout",
+    "complexity": "simple",
+    "status": "stable",
+    "tags": [
+      "sheet"
+    ],
+    "preview": "sheet",
+    "codeExample": "import { Sheet } from '@lightmind/ui';\n\n<Sheet />"
+  },
+  {
+    "id": "sidebar",
+    "name": "Sidebar",
+    "description": "Sidebar component",
+    "category": "layout",
+    "complexity": "simple",
+    "status": "stable",
+    "tags": [
+      "sidebar"
+    ],
+    "preview": "sidebar",
+    "codeExample": "import { Sidebar } from '@lightmind/ui';\n\n<Sidebar />"
+  },
+  {
+    "id": "skeleton",
+    "name": "Skeleton",
+    "description": "Skeleton component",
+    "category": "layout",
+    "complexity": "simple",
+    "status": "stable",
+    "tags": [
+      "skeleton"
+    ],
+    "preview": "skeleton",
+    "codeExample": "import { Skeleton } from '@lightmind/ui';\n\n<Skeleton />"
+  },
+  {
+    "id": "slider",
+    "name": "Slider",
+    "description": "Slider component",
+    "category": "layout",
+    "complexity": "simple",
+    "status": "stable",
+    "tags": [
+      "slider"
+    ],
+    "preview": "slider",
+    "codeExample": "import { Slider } from '@lightmind/ui';\n\n<Slider />"
+  },
+  {
+    "id": "sonner",
+    "name": "Sonner",
+    "description": "Sonner component",
+    "category": "layout",
+    "complexity": "simple",
+    "status": "stable",
+    "tags": [
+      "sonner"
+    ],
+    "preview": "sonner",
+    "codeExample": "import { Sonner } from '@lightmind/ui';\n\n<Sonner />"
   },
   {
     "id": "stat-card",
@@ -315,6 +640,58 @@ export const components: ComponentInfo[] = [
     "codeExample": "import { Textarea } from '@lightmind/ui';\n\n<Textarea />"
   },
   {
+    "id": "toast",
+    "name": "Toast",
+    "description": "Toast component",
+    "category": "layout",
+    "complexity": "simple",
+    "status": "stable",
+    "tags": [
+      "toast"
+    ],
+    "preview": "toast",
+    "codeExample": "import { Toast } from '@lightmind/ui';\n\n<Toast />"
+  },
+  {
+    "id": "toaster",
+    "name": "Toaster",
+    "description": "Toaster component",
+    "category": "layout",
+    "complexity": "simple",
+    "status": "stable",
+    "tags": [
+      "toaster"
+    ],
+    "preview": "toaster",
+    "codeExample": "import { Toaster } from '@lightmind/ui';\n\n<Toaster />"
+  },
+  {
+    "id": "toggle-group",
+    "name": "ToggleGroup",
+    "description": "ToggleGroup component",
+    "category": "layout",
+    "complexity": "simple",
+    "status": "stable",
+    "tags": [
+      "toggle-group"
+    ],
+    "preview": "toggle-group",
+    "codeExample": "import { ToggleGroup } from '@lightmind/ui';\n\n<ToggleGroup />"
+  },
+  {
+    "id": "toggle",
+    "name": "Toggle",
+    "description": "Toggle component",
+    "category": "layout",
+    "complexity": "simple",
+    "status": "stable",
+    "tags": [
+      "toggle"
+    ],
+    "preview": "toggle",
+    "codeExample": "import { Toggle } from '@lightmind/ui';\n\n<Toggle />"
+  },
+  {
     "id": "tooltip",
     "name": "Tooltip",
     "description": "Tooltip component",
@@ -326,6 +703,19 @@ export const components: ComponentInfo[] = [
     ],
     "preview": "tooltip",
     "codeExample": "import { Tooltip } from '@lightmind/ui';\n\n<Tooltip />"
+  },
+  {
+    "id": "typography",
+    "name": "Typography",
+    "description": "Typography component",
+    "category": "layout",
+    "complexity": "simple",
+    "status": "stable",
+    "tags": [
+      "typography"
+    ],
+    "preview": "typography",
+    "codeExample": "import { Typography } from '@lightmind/ui';\n\n<Typography />"
   }
 ];
 
@@ -368,7 +758,7 @@ export const categories: CategoryInfo[] = [
     name: 'Layout',
     description: 'Layout and structure components',
     icon: 'layout',
-    componentCount: 5,
+    componentCount: 35,
     color: 'bg-pink-500'
   }
 ];

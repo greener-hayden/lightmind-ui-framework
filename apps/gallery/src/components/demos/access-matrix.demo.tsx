@@ -5,254 +5,180 @@ import {
   AccessMatrix, 
   type AccessMatrixData, 
   type PermissionType,
+  Button,
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+  Switch,
+  Badge,
+  Separator,
 } from "@lightmind/ui"
-import { Check, X, Shield, ArrowLeftRight, Ban, CheckCircle2, Activity } from "lucide-react"
+import { 
+  CheckCircle2, X, ArrowLeftRight, Volume2, VolumeX, Check, Shield, Activity, Copy
+} from "lucide-react"
 
-// Firewall Rules Matrix
-const firewallData: AccessMatrixData = {
-  rows: [
-    { id: "internal", label: "Internal", description: "Internal network zone" },
-    { id: "external", label: "External", description: "External/Internet zone" },
-    { id: "gateway", label: "Gateway", description: "Gateway/Router zone" },
-    { id: "vpn", label: "VPN", description: "VPN client zone" },
-    { id: "hotspot", label: "Hotspot", description: "Guest WiFi zone" },
-    { id: "dmz", label: "DMZ", description: "Demilitarized zone" },
-  ],
-  columns: [
-    { id: "internal", label: "Internal" },
-    { id: "external", label: "External" },
-    { id: "gateway", label: "Gateway" },
-    { id: "vpn", label: "VPN" },
-    { id: "hotspot", label: "Hotspot" },
-    { id: "dmz", label: "DMZ" },
-  ],
-  cells: {
-    internal: { 
-      internal: { value: "allow-all" }, 
-      external: { value: "policy" }, 
-      gateway: { value: "allow-all" }, 
-      vpn: { value: "allow-all" }, 
-      hotspot: { value: "block" }, 
-      dmz: { value: "policy" } 
-    },
-    external: { 
-      internal: { value: "return" }, 
-      external: { value: "block" }, 
-      gateway: { value: "return" }, 
-      vpn: { value: "block" }, 
-      hotspot: { value: "block" }, 
-      dmz: { value: "policy" } 
-    },
-    gateway: { 
-      internal: { value: "allow-all" }, 
-      external: { value: "policy" }, 
-      gateway: { value: "allow-all" }, 
-      vpn: { value: "allow-all" }, 
-      hotspot: { value: "policy" }, 
-      dmz: { value: "policy" } 
-    },
-    vpn: { 
-      internal: { value: "allow-all" }, 
-      external: { value: "block" }, 
-      gateway: { value: "allow-all" }, 
-      vpn: { value: "allow-all" }, 
-      hotspot: { value: "block" }, 
-      dmz: { value: "block" } 
-    },
-    hotspot: { 
-      internal: { value: "block" }, 
-      external: { value: "policy" }, 
-      gateway: { value: "policy" }, 
-      vpn: { value: "block" }, 
-      hotspot: { value: "allow-all" }, 
-      dmz: { value: "block" } 
-    },
-    dmz: { 
-      internal: { value: "return" }, 
-      external: { value: "policy" }, 
-      gateway: { value: "policy" }, 
-      vpn: { value: "block" }, 
-      hotspot: { value: "block" }, 
-      dmz: { value: "allow-all" } 
-    },
-  }
-}
-
-const firewallPermissions: PermissionType[] = [
-  { value: "allow-all", label: "Allow All", color: "hsl(142 71% 45%)", backgroundColor: "hsl(142 71% 45% / 0.15)", icon: <CheckCircle2 className="h-4 w-4" /> },
-  { value: "policy", label: "Policies", color: "hsl(217 91% 60%)", backgroundColor: "hsl(217 91% 60% / 0.15)", icon: <Shield className="h-4 w-4" /> },
-  { value: "return", label: "Return Traffic", color: "hsl(38 92% 50%)", backgroundColor: "hsl(38 92% 50% / 0.15)", icon: <ArrowLeftRight className="h-4 w-4" /> },
-  { value: "block", label: "Block All", color: "hsl(0 84% 60%)", backgroundColor: "hsl(0 84% 60% / 0.15)", icon: <Ban className="h-4 w-4" /> },
-]
-
-// NAS File Share ACL
-const nasData: AccessMatrixData = {
-  rows: [
-    { id: "documents", label: "Documents", description: "Shared documents folder" },
-    { id: "media", label: "Media Library", description: "Photos, videos, music" },
-    { id: "backups", label: "Backups", description: "System and user backups" },
-    { id: "software", label: "Software", description: "Applications and installers" },
-    { id: "personal", label: "Personal Folders", description: "User home directories" },
-    { id: "archive", label: "Archive", description: "Old project files" },
-  ],
-  columns: [
-    { id: "admin", label: "Admin", description: "System administrators" },
-    { id: "users", label: "Users", description: "Regular users" },
-    { id: "guests", label: "Guests", description: "Guest access" },
-    { id: "backup-service", label: "Backup Service", description: "Automated backup" },
-    { id: "media-server", label: "Media Server", description: "Plex/Jellyfin" },
-  ],
-  cells: {
-    documents: {
-      admin: { value: "read-write" },
-      users: { value: "read-write" },
-      guests: { value: "read" },
-      "backup-service": { value: "read" },
-      "media-server": { value: "deny" },
-    },
-    media: {
-      admin: { value: "read-write" },
-      users: { value: "read-write" },
-      guests: { value: "read" },
-      "backup-service": { value: "read" },
-      "media-server": { value: "read" },
-    },
-    backups: {
-      admin: { value: "read-write" },
-      users: { value: "deny" },
-      guests: { value: "deny" },
-      "backup-service": { value: "read-write" },
-      "media-server": { value: "deny" },
-    },
-    software: {
-      admin: { value: "read-write" },
-      users: { value: "read" },
-      guests: { value: "deny" },
-      "backup-service": { value: "read" },
-      "media-server": { value: "deny" },
-    },
-    personal: {
-      admin: { value: "read-write" },
-      users: { value: "owner" },
-      guests: { value: "deny" },
-      "backup-service": { value: "read" },
-      "media-server": { value: "deny" },
-    },
-    archive: {
-      admin: { value: "read-write" },
-      users: { value: "read" },
-      guests: { value: "deny" },
-      "backup-service": { value: "read" },
-      "media-server": { value: "deny" },
-    },
-  }
-}
-
-const nasPermissions: PermissionType[] = [
-  { value: "read-write", label: "Read/Write", color: "hsl(142 71% 45%)", backgroundColor: "hsl(142 71% 45% / 0.15)", icon: <Check className="h-4 w-4" /> },
-  { value: "read", label: "Read Only", color: "hsl(217 91% 60%)", backgroundColor: "hsl(217 91% 60% / 0.15)", icon: <Shield className="h-4 w-4" /> },
-  { value: "owner", label: "Owner Only", color: "hsl(38 92% 50%)", backgroundColor: "hsl(38 92% 50% / 0.15)", icon: <Activity className="h-4 w-4" /> },
-  { value: "deny", label: "No Access", color: "hsl(0 84% 60%)", backgroundColor: "hsl(0 84% 60% / 0.15)", icon: <X className="h-4 w-4" /> },
-]
-
-// Audio Routing Matrix (Flipped - outputs as rows, inputs as columns)
+// Audio Routing Matrix (Main Example)
 const audioData: AccessMatrixData = {
   rows: [
     { id: "headphones", label: "Headphones", description: "Main headphone output" },
-    { id: "stream", label: "Broadcast Stream Mix", description: "Streaming software mix" },
-    { id: "line-out", label: "Line Out", description: "Line output" },
-    { id: "chat-mic", label: "Chat Mic", description: "Voice chat microphone" },
+    { id: "stream", label: "Stream Mix", description: "Broadcast output" },
+    { id: "speakers", label: "Speakers", description: "Monitor speakers" },
+    { id: "recording", label: "Recording", description: "Recording output" },
   ],
   columns: [
-    { id: "mic", label: "Mic", description: "Microphone input" },
-    { id: "chat", label: "Chat", description: "Voice chat audio" },
-    { id: "music", label: "Music", description: "Music/Media playback" },
-    { id: "game", label: "Game", description: "Game audio" },
-    { id: "console", label: "Console", description: "Console input" },
-    { id: "line-in", label: "Line In", description: "Line input" },
-    { id: "system", label: "System", description: "System sounds" },
-    { id: "samples", label: "Samples", description: "Sample pad/soundboard" },
+    { id: "mic", label: "Microphone", description: "Main microphone" },
+    { id: "music", label: "Music", description: "Music playback" },
+    { id: "game", label: "Game Audio", description: "Game sounds" },
+    { id: "chat", label: "Voice Chat", description: "Discord/etc" },
+    { id: "sfx", label: "Sound FX", description: "Sound effects" },
   ],
   cells: {
     headphones: {
-      mic: { value: "monitor" },
-      chat: { value: "on" },
+      mic: { value: "on" },
       music: { value: "on" },
       game: { value: "on" },
-      console: { value: "on" },
-      "line-in": { value: "monitor" },
-      system: { value: "on" },
-      samples: { value: "on" },
+      chat: { value: "on" },
+      sfx: { value: "on" },
     },
     stream: {
       mic: { value: "on" },
-      chat: { value: "off" },
       music: { value: "on" },
       game: { value: "on" },
-      console: { value: "on" },
-      "line-in": { value: "off" },
-      system: { value: "off" },
-      samples: { value: "on" },
-    },
-    "line-out": {
-      mic: { value: "off" },
       chat: { value: "off" },
+      sfx: { value: "on" },
+    },
+    speakers: {
+      mic: { value: "off" },
       music: { value: "on" },
       game: { value: "off" },
-      console: { value: "off" },
-      "line-in": { value: "off" },
-      system: { value: "on" },
-      samples: { value: "off" },
-    },
-    "chat-mic": {
-      mic: { value: "on" },
       chat: { value: "off" },
+      sfx: { value: "off" },
+    },
+    recording: {
+      mic: { value: "on" },
       music: { value: "off" },
-      game: { value: "off" },
-      console: { value: "off" },
-      "line-in": { value: "off" },
-      system: { value: "off" },
-      samples: { value: "off" },
+      game: { value: "on" },
+      chat: { value: "off" },
+      sfx: { value: "on" },
     },
   }
 }
 
 const audioPermissions: PermissionType[] = [
-  { value: "on", label: "On", color: "hsl(142 71% 45%)", backgroundColor: "hsl(142 71% 45% / 0.15)", icon: <CheckCircle2 className="h-4 w-4" /> },
-  { value: "monitor", label: "Monitor", color: "hsl(280 65% 60%)", backgroundColor: "hsl(280 65% 60% / 0.15)", icon: <Activity className="h-4 w-4" /> },
-  { value: "off", label: "Off", color: "hsl(var(--muted-foreground))", backgroundColor: "hsl(var(--muted))", icon: <X className="h-4 w-4" /> },
+  { value: "on", label: "Enabled", icon: <Volume2 className="h-4 w-4" /> },
+  { value: "off", label: "Disabled", icon: <VolumeX className="h-4 w-4" /> },
 ]
 
+// Simple Test Matrix
+const testData: AccessMatrixData = {
+  rows: [
+    { id: "admin", label: "Admin", description: "Administrator role" },
+    { id: "user", label: "User", description: "Regular user" },
+    { id: "guest", label: "Guest", description: "Guest access" },
+  ],
+  columns: [
+    { id: "read", label: "Read", description: "View content" },
+    { id: "write", label: "Write", description: "Edit content" },
+    { id: "delete", label: "Delete", description: "Remove content" },
+    { id: "admin", label: "Admin", description: "Administrative access" },
+  ],
+  cells: {
+    admin: {
+      read: { value: "allow" },
+      write: { value: "allow" },
+      delete: { value: "allow" },
+      admin: { value: "allow" },
+    },
+    user: {
+      read: { value: "allow" },
+      write: { value: "allow" },
+      delete: { value: "deny" },
+      admin: { value: "deny" },
+    },
+    guest: {
+      read: { value: "allow" },
+      write: { value: "deny" },
+      delete: { value: "deny" },
+      admin: { value: "deny" },
+    },
+  }
+}
+
+const testPermissions: PermissionType[] = [
+  { value: "allow", label: "Allow", icon: <Check className="h-4 w-4" /> },
+  { value: "deny", label: "Deny", icon: <X className="h-4 w-4" /> },
+  { value: "conditional", label: "Conditional", icon: <Shield className="h-4 w-4" /> },
+]
+
+// Control component for standardized demo controls
+interface ControlProps {
+  label: string
+  type: 'select' | 'switch'
+  value: any
+  onChange: (value: any) => void
+  options?: Array<{ value: string; label: string }>
+  className?: string
+}
+
+function Control({ label, type, value, onChange, options, className }: ControlProps) {
+  if (type === 'select' && options) {
+    return (
+      <div className={`space-y-2 ${className || ''}`}>
+        <label className="text-sm font-medium">{label}</label>
+        <Select value={value} onValueChange={onChange}>
+          <SelectTrigger>
+            <SelectValue />
+          </SelectTrigger>
+          <SelectContent>
+            {options.map(option => (
+              <SelectItem key={option.value} value={option.value}>
+                {option.label}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+      </div>
+    )
+  }
+
+  if (type === 'switch') {
+    return (
+      <div className={`flex items-center space-x-2 ${className || ''}`}>
+        <Switch 
+          id={`control-${label.toLowerCase().replace(/\s+/g, '-')}`}
+          checked={value}
+          onCheckedChange={onChange}
+        />
+        <label htmlFor={`control-${label.toLowerCase().replace(/\s+/g, '-')}`} className="text-sm font-medium">
+          {label}
+        </label>
+      </div>
+    )
+  }
+
+  return null
+}
+
 export function AccessMatrixDemo() {
-  const [firewallMatrix, setFirewallMatrix] = React.useState<AccessMatrixData>(firewallData)
-  const [nasMatrix, setNasMatrix] = React.useState<AccessMatrixData>(nasData)
   const [audioMatrix, setAudioMatrix] = React.useState<AccessMatrixData>(audioData)
-
-  const handleFirewallChange = (rowId: string, columnId: string, newValue: string) => {
-    setFirewallMatrix((prevData) => ({
-      ...prevData,
-      cells: {
-        ...prevData.cells,
-        [rowId]: {
-          ...prevData.cells[rowId],
-          [columnId]: { value: newValue },
-        },
-      },
-    }))
-  }
-
-  const handleNasChange = (rowId: string, columnId: string, newValue: string) => {
-    setNasMatrix((prevData) => ({
-      ...prevData,
-      cells: {
-        ...prevData.cells,
-        [rowId]: {
-          ...prevData.cells[rowId],
-          [columnId]: { value: newValue },
-        },
-      },
-    }))
-  }
+  const [testMatrix, setTestMatrix] = React.useState<AccessMatrixData>(testData)
+  
+  // Demo controls
+  const [size, setSize] = React.useState<"xs" | "sm" | "default" | "lg" | "xl">("default")
+  const [variant, setVariant] = React.useState<"default" | "bordered" | "shadow" | "striped" | "compact">("default")
+  const [density, setDensity] = React.useState<"compact" | "comfortable" | "spacious">("comfortable")
+  const [displayMode, setDisplayMode] = React.useState<"icon" | "text" | "both">("both")
+  const [showRowTitle, setShowRowTitle] = React.useState(true)
+  const [showColumnTitle, setShowColumnTitle] = React.useState(true)
+  const [rowLabelPosition, setRowLabelPosition] = React.useState<"left" | "right">("left")
+  const [copied, setCopied] = React.useState(false)
 
   const handleAudioChange = (rowId: string, columnId: string, newValue: string) => {
     setAudioMatrix((prevData) => ({
@@ -267,54 +193,241 @@ export function AccessMatrixDemo() {
     }))
   }
 
+  const handleTestChange = (rowId: string, columnId: string, newValue: string) => {
+    setTestMatrix((prevData) => ({
+      ...prevData,
+      cells: {
+        ...prevData.cells,
+        [rowId]: {
+          ...prevData.cells[rowId],
+          [columnId]: { value: newValue },
+        },
+      },
+    }))
+  }
+
+  const generateConfigCode = () => {
+    const matrixCells = Object.entries(testMatrix.cells)
+      .map(([rowId, rowCells]) => {
+        const cellsStr = Object.entries(rowCells)
+          .map(([colId, cell]) => `      ${colId}: { value: "${cell.value}" }`)
+          .join(',\n')
+        return `    ${rowId}: {\n${cellsStr}\n    }`
+      })
+      .join(',\n')
+
+    return `<AccessMatrix
+  data={{
+    rows: [
+      { id: "admin", label: "Admin", description: "Administrator role" },
+      { id: "user", label: "User", description: "Regular user" },
+      { id: "guest", label: "Guest", description: "Guest access" }
+    ],
+    columns: [
+      { id: "read", label: "Read", description: "View content" },
+      { id: "write", label: "Write", description: "Edit content" },
+      { id: "delete", label: "Delete", description: "Remove content" },
+      { id: "admin", label: "Admin", description: "Administrative access" }
+    ],
+    cells: {
+${matrixCells}
+    }
+  }}
+  permissions={[
+    { value: "allow", label: "Allow", icon: <Check className="h-4 w-4" /> },
+    { value: "deny", label: "Deny", icon: <X className="h-4 w-4" /> },
+    { value: "conditional", label: "Conditional", icon: <Shield className="h-4 w-4" /> }
+  ]}
+  onCellChange={(rowId, columnId, newValue) => {
+    console.log('Cell changed:', rowId, columnId, newValue)
+  }}
+  clickBehavior="cycle"
+  defaultValue="deny"
+  size="${size}"
+  variant="${variant}"
+  density="${density}"
+  displayMode="${displayMode}"
+  rowTitle="${showRowTitle ? 'User Roles' : ''}"
+  columnTitle="${showColumnTitle ? 'Permissions' : ''}"
+  showRowTitle={${showRowTitle}}
+  showColumnTitle={${showColumnTitle}}
+  rowLabelPosition="${rowLabelPosition}"
+/>`
+  }
+
+  const handleCopyCode = async () => {
+    try {
+      await navigator.clipboard.writeText(generateConfigCode())
+      setCopied(true)
+      setTimeout(() => setCopied(false), 2000)
+    } catch (err) {
+      console.error('Failed to copy code:', err)
+    }
+  }
+
   return (
-    <div className="space-y-12">
-      <div>
-        <h3 className="text-2xl font-semibold tracking-tight mb-2">Firewall Zone Matrix</h3>
-        <p className="text-muted-foreground mb-6">
-          Configure traffic flow between network zones
-        </p>
-        <AccessMatrix
-          data={firewallMatrix}
-          permissions={firewallPermissions}
-          onCellChange={handleFirewallChange}
-          clickBehavior="cycle"
-          defaultValue="block"
-          displayMode="text"
-        />
-      </div>
+    <div className="max-w-6xl mx-auto space-y-8 p-4">
+      {/* Main Example */}
+      <Card>
+        <CardHeader>
+          <CardTitle>Audio Routing Matrix</CardTitle>
+          <CardDescription>
+            Configure which audio sources are routed to which outputs. Click cells to toggle on/off.
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          <div className="overflow-x-auto">
+            <AccessMatrix
+              data={audioMatrix}
+              permissions={audioPermissions}
+              onCellChange={handleAudioChange}
+              clickBehavior="cycle"
+              defaultValue="off"
+              size="default"
+              variant="bordered"
+              displayMode="both"
+              rowTitle="Outputs"
+              columnTitle="Inputs"
+              verticalHeaders={true}
+              showRowTitle={true}
+              showColumnTitle={true}
+              rowLabelPosition="left"
+            />
+          </div>
+        </CardContent>
+      </Card>
 
-      <div>
-        <h3 className="text-2xl font-semibold tracking-tight mb-2">NAS File Share Permissions</h3>
-        <p className="text-muted-foreground mb-6">
-          Manage access rights for shared folders
-        </p>
-        <AccessMatrix
-          data={nasMatrix}
-          permissions={nasPermissions}
-          onCellChange={handleNasChange}
-          clickBehavior="cycle"
-          defaultValue="deny"
-        />
-      </div>
+      {/* Demo Controls */}
+      <Card>
+        <CardHeader>
+          <CardTitle>Customization Options</CardTitle>
+          <CardDescription>
+            Test different configurations using the matrix below
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+            <Control 
+              label="Size" 
+              type="select" 
+              value={size} 
+              onChange={setSize}
+              options={[
+                { value: "xs", label: "XS" },
+                { value: "sm", label: "SM" },
+                { value: "default", label: "Default" },
+                { value: "lg", label: "LG" },
+                { value: "xl", label: "XL" }
+              ]}
+            />
+            
+            <Control 
+              label="Variant" 
+              type="select" 
+              value={variant} 
+              onChange={setVariant}
+              options={[
+                { value: "default", label: "Default" },
+                { value: "bordered", label: "Bordered" },
+                { value: "shadow", label: "Shadow" },
+                { value: "striped", label: "Striped" },
+                { value: "compact", label: "Compact" }
+              ]}
+            />
+            
+            <Control 
+              label="Density" 
+              type="select" 
+              value={density} 
+              onChange={setDensity}
+              options={[
+                { value: "compact", label: "Compact" },
+                { value: "comfortable", label: "Comfortable" },
+                { value: "spacious", label: "Spacious" }
+              ]}
+            />
+            
+            <Control 
+              label="Display" 
+              type="select" 
+              value={displayMode} 
+              onChange={setDisplayMode}
+              options={[
+                { value: "icon", label: "Icon" },
+                { value: "text", label: "Text" },
+                { value: "both", label: "Both" }
+              ]}
+            />
+          </div>
 
-      <div>
-        <h3 className="text-2xl font-semibold tracking-tight mb-2">Audio Routing Matrix</h3>
-        <p className="text-muted-foreground mb-6">
-          Configure audio sources and output destinations
-        </p>
-        <AccessMatrix
-          data={audioMatrix}
-          permissions={audioPermissions}
-          onCellChange={handleAudioChange}
-          clickBehavior="cycle"
-          defaultValue="off"
-          rowTitle="Outputs"
-          columnTitle="Audio Sources"
-          verticalHeaders={true}
-          isHidden={(rowId, columnId) => rowId === "chat-mic" && columnId === "chat"}
-        />
-      </div>
+          {/* Label Controls */}
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-6">
+            <Control 
+              label="Show Row Title" 
+              type="switch" 
+              value={showRowTitle} 
+              onChange={setShowRowTitle}
+            />
+            
+            <Control 
+              label="Show Column Title" 
+              type="switch" 
+              value={showColumnTitle} 
+              onChange={setShowColumnTitle}
+            />
+            
+            <Control 
+              label="Row Label Position" 
+              type="select" 
+              value={rowLabelPosition} 
+              onChange={setRowLabelPosition}
+              options={[
+                { value: "left", label: "Left" },
+                { value: "right", label: "Right" }
+              ]}
+            />
+          </div>
+
+          <div className="space-y-4">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <Badge variant="outline">Current Settings:</Badge>
+                <span className="text-sm text-muted-foreground">
+                  Size: {size} | Variant: {variant} | Density: {density} | Display: {displayMode}
+                </span>
+              </div>
+              <Button 
+                variant="outline" 
+                size="sm" 
+                onClick={handleCopyCode}
+                className="gap-2"
+              >
+                {copied ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
+                {copied ? 'Copied!' : 'Copy Configuration'}
+              </Button>
+            </div>
+            
+            <div className="overflow-x-auto">
+              <AccessMatrix
+                data={testMatrix}
+                permissions={testPermissions}
+                onCellChange={handleTestChange}
+                clickBehavior="cycle"
+                defaultValue="deny"
+                size={size}
+                variant={variant}
+                density={density}
+                displayMode={displayMode}
+                rowTitle="User Roles"
+                columnTitle="Permissions"
+                showRowTitle={showRowTitle}
+                showColumnTitle={showColumnTitle}
+                rowLabelPosition={rowLabelPosition}
+              />
+            </div>
+          </div>
+        </CardContent>
+      </Card>
     </div>
   )
 }

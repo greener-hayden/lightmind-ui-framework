@@ -1,0 +1,311 @@
+---
+title: AccessMatrix
+description: A powerful matrix component for managing permissions, routing, and access control
+category: layout
+status: stable
+complexity: medium
+tags: ['access', 'matrix', 'permissions', 'routing', 'table']
+---
+
+import { ComponentPreview } from '@/lib/mdx-components/src'
+import { CodeBlock } from '@/lib/mdx-components/src'
+import { PropsTable } from '@/lib/mdx-components/src'
+import { UsageGuidelines } from '@/lib/mdx-components/src'
+import { InstallationGuide } from '@/lib/mdx-components/src'
+import { VariantShowcase } from '@/lib/mdx-components/src'
+import { AccessibilityGuide } from '@/lib/mdx-components/src'
+import { RelatedComponents } from '@/lib/mdx-components/src'
+
+## Preview
+
+<ComponentPreview
+  title="Live Preview"
+  description="Interactive demonstration of the AccessMatrix component with audio routing example"
+  fullWidth
+  centered={false}
+>
+  <div className="w-full">
+    <p className="text-center text-muted-foreground">
+      Interactive AccessMatrix demo with audio routing controls
+    </p>
+  </div>
+</ComponentPreview>
+
+## Installation
+
+<InstallationGuide
+  importStatement="import { AccessMatrix } from '@lightmind/ui'"
+/>
+
+## Usage
+
+<CodeBlock
+  title="Basic Usage"
+  description="Simple permission matrix with allow/deny permissions"
+  code={`import { AccessMatrix } from '@lightmind/ui'
+
+const permissionData = {
+  rows: [
+    { id: 'admin', label: 'Admin', description: 'Administrator role' },
+    { id: 'user', label: 'User', description: 'Regular user' },
+    { id: 'guest', label: 'Guest', description: 'Guest access' }
+  ],
+  columns: [
+    { id: 'read', label: 'Read', description: 'View content' },
+    { id: 'write', label: 'Write', description: 'Edit content' },
+    { id: 'delete', label: 'Delete', description: 'Remove content' }
+  ],
+  cells: {
+    admin: {
+      read: { value: 'allow' },
+      write: { value: 'allow' },
+      delete: { value: 'allow' }
+    },
+    user: {
+      read: { value: 'allow' },
+      write: { value: 'allow' },
+      delete: { value: 'deny' }
+    },
+    guest: {
+      read: { value: 'allow' },
+      write: { value: 'deny' },
+      delete: { value: 'deny' }
+    }
+  }
+}
+
+const permissions = [
+  { value: 'allow', label: 'Allow', icon: <Check className="h-4 w-4" /> },
+  { value: 'deny', label: 'Deny', icon: <X className="h-4 w-4" /> }
+]
+
+function MyComponent() {
+  return (
+    <AccessMatrix
+      data={permissionData}
+      permissions={permissions}
+      onCellChange={(rowId, columnId, newValue) => {
+        console.log('Cell changed:', rowId, columnId, newValue)
+      }}
+      clickBehavior="cycle"
+      defaultValue="deny"
+      variant="bordered"
+      displayMode="both"
+    />
+  )
+}`}
+/>
+
+<CodeBlock
+  title="Audio Routing Matrix"
+  description="Complex example with audio routing configuration"
+  code={`import { AccessMatrix } from '@lightmind/ui'
+import { Volume2, VolumeX } from 'lucide-react'
+
+const audioData = {
+  rows: [
+    { id: 'headphones', label: 'Headphones', description: 'Main headphone output' },
+    { id: 'stream', label: 'Stream Mix', description: 'Broadcast output' },
+    { id: 'speakers', label: 'Speakers', description: 'Monitor speakers' }
+  ],
+  columns: [
+    { id: 'mic', label: 'Microphone', description: 'Main microphone' },
+    { id: 'music', label: 'Music', description: 'Music playback' },
+    { id: 'game', label: 'Game Audio', description: 'Game sounds' }
+  ],
+  cells: {
+    headphones: {
+      mic: { value: 'on' },
+      music: { value: 'on' },
+      game: { value: 'on' }
+    },
+    stream: {
+      mic: { value: 'on' },
+      music: { value: 'on' },
+      game: { value: 'off' }
+    },
+    speakers: {
+      mic: { value: 'off' },
+      music: { value: 'on' },
+      game: { value: 'off' }
+    }
+  }
+}
+
+const audioPermissions = [
+  { value: 'on', label: 'Enabled', icon: <Volume2 className="h-4 w-4" /> },
+  { value: 'off', label: 'Disabled', icon: <VolumeX className="h-4 w-4" /> }
+]
+
+function AudioRoutingMatrix() {
+  return (
+    <AccessMatrix
+      data={audioData}
+      permissions={audioPermissions}
+      onCellChange={handleAudioChange}
+      clickBehavior="cycle"
+      defaultValue="off"
+      variant="bordered"
+      displayMode="both"
+      rowTitle="Outputs"
+      columnTitle="Inputs"
+      verticalHeaders
+    />
+  )
+}`}
+/>
+
+## API Reference
+
+<PropsTable
+  title="AccessMatrix Props"
+  description="All available props for the AccessMatrix component"
+  props={[
+    {
+      name: 'data',
+      type: 'AccessMatrixData',
+      description: 'The matrix data containing rows, columns, and cells',
+      required: true
+    },
+    {
+      name: 'permissions',
+      type: 'PermissionType[]',
+      description: 'Array of available permission types with icons and labels',
+      default: 'defaultPermissions'
+    },
+    {
+      name: 'clickBehavior',
+      type: '"cycle" | "toggle" | "menu" | "custom"',
+      description: 'How cells behave when clicked',
+      default: '"cycle"'
+    },
+    {
+      name: 'onCellChange',
+      type: '(rowId: string, columnId: string, value: string) => void',
+      description: 'Callback fired when a cell value changes'
+    },
+    {
+      name: 'onCellClick',
+      type: '(rowId: string, columnId: string, cell: AccessMatrixCell) => void',
+      description: 'Callback fired when a cell is clicked'
+    },
+    {
+      name: 'size',
+      type: '"xs" | "sm" | "default" | "lg" | "xl"',
+      description: 'Size of the matrix and its elements',
+      default: '"default"'
+    },
+    {
+      name: 'variant',
+      type: '"default" | "bordered" | "shadow" | "striped" | "compact"',
+      description: 'Visual variant of the matrix',
+      default: '"default"'
+    },
+    {
+      name: 'density',
+      type: '"compact" | "comfortable" | "spacious"',
+      description: 'Spacing density of the matrix',
+      default: '"comfortable"'
+    },
+    {
+      name: 'displayMode',
+      type: '"icon" | "text" | "both"',
+      description: 'How permissions are displayed in cells',
+      default: '"icon"'
+    },
+    {
+      name: 'editable',
+      type: 'boolean',
+      description: 'Whether the matrix is editable',
+      default: 'false'
+    },
+    {
+      name: 'defaultValue',
+      type: 'string',
+      description: 'Default value for empty cells',
+      default: '"inherit"'
+    },
+    {
+      name: 'rowTitle',
+      type: 'string',
+      description: 'Title for the row axis'
+    },
+    {
+      name: 'columnTitle',
+      type: 'string',
+      description: 'Title for the column axis'
+    },
+    {
+      name: 'verticalHeaders',
+      type: 'boolean',
+      description: 'Whether to display headers vertically',
+      default: 'false'
+    },
+    {
+      name: 'isDisabled',
+      type: '(rowId: string, columnId: string) => boolean',
+      description: 'Function to determine if a cell is disabled'
+    },
+    {
+      name: 'isHidden',
+      type: '(rowId: string, columnId: string) => boolean',
+      description: 'Function to determine if a cell is hidden'
+    }
+  ]}
+/>
+
+## Usage Guidelines
+
+<UsageGuidelines
+  dos={[
+    'Use clear, descriptive labels for rows and columns',
+    'Provide consistent permission types across the matrix',
+    'Consider responsive design for mobile devices',
+    'Use appropriate colors and icons for different permission states',
+    'Implement proper loading states for async operations',
+    'Add tooltips for complex permission descriptions'
+  ]}
+  donts={[
+    'Don\'t use too many permission types (keep it simple)',
+    'Don\'t forget to handle edge cases like empty data',
+    'Don\'t make the matrix too large without pagination',
+    'Don\'t use confusing or similar-looking icons',
+    'Don\'t ignore accessibility requirements',
+    'Don\'t hardcode permission values'
+  ]}
+  accessibility={[
+    'Matrix supports keyboard navigation with Tab and Arrow keys',
+    'All cells have proper ARIA labels and roles',
+    'Screen readers announce permission changes',
+    'Focus management works correctly with interactive elements',
+    'Color is not the only way to convey permission state',
+    'Proper semantic HTML structure with table elements'
+  ]}
+/>
+
+## Related Components
+
+<RelatedComponents
+  components={[
+    {
+      id: 'table',
+      name: 'Table',
+      description: 'Basic table component for displaying data'
+    },
+    {
+      id: 'checkbox',
+      name: 'Checkbox',
+      description: 'Checkbox input for binary permissions'
+    },
+    {
+      id: 'select',
+      name: 'Select',
+      description: 'Select dropdown for choosing permission levels'
+    },
+    {
+      id: 'badge',
+      name: 'Badge',
+      description: 'Badge component for displaying permission states'
+    }
+  ]}
+/>

@@ -47,8 +47,8 @@ import {
 
 // Registry of all preview components
 const previewComponents = {
-  'access-matrix': AccessMatrixDemo,
   'access-matrix-simple': AccessMatrixSimpleDemo,
+  'access-matrix': AccessMatrixDemo,
   'alert': AlertDemo,
   'badge': BadgeDemo,
   'button': ButtonDemo,
@@ -94,7 +94,7 @@ const previewComponents = {
   TableResponsivePreview,
   TableSelectablePreview,
   TableFilterablePreview,
-  TablePaginatedPreview
+  TablePaginatedPreview,
 } as const
 
 interface PreviewComponentProps {

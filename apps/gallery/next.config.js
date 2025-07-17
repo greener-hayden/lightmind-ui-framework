@@ -5,8 +5,10 @@ const isCloudflare = process.env.CLOUDFLARE === 'true'
 
 const nextConfig = {
   transpilePackages: ["@lightmind/ui"],
+  pageExtensions: ['js', 'jsx', 'mdx', 'ts', 'tsx'],
   experimental: {
     optimizePackageImports: ['@radix-ui/react-icons', 'lucide-react'],
+    mdxRs: true,
   },
   
   // Development configuration

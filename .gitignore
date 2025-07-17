@@ -133,7 +133,18 @@ CLAUDE.md
 
 # Build outputs to ignore
 apps/gallery/out/
+apps/gallery/.next/
 out/
+build/
+dist/
+
+# TypeScript build info files
+*.tsbuildinfo
+**/*.tsbuildinfo
+
+# Next.js build artifacts
+apps/gallery/.next/
+.next/
 
 # Environment files
 .env.local
@@ -144,3 +155,54 @@ out/
 
 # Temporary sync files
 temp-shadcn/
+
+# Development artifacts
+.eslintcache
+**/.eslintcache
+.turbo/
+**/.turbo/
+
+# Docker development artifacts
+.docker-data/
+
+# Component development artifacts
+.component-cache/
+.registry-cache/
+
+# IDE and editor artifacts
+.vscode/settings.json
+.vscode/launch.json
+.vscode/tasks.json
+.vscode/extensions.json
+*.code-workspace
+
+# OS artifacts
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Package manager artifacts
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+.pnpm-debug.log
+
+# Testing artifacts
+coverage/
+.nyc_output/
+test-results/
+playwright-report/
+
+# Storybook artifacts
+storybook-static/
+.storybook-out/
+
+# Build tool artifacts
+.cache/
+.parcel-cache/
+.webpack/
+.rollup.cache/

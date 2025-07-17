@@ -22,7 +22,14 @@
     "prettier": "^3.6.2",
     "tsx": "^4.20.3",
     "typescript": "^5.8.3",
-    "zod": "^3.23.8"
+    "zod": "^3.23.8",
+    "@next/mdx": "^15.4.1",
+    "@mdx-js/loader": "^3.1.0",
+    "@mdx-js/react": "^3.1.0",
+    "@types/mdx": "^2.0.13",
+    "next-mdx-remote": "^5.0.0",
+    "@tailwindcss/typography": "^0.5.16",
+    "gray-matter": "^4.0.3"
   },
   "packageManager": "npm@10.8.2",
   "workspaces": [

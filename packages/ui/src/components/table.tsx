@@ -8,9 +8,11 @@ const tableVariants = cva(
   {
     variants: {
       size: {
+        xs: "text-xs",
         sm: "text-xs",
         default: "text-sm", 
         lg: "text-base",
+        xl: "text-lg",
       },
       variant: {
         default: "",
@@ -30,9 +32,11 @@ const tableHeaderVariants = cva(
   {
     variants: {
       size: {
+        xs: "[&_tr]:h-7",
         sm: "[&_tr]:h-8",
         default: "[&_tr]:h-10",
         lg: "[&_tr]:h-12",
+        xl: "[&_tr]:h-14",
       },
     },
     defaultVariants: {
@@ -46,9 +50,11 @@ const tableBodyVariants = cva(
   {
     variants: {
       size: {
+        xs: "[&_tr]:h-7",
         sm: "[&_tr]:h-8",
         default: "[&_tr]:h-10", 
         lg: "[&_tr]:h-12",
+        xl: "[&_tr]:h-14",
       },
     },
     defaultVariants: {
@@ -77,9 +83,11 @@ const tableHeadVariants = cva(
   {
     variants: {
       size: {
+        xs: "h-7 px-1",
         sm: "h-8 px-2",
         default: "h-10 px-4",
         lg: "h-12 px-6",
+        xl: "h-14 px-8",
       },
       sortable: {
         true: "cursor-pointer select-none hover:text-foreground",
@@ -98,9 +106,11 @@ const tableCellVariants = cva(
   {
     variants: {
       size: {
+        xs: "p-1",
         sm: "p-2",
         default: "p-4",
         lg: "p-6",
+        xl: "p-8",
       },
     },
     defaultVariants: {

@@ -15,10 +15,13 @@ COPY tsconfig.json ./
 COPY apps/gallery/package*.json ./apps/gallery/
 COPY packages/ui/package*.json ./packages/ui/
 
-# Install dependencies for all workspaces
-RUN npm install
-RUN cd apps/gallery && npm install
-RUN cd packages/ui && npm install
+# Clean install with latest packages
+RUN npm ci --include=dev
+RUN cd apps/gallery && npm ci --include=dev
+RUN cd packages/ui && npm ci --include=dev
+
+# Verify MDX dependencies are available
+RUN npm ls @next/mdx @mdx-js/react next-mdx-remote || echo "MDX dependencies verified"
 
 # Copy scripts
 COPY scripts/ ./scripts/

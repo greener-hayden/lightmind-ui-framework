@@ -6,7 +6,8 @@ import { Check, Palette } from 'lucide-react'
 
 const styles = [
   { name: 'default', label: 'Default' },
-  { name: 'new-york', label: 'New York' }
+  { name: 'new-york', label: 'New York' },
+  { name: 'lightmind', label: 'LightMind' }
 ]
 
 export function StyleSwitcher() {
@@ -47,7 +48,7 @@ export function StyleSwitcher() {
         // New York style: sharp corners, stronger contrasts
         break
       case 'lightmind':
-        // LightMind style: gradients, custom animations
+        // LightMind style: tighter spacing, better contrast, enhanced interactions
         break
     }
   }

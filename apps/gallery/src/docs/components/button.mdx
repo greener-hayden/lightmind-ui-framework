@@ -1,0 +1,284 @@
+---
+title: "Button"
+description: "A versatile button component with multiple variants and sizes"
+category: "Form"
+status: "stable"
+complexity: "simple"
+tags: ["button", "form", "interactive"]
+---
+
+import { ButtonDemo } from "@/components/demos/button.demo"
+
+# Button Component
+
+A versatile button component with multiple variants and sizes for different use cases.
+
+## Preview
+
+<div className="space-y-6">
+  <ButtonDemo />
+</div>
+
+## Installation
+
+```bash
+npm install @lightmind/ui
+```
+
+## Usage
+
+### Basic Usage
+
+```tsx
+import { Button } from '@lightmind/ui'
+
+export function Example() {
+  return <Button>Click me</Button>
+}
+```
+
+### With Variants
+
+```tsx
+import { Button } from '@lightmind/ui'
+
+export function VariantExample() {
+  return (
+    <div className="flex gap-2">
+      <Button variant="default">Default</Button>
+      <Button variant="secondary">Secondary</Button>
+      <Button variant="destructive">Destructive</Button>
+      <Button variant="outline">Outline</Button>
+      <Button variant="ghost">Ghost</Button>
+      <Button variant="link">Link</Button>
+    </div>
+  )
+}
+```
+
+### With Icons
+
+```tsx
+import { Button } from '@lightmind/ui'
+import { Mail, Download, ChevronRight } from 'lucide-react'
+
+export function IconExample() {
+  return (
+    <div className="flex gap-2">
+      <Button>
+        <Mail className="mr-2 h-4 w-4" />
+        Email
+      </Button>
+      <Button variant="outline">
+        <Download className="mr-2 h-4 w-4" />
+        Download
+      </Button>
+      <Button variant="ghost">
+        Continue
+        <ChevronRight className="ml-2 h-4 w-4" />
+      </Button>
+    </div>
+  )
+}
+```
+
+### Loading States
+
+```tsx
+import { Button } from '@lightmind/ui'
+import { Loader2 } from 'lucide-react'
+
+export function LoadingExample() {
+  return (
+    <div className="flex gap-2">
+      <Button disabled>
+        <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+        Loading...
+      </Button>
+      <Button variant="outline" disabled>
+        Processing...
+      </Button>
+    </div>
+  )
+}
+```
+
+### As Child Component
+
+```tsx
+import { Button } from '@lightmind/ui'
+import { ExternalLink } from 'lucide-react'
+
+export function AsChildExample() {
+  return (
+    <Button variant="link" asChild>
+      <a href="https://example.com" target="_blank" rel="noopener noreferrer">
+        External Link
+        <ExternalLink className="ml-2 h-4 w-4" />
+      </a>
+    </Button>
+  )
+}
+```
+
+## API Reference
+
+### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `variant` | `'default' \| 'secondary' \| 'destructive' \| 'outline' \| 'ghost' \| 'link'` | `'default'` | The visual style variant of the button |
+| `size` | `'sm' \| 'default' \| 'lg' \| 'icon'` | `'default'` | The size of the button |
+| `disabled` | `boolean` | `false` | Whether the button is disabled |
+| `asChild` | `boolean` | `false` | Render as a child element instead of a button |
+| `type` | `'button' \| 'submit' \| 'reset'` | `'button'` | The button type attribute |
+| `onClick` | `(event: React.MouseEvent) => void` | `undefined` | Click event handler |
+| `children` | `React.ReactNode` | `undefined` | The content to display inside the button |
+| `className` | `string` | `undefined` | Additional CSS classes |
+
+### Variant Styles
+
+- **`default`**: Primary button with solid background
+- **`secondary`**: Secondary button with muted background
+- **`destructive`**: Destructive button for dangerous actions
+- **`outline`**: Button with border and no background
+- **`ghost`**: Button with no background, visible on hover
+- **`link`**: Button styled as a link
+
+### Size Options
+
+- **`sm`**: Small button (32px height)
+- **`default`**: Default button (40px height)
+- **`lg`**: Large button (44px height)
+- **`icon`**: Square button optimized for icons (40px × 40px)
+
+## Usage Guidelines
+
+### Do's ✅
+
+- Use primary buttons for main actions
+- Keep button text concise and action-oriented
+- Maintain consistent spacing between button groups
+- Use loading states for async operations
+- Provide clear visual feedback for interactions
+- Use appropriate variants for different contexts
+- Group related actions together
+- Use icon buttons for space-constrained interfaces
+
+### Don'ts ❌
+
+- Don't use multiple primary buttons in the same context
+- Avoid overly long button text
+- Don't nest interactive elements inside buttons
+- Avoid using destructive variant for non-destructive actions
+- Don't use buttons for navigation (use links instead)
+- Don't use disabled buttons without clear reason
+- Avoid inconsistent button sizes in groups
+
+### Best Practices
+
+#### Primary vs Secondary Actions
+
+Use the `default` variant for primary actions and `secondary` or `outline` for secondary actions:
+
+```tsx
+// Good
+<div className="flex gap-2">
+  <Button variant="outline">Cancel</Button>
+  <Button>Save Changes</Button>
+</div>
+
+// Bad - multiple primary buttons
+<div className="flex gap-2">
+  <Button>Cancel</Button>
+  <Button>Save Changes</Button>
+</div>
+```
+
+#### Button Groups
+
+When grouping buttons, maintain consistent sizing and appropriate spacing:
+
+```tsx
+// Good
+<div className="flex gap-2">
+  <Button variant="ghost" size="sm">Reset</Button>
+  <Button variant="outline" size="sm">Save Draft</Button>
+  <Button size="sm">Submit</Button>
+</div>
+```
+
+#### Loading States
+
+Always provide feedback for async operations:
+
+```tsx
+// Good
+<Button disabled={isLoading}>
+  {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+  {isLoading ? 'Saving...' : 'Save Changes'}
+</Button>
+```
+
+#### Icon Usage
+
+Use icons consistently and ensure they enhance rather than clutter the interface:
+
+```tsx
+// Good - meaningful icons
+<Button>
+  <Save className="mr-2 h-4 w-4" />
+  Save
+</Button>
+
+// Good - icon-only for space-constrained areas
+<Button size="icon" variant="ghost">
+  <Settings className="h-4 w-4" />
+</Button>
+```
+
+## Accessibility
+
+### Keyboard Navigation
+
+- Buttons are focusable via Tab key
+- Space and Enter keys activate buttons
+- Focus indicators are visible and clear
+
+### Screen Reader Support
+
+- Buttons have proper semantic meaning
+- Loading states are announced to screen readers
+- Disabled buttons are correctly identified
+
+### Color Contrast
+
+- All variants meet WCAG AA color contrast requirements
+- Focus indicators have sufficient contrast
+- Disabled states maintain adequate contrast
+
+### Implementation
+
+```tsx
+// Good - accessible button
+<Button 
+  disabled={isLoading}
+  aria-label={isLoading ? 'Saving changes...' : 'Save changes'}
+>
+  {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+  {isLoading ? 'Saving...' : 'Save'}
+</Button>
+
+// Good - accessible icon button
+<Button size="icon" variant="ghost" aria-label="Open settings">
+  <Settings className="h-4 w-4" />
+</Button>
+```
+
+## Related Components
+
+- **[Input](/component/input)** - For text input fields
+- **[Label](/component/label)** - For form field labels  
+- **[Checkbox](/component/checkbox)** - For binary choices
+- **[RadioGroup](/component/radio-group)** - For single selection from options
+- **[Select](/component/select)** - For dropdown selections
