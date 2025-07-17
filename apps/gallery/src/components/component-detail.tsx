@@ -7,11 +7,7 @@
 
 import { useState } from 'react'
 import { Copy, ExternalLink, Eye, Code, Check, ChevronRight, AlertCircle, CheckCircle2, Clock } from 'lucide-react'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { Badge } from '@/components/ui/badge'
-import { Button } from '@/components/ui/button'
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
-import { Alert, AlertDescription } from '@/components/ui/alert'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle, Badge, Button, Tabs, TabsContent, TabsList, TabsTrigger, Alert, AlertDescription } from '@lightmind/ui'
 import { PreviewComponent } from './preview-registry'
 import { cn } from '@/lib/utils'
 import { ComponentInfo } from '@/lib/component-registry'

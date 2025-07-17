@@ -9,9 +9,7 @@ import { Metadata } from 'next'
 import { Header } from '@/components/header'
 import { Breadcrumb } from '@/components/breadcrumb'
 import { ComponentCard } from '@/components/component-card'
-import { Badge } from '@/components/ui/badge'
-import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { Badge, Button, Card, CardContent, CardHeader, CardTitle } from '@lightmind/ui'
 import { 
   getCategoryById, 
   getComponentsByCategory, 

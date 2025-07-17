@@ -43,8 +43,8 @@ import {
   CameraOff,
   Bluetooth,
   BluetoothOff,
-  Airplane,
-  AirplaneOff,
+  Plane,
+  PlaneTakeoff,
   MapPin,
   MapPinOff,
   Download,
@@ -60,7 +60,6 @@ import {
   Laptop,
   Save,
   Globe,
-  GlobeOff,
   User,
   UserX,
   PlayCircle,
@@ -705,7 +704,7 @@ export function SwitchDemo() {
                         key === 'wifi' ? <Wifi className="h-3 w-3" /> :
                         key === 'bluetooth' ? <Bluetooth className="h-3 w-3" /> :
                         key === 'location' ? <MapPin className="h-3 w-3" /> :
-                        key === 'airplane' ? <Airplane className="h-3 w-3" /> :
+                        key === 'airplane' ? <Plane className="h-3 w-3" /> :
                         key === 'doNotDisturb' ? <BellOff className="h-3 w-3" /> :
                         <BatteryLow className="h-3 w-3" />
                       }
@@ -713,7 +712,7 @@ export function SwitchDemo() {
                         key === 'wifi' ? <WifiOff className="h-3 w-3" /> :
                         key === 'bluetooth' ? <BluetoothOff className="h-3 w-3" /> :
                         key === 'location' ? <MapPinOff className="h-3 w-3" /> :
-                        key === 'airplane' ? <AirplaneOff className="h-3 w-3" /> :
+                        key === 'airplane' ? <PlaneTakeoff className="h-3 w-3" /> :
                         key === 'doNotDisturb' ? <Bell className="h-3 w-3" /> :
                         <Battery className="h-3 w-3" />
                       }

@@ -12,8 +12,10 @@ COPY tsconfig.json ./
 COPY apps/gallery/package*.json ./apps/gallery/
 COPY packages/ui/package*.json ./packages/ui/
 
-# Install dependencies
+# Install dependencies for all workspaces
 RUN npm install
+RUN cd apps/gallery && npm install
+RUN cd packages/ui && npm install
 
 # Copy scripts
 COPY scripts/ ./scripts/

@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-@import '../styles/registry-styles.css';
+/* @import '../styles/registry-styles.css'; */
  
 @layer base {
   :root {

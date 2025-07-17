@@ -1,57 +1,51 @@
 'use client'
 
 import { ComponentCard } from './component-card'
-import { ui } from '@/registry'
+import { components, categories } from '@/lib/component-registry'
 import { useMemo, useState } from 'react'
-import { Input } from '@/components/ui/input'
-import { Button } from '@/components/ui/button'
-import { categories } from '@/registry/registry-categories'
+import { Input, Button } from '@lightmind/ui'
 
 export function ComponentGridRegistry() {
   const [search, setSearch] = useState('')
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null)
 
   const filteredComponents = useMemo(() => {
-    return ui.filter(component => {
+    return components.filter(component => {
       const matchesSearch = !search || 
         component.name.toLowerCase().includes(search.toLowerCase()) ||
-        component.meta?.description?.toLowerCase().includes(search.toLowerCase()) ||
-        component.meta?.tags?.some(tag => tag.toLowerCase().includes(search.toLowerCase()))
+        component.description.toLowerCase().includes(search.toLowerCase()) ||
+        component.tags.some(tag => tag.toLowerCase().includes(search.toLowerCase()))
       
-      const matchesCategory = !selectedCategory || component.meta?.category === selectedCategory
+      const matchesCategory = !selectedCategory || component.category === selectedCategory
       
       return matchesSearch && matchesCategory
     })
   }, [search, selectedCategory])
 
-  const componentStats = useMemo(() => {
-    return {
-      total: ui.length,
-      byCategory: categories.reduce((acc, category) => {
-        acc[category.id] = ui.filter(c => c.meta?.category === category.id).length
-        return acc
-      }, {} as Record<string, number>)
-    }
-  }, [])
+  const componentsByCategory = useMemo(() => {
+    return categories.reduce((acc, category) => {
+      acc[category.id] = filteredComponents.filter(c => c.category === category.id)
+      return acc
+    }, {} as Record<string, typeof components>)
+  }, [filteredComponents])
 
   return (
     <div className="space-y-8">
       {/* Search and Filters */}
-      <div className="space-y-4">
+      <div className="flex flex-col sm:flex-row gap-4">
         <Input
           placeholder="Search components..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          className="max-w-sm"
+          className="flex-1"
         />
-        
-        <div className="flex flex-wrap gap-2">
+        <div className="flex gap-2">
           <Button
             variant={selectedCategory === null ? "default" : "outline"}
             size="sm"
             onClick={() => setSelectedCategory(null)}
           >
-            All ({componentStats.total})
+            All
           </Button>
           {categories.map(category => (
             <Button
@@ -59,45 +53,44 @@ export function ComponentGridRegistry() {
               variant={selectedCategory === category.id ? "default" : "outline"}
               size="sm"
               onClick={() => setSelectedCategory(category.id)}
-              className="gap-2"
             >
-              <span className={`w-2 h-2 rounded-full ${category.color}`} />
-              {category.name} ({componentStats.byCategory[category.id] || 0})
+              {category.name}
             </Button>
           ))}
         </div>
       </div>
 
-      {/* Component Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {filteredComponents.map((component) => {
-          // Map registry component to ComponentCard format
-          const componentInfo = {
-            id: component.name,
-            name: component.name.split('-').map(word => 
-              word.charAt(0).toUpperCase() + word.slice(1)
-            ).join(' '),
-            description: component.meta?.description || '',
-            category: component.meta?.category as any || 'display',
-            complexity: component.meta?.complexity || 'simple',
-            status: component.meta?.status || 'stable',
-            tags: component.meta?.tags || [],
-            preview: component.name,
-            codeExample: `import { ${component.name} } from '@lightmind/ui'`
-          }
+      {/* Components by Category */}
+      {selectedCategory ? (
+        <div>
+          <h2 className="text-2xl font-semibold mb-4 capitalize">{selectedCategory}</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {componentsByCategory[selectedCategory]?.map(component => (
+              <ComponentCard key={component.id} component={component} viewMode="grid" />
+            ))}
+          </div>
+        </div>
+      ) : (
+        categories.map(category => {
+          const categoryComponents = componentsByCategory[category.id]
+          if (!categoryComponents?.length) return null
           
           return (
-            <ComponentCard
-              key={component.name}
-              component={componentInfo}
-            />
+            <div key={category.id}>
+              <h2 className="text-2xl font-semibold mb-4">{category.name}</h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {categoryComponents.map(component => (
+                  <ComponentCard key={component.id} component={component} viewMode="grid" />
+                ))}
+              </div>
+            </div>
           )
-        })}
-      </div>
+        })
+      )}
 
       {filteredComponents.length === 0 && (
-        <div className="text-center py-12 text-muted-foreground">
-          No components found matching your criteria.
+        <div className="text-center py-12">
+          <p className="text-muted-foreground">No components found matching your criteria.</p>
         </div>
       )}
     </div>

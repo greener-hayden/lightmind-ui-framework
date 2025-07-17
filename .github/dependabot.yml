@@ -1,0 +1,62 @@
+version: 2
+updates:
+  # Monitor npm dependencies in root package.json
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "02:00"
+    open-pull-requests-limit: 10
+    reviewers:
+      - "@me"
+    labels:
+      - "dependencies"
+      - "automated"
+    commit-message:
+      prefix: "chore"
+      prefix-development: "chore"
+      include: "scope"
+
+  # Monitor npm dependencies in packages/ui
+  - package-ecosystem: "npm"
+    directory: "/packages/ui"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "02:30"
+    open-pull-requests-limit: 5
+    reviewers:
+      - "@me"
+    labels:
+      - "dependencies"
+      - "ui-package"
+    commit-message:
+      prefix: "chore(ui)"
+
+  # Monitor npm dependencies in apps/gallery  
+  - package-ecosystem: "npm"
+    directory: "/apps/gallery"
+    schedule:
+      interval: "weekly"  
+      day: "monday"
+      time: "03:00"
+    open-pull-requests-limit: 5
+    reviewers:
+      - "@me"
+    labels:
+      - "dependencies"
+      - "gallery-app"
+    commit-message:
+      prefix: "chore(gallery)"
+
+  # Monitor GitHub Actions
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "monthly"
+    reviewers:
+      - "@me"
+    labels:
+      - "github-actions"
+      - "ci/cd"

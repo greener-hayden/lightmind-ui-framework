@@ -16,35 +16,6 @@ import { SwitchDemo } from './demos/switch.demo'
 import { TextareaDemo } from './demos/textarea.demo'
 import { TooltipDemo } from './demos/tooltip.demo'
 
-// Legacy preview imports - will be phased out
-import { ButtonPreview, ButtonIconPreview, ButtonLoadingPreview } from './previews/button-preview'
-import { CardPreview } from './previews/card-preview'
-import { InputPreview } from './previews/input-preview'
-import { DialogPreview } from './previews/dialog-preview'
-import { TooltipPreview } from './previews/tooltip-preview'
-import { DropdownMenuPreview } from './previews/dropdown-menu-preview'
-import { PopoverPreview } from './previews/popover-preview'
-import { AlertPreview } from './previews/alert-preview'
-import { LabelPreview } from './previews/label-preview'
-import { CheckboxPreview, CheckboxVariantsPreview } from './previews/checkbox-preview'
-import { RadioGroupPreview, RadioGroupVariantsPreview } from './previews/radio-group-preview'
-import { SelectPreview, SelectVariantsPreview } from './previews/select-preview'
-import { TextareaPreview, TextareaVariantsPreview } from './previews/textarea-preview'
-import { SwitchPreview, SwitchVariantsPreview } from './previews/switch-preview'
-import { 
-  TablePreview, 
-  TableVariantsPreview, 
-  TableSizesPreview, 
-  TableSortablePreview, 
-  TableUsersPreview, 
-  TableInvoicesPreview, 
-  TableAnalyticsPreview, 
-  TableResponsivePreview,
-  TableSelectablePreview,
-  TableFilterablePreview,
-  TablePaginatedPreview
-} from './previews/table-preview'
-
 // Registry of all preview components
 const previewComponents = {
   'access-matrix-simple': AccessMatrixSimpleDemo,
@@ -62,39 +33,6 @@ const previewComponents = {
   'switch': SwitchDemo,
   'textarea': TextareaDemo,
   'tooltip': TooltipDemo,
-  // Legacy previews
-  ButtonPreview,
-  ButtonIconPreview,
-  ButtonLoadingPreview,
-  CardPreview,
-  InputPreview,
-  DialogPreview,
-  TooltipPreview,
-  DropdownMenuPreview,
-  PopoverPreview,
-  AlertPreview,
-  LabelPreview,
-  CheckboxPreview,
-  CheckboxVariantsPreview,
-  RadioGroupPreview,
-  RadioGroupVariantsPreview,
-  SelectPreview,
-  SelectVariantsPreview,
-  TextareaPreview,
-  TextareaVariantsPreview,
-  SwitchPreview,
-  SwitchVariantsPreview,
-  TablePreview,
-  TableVariantsPreview,
-  TableSizesPreview,
-  TableSortablePreview,
-  TableUsersPreview,
-  TableInvoicesPreview,
-  TableAnalyticsPreview,
-  TableResponsivePreview,
-  TableSelectablePreview,
-  TableFilterablePreview,
-  TablePaginatedPreview,
 } as const
 
 interface PreviewComponentProps {

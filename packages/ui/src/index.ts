@@ -119,6 +119,20 @@ export {
 export {
   StatCard,
 } from "./components/stat-card"
+export {
+  Tabs,
+  TabsList,
+  TabsTrigger,
+  TabsContent,
+} from "./components/tabs"
+export {
+  Separator,
+} from "./components/separator"
+export {
+  Avatar,
+  AvatarImage,
+  AvatarFallback,
+} from "./components/avatar"
 
 // Types
 export type { ButtonProps } from "./components/button"
@@ -147,7 +161,7 @@ export type {
   AccessMatrixProps, 
   AccessMatrixData, 
   AccessMatrixCell,
-  Permission 
+  PermissionType 
 } from "./components/access-matrix"
 export type {
   StatCardProps

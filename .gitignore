@@ -126,3 +126,21 @@ testing/visual/screenshots/
 # Development logs
 dev.log
 .vercel
+
+# Claude Code local files
+.claude/
+CLAUDE.md
+
+# Build outputs to ignore
+apps/gallery/out/
+out/
+
+# Environment files
+.env.local
+.env.production.local
+
+# Registry backup files
+.sync-backup/
+
+# Temporary sync files
+temp-shadcn/

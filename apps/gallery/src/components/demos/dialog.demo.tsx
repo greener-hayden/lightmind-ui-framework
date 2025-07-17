@@ -91,7 +91,8 @@ import {
   Flag,
   Bookmark,
   Send,
-  Paperclip
+  Paperclip,
+  Bell
 } from "lucide-react"
 
 export function DialogDemo() {

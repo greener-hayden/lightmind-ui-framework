@@ -21,7 +21,6 @@ import {
   TabsContent,
   TabsList,
   TabsTrigger,
-  ScrollArea
 } from "@lightmind/ui"
 import { 
   CreditCard,
@@ -1080,7 +1079,7 @@ export function RadioGroupDemo() {
               </TabsList>
               <TabsContent value="language" className="mt-4">
                 <RadioGroup value={language} onValueChange={setLanguage}>
-                  <ScrollArea className="h-[300px] pr-4">
+                  <div className="h-[300px] pr-4 overflow-y-auto">
                     <div className="space-y-2">
                       {[
                         { code: 'en', name: 'English', native: 'English' },
@@ -1105,7 +1104,7 @@ export function RadioGroupDemo() {
                         </div>
                       ))}
                     </div>
-                  </ScrollArea>
+                  </div>
                 </RadioGroup>
               </TabsContent>
               <TabsContent value="region" className="mt-4">

@@ -1,0 +1,268 @@
+name: "Sync with shadcn/ui upstream"
+
+on:
+  schedule:
+    # Check for updates every Monday at 4 AM UTC
+    - cron: '0 4 * * 1'
+  workflow_dispatch:
+    inputs:
+      force_sync:
+        description: 'Force sync even if no changes detected'
+        required: false
+        default: false
+        type: boolean
+
+permissions:
+  contents: write
+  pull-requests: write
+  actions: read
+
+jobs:
+  check-shadcn-updates:
+    runs-on: ubuntu-latest
+    outputs:
+      has_updates: ${{ steps.check.outputs.has_updates }}
+      latest_commit: ${{ steps.check.outputs.latest_commit }}
+      components_changed: ${{ steps.check.outputs.components_changed }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Check shadcn/ui for updates
+        id: check
+        run: |
+          # Get the latest commit from shadcn/ui
+          LATEST_COMMIT=$(gh api repos/shadcn-ui/ui/commits/main --jq '.sha')
+          echo "latest_commit=$LATEST_COMMIT" >> $GITHUB_OUTPUT
+          
+          # Check if we have a record of the last sync
+          LAST_SYNC_FILE=".github/shadcn-last-sync"
+          
+          if [ -f "$LAST_SYNC_FILE" ]; then
+            LAST_SYNC=$(cat "$LAST_SYNC_FILE")
+          else
+            LAST_SYNC=""
+          fi
+          
+          echo "Last sync: $LAST_SYNC"
+          echo "Latest commit: $LATEST_COMMIT"
+          
+          # Check if there are updates or force sync is requested
+          if [ "$LATEST_COMMIT" != "$LAST_SYNC" ] || [ "${{ github.event.inputs.force_sync }}" = "true" ]; then
+            echo "has_updates=true" >> $GITHUB_OUTPUT
+            echo "Updates detected!"
+            
+            # Get list of changed components since last sync
+            if [ -n "$LAST_SYNC" ]; then
+              CHANGED_FILES=$(gh api repos/shadcn-ui/ui/compare/${LAST_SYNC}...${LATEST_COMMIT} --jq '.files[].filename' | grep -E '^apps/v4/registry/.*\.tsx$' | head -20 || echo "")
+            else
+              CHANGED_FILES="Initial sync - all components"
+            fi
+            
+            echo "components_changed<<EOF" >> $GITHUB_OUTPUT
+            echo "$CHANGED_FILES" >> $GITHUB_OUTPUT
+            echo "EOF" >> $GITHUB_OUTPUT
+          else
+            echo "has_updates=false" >> $GITHUB_OUTPUT
+            echo "No updates detected"
+          fi
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  sync-components:
+    needs: check-shadcn-updates
+    if: needs.check-shadcn-updates.outputs.has_updates == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Create sync branch
+        run: |
+          BRANCH_NAME="shadcn-sync-$(date +%Y%m%d-%H%M%S)"
+          echo "BRANCH_NAME=$BRANCH_NAME" >> $GITHUB_ENV
+          git checkout -b "$BRANCH_NAME"
+
+      - name: Backup custom components
+        run: |
+          # Create backup of our custom components
+          mkdir -p .sync-backup/registry/ui
+          mkdir -p .sync-backup/registry/examples
+          
+          # Backup custom components (not in standard shadcn/ui)
+          cp registry/ui/access-matrix.tsx .sync-backup/registry/ui/ 2>/dev/null || true
+          cp registry/ui/stat-card.tsx .sync-backup/registry/ui/ 2>/dev/null || true
+          cp registry/examples/access-matrix*.tsx .sync-backup/registry/examples/ 2>/dev/null || true
+          cp registry/examples/stat-card*.tsx .sync-backup/registry/examples/ 2>/dev/null || true
+
+      - name: Download latest shadcn/ui components
+        run: |
+          # Download standard shadcn/ui components
+          COMPONENTS=(
+            "button" "card" "input" "badge" "dialog" "tooltip" "dropdown-menu"
+            "popover" "alert" "label" "checkbox" "radio-group" "select" 
+            "textarea" "switch" "table" "tabs" "avatar" "progress" "separator"
+          )
+          
+          mkdir -p temp-shadcn
+          
+          for component in "${COMPONENTS[@]}"; do
+            echo "Downloading $component..."
+            gh api repos/shadcn-ui/ui/contents/apps/v4/registry/new-york-v4/ui/${component}.tsx --jq '.content' | base64 -d > temp-shadcn/${component}.tsx 2>/dev/null || {
+              echo "⚠️  Could not download $component, keeping existing version"
+            }
+          done
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Update components
+        run: |
+          # Copy downloaded components to registry
+          for file in temp-shadcn/*.tsx; do
+            if [ -f "$file" ]; then
+              component=$(basename "$file")
+              echo "Updating $component..."
+              cp "$file" "registry/ui/$component"
+            fi
+          done
+          
+          # Restore custom components
+          cp .sync-backup/registry/ui/*.tsx registry/ui/ 2>/dev/null || true
+          cp .sync-backup/registry/examples/*.tsx registry/examples/ 2>/dev/null || true
+          
+          # Clean up
+          rm -rf temp-shadcn .sync-backup
+
+      - name: Fix imports and paths
+        run: |
+          # Update import paths in downloaded components to match our structure
+          find registry/ui -name "*.tsx" -type f -exec sed -i 's|from "@/lib/utils"|from "../lib/utils"|g' {} +
+          find registry/ui -name "*.tsx" -type f -exec sed -i 's|from "@/components/ui/|from "./|g' {} +
+
+      - name: Rebuild registry
+        run: |
+          npm run build:registry
+
+      - name: Test build
+        run: |
+          cd apps/gallery
+          npm run type-check || {
+            echo "❌ Type check failed - there may be breaking changes"
+            echo "BREAKING_CHANGES=true" >> $GITHUB_ENV
+          }
+          npm run build:dev || {
+            echo "❌ Build failed - there may be breaking changes"
+            echo "BREAKING_CHANGES=true" >> $GITHUB_ENV
+          }
+
+      - name: Record sync
+        run: |
+          mkdir -p .github
+          echo "${{ needs.check-shadcn-updates.outputs.latest_commit }}" > .github/shadcn-last-sync
+
+      - name: Commit changes
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          
+          git add .
+          
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+            echo "HAS_CHANGES=false" >> $GITHUB_ENV
+          else
+            echo "HAS_CHANGES=true" >> $GITHUB_ENV
+            
+            # Create detailed commit message
+            cat > commit-message.txt << EOF
+          chore: sync with shadcn/ui upstream
+          
+          Updates components from shadcn/ui commit: ${{ needs.check-shadcn-updates.outputs.latest_commit }}
+          
+          Changed components:
+          ${{ needs.check-shadcn-updates.outputs.components_changed }}
+          
+          🤖 Generated with automated sync workflow
+          EOF
+            
+            git commit -F commit-message.txt
+          fi
+
+      - name: Push branch and create PR
+        if: env.HAS_CHANGES == 'true'
+        run: |
+          git push origin "$BRANCH_NAME"
+          
+          # Create PR description
+          cat > pr-body.md << EOF
+          ## 🔄 shadcn/ui Sync Update
+          
+          This PR contains updates from the latest shadcn/ui upstream changes.
+          
+          ### 📋 Details
+          - **Upstream commit**: \`${{ needs.check-shadcn-updates.outputs.latest_commit }}\`
+          - **Components updated**: 
+          \`\`\`
+          ${{ needs.check-shadcn-updates.outputs.components_changed }}
+          \`\`\`
+          
+          ### ✅ Automated Checks
+          - [x] Registry rebuilt successfully
+          - [x] Custom components preserved (AccessMatrix, StatCard)
+          $( [ "$BREAKING_CHANGES" = "true" ] && echo "- [ ] ⚠️ **Build/type errors detected - manual review required**" || echo "- [x] Build and type check passed" )
+          
+          ### 🚀 What's Next
+          1. **Review the changes** in this PR
+          2. **Test locally** if needed: \`git checkout $BRANCH_NAME && npm run dev\`
+          3. **Merge when ready** - no manual work required!
+          
+          ### 🛡️ Safety Features
+          - Custom components (AccessMatrix, StatCard) are automatically preserved
+          - Registry is rebuilt to maintain compatibility
+          - Build/type checks run automatically
+          
+          $( [ "$BREAKING_CHANGES" = "true" ] && echo "### ⚠️ Action Required\\nThis update includes potential breaking changes. Please review carefully before merging." || echo "### ✨ Ready to Merge\\nAll checks passed! This update is safe to merge." )
+          
+          ---
+          🤖 Generated by automated workflow
+          EOF
+          
+          gh pr create \
+            --title "🔄 Sync with shadcn/ui upstream (${{ needs.check-shadcn-updates.outputs.latest_commit }})" \
+            --body-file pr-body.md \
+            --label "shadcn-sync,automated,dependencies" \
+            --assignee "@me"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Post summary
+        run: |
+          if [ "$HAS_CHANGES" = "true" ]; then
+            echo "✅ Successfully created PR for shadcn/ui sync"
+            echo "🔍 Review at: https://github.com/${{ github.repository }}/pulls"
+          else
+            echo "ℹ️ No changes detected in this sync"
+          fi

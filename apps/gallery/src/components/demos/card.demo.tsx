@@ -10,9 +10,6 @@ import {
   CardTitle,
   Button,
   Badge,
-  Avatar,
-  AvatarFallback,
-  AvatarImage,
   Input,
   Label,
   Select,
@@ -21,10 +18,10 @@ import {
   SelectTrigger,
   SelectValue,
   Checkbox,
-  Switch,
-  Progress,
-  Separator
+  Switch
 } from "@lightmind/ui"
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { Separator } from "@/components/ui/separator"
 import { 
   Heart,
   MessageCircle,
@@ -228,7 +225,9 @@ export function CardDemo() {
               <p className="text-xs text-muted-foreground">
                 +20.1% from last month
               </p>
-              <Progress value={65} className="mt-3" />
+              <div className="mt-3 h-2 bg-gray-200 rounded-full">
+                <div className="h-2 bg-primary rounded-full" style={{width: '65%'}}></div>
+              </div>
             </CardContent>
           </Card>
 
@@ -455,7 +454,9 @@ export function CardDemo() {
                   <Users className="h-4 w-4 mr-2" />
                   3 members assigned
                 </div>
-                <Progress value={75} className="h-2" />
+                <div className="h-2 bg-gray-200 rounded-full">
+                  <div className="h-2 bg-primary rounded-full" style={{width: '75%'}}></div>
+                </div>
                 <p className="text-xs text-muted-foreground">75% Complete</p>
               </div>
             </CardContent>

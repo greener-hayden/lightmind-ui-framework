@@ -1,8 +1,6 @@
 'use client'
 
-import { Button } from '@/components/ui/button'
-import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/components/ui/card'
-import { Input } from '@/components/ui/input'
+import { Button, Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter, Input } from '@lightmind/ui'
 import { Header } from '@/components/header'
 
 export default function ExamplesPage() {

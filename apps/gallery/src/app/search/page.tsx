@@ -10,17 +10,7 @@ import { useSearchParams } from 'next/navigation'
 import { Search, Filter, Grid, List, ArrowRight } from 'lucide-react'
 import { Header } from '@/components/header'
 import { Breadcrumb } from '@/components/breadcrumb'
-import { Badge } from '@/components/ui/badge'
-import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { 
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select'
+import { Badge, Button, Input, Card, CardContent, CardHeader, CardTitle, Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@lightmind/ui'
 import { 
   searchComponents,
   getAllCategories,

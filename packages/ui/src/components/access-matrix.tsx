@@ -179,8 +179,8 @@ const PermissionIcon = React.memo<PermissionIconProps>(
       permission.icon as React.ReactElement, 
       { 
         className: displayMode === "both" ? "h-3.5 w-3.5" : "h-4 w-4",
-        "aria-hidden": "true"
-      }
+        "aria-hidden": true
+      } as any
     )
 
     return (

@@ -81,6 +81,19 @@ export const components: ComponentInfo[] = [
     "codeExample": "import { Alert } from '@lightmind/ui';\n\n<Alert />"
   },
   {
+    "id": "avatar",
+    "name": "Avatar",
+    "description": "Avatar component",
+    "category": "layout",
+    "complexity": "simple",
+    "status": "stable",
+    "tags": [
+      "avatar"
+    ],
+    "preview": "avatar",
+    "codeExample": "import { Avatar } from '@lightmind/ui';\n\n<Avatar />"
+  },
+  {
     "id": "badge",
     "name": "Badge",
     "description": "Badge component",
@@ -224,6 +237,19 @@ export const components: ComponentInfo[] = [
     "codeExample": "import { Select } from '@lightmind/ui';\n\n<Select />"
   },
   {
+    "id": "separator",
+    "name": "Separator",
+    "description": "Separator component",
+    "category": "layout",
+    "complexity": "simple",
+    "status": "stable",
+    "tags": [
+      "separator"
+    ],
+    "preview": "separator",
+    "codeExample": "import { Separator } from '@lightmind/ui';\n\n<Separator />"
+  },
+  {
     "id": "stat-card",
     "name": "StatCard",
     "description": "StatCard component",
@@ -261,6 +287,19 @@ export const components: ComponentInfo[] = [
     ],
     "preview": "table",
     "codeExample": "import { Table } from '@lightmind/ui';\n\n<Table />"
+  },
+  {
+    "id": "tabs",
+    "name": "Tabs",
+    "description": "Tabs component",
+    "category": "layout",
+    "complexity": "simple",
+    "status": "stable",
+    "tags": [
+      "tabs"
+    ],
+    "preview": "tabs",
+    "codeExample": "import { Tabs } from '@lightmind/ui';\n\n<Tabs />"
   },
   {
     "id": "textarea",
@@ -329,7 +368,7 @@ export const categories: CategoryInfo[] = [
     name: 'Layout',
     description: 'Layout and structure components',
     icon: 'layout',
-    componentCount: 2,
+    componentCount: 5,
     color: 'bg-pink-500'
   }
 ];

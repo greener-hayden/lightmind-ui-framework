@@ -4,10 +4,7 @@ import { useState } from 'react'
 import Link from 'next/link'
 import { Search, ArrowRight, Grid, List, Package, Star, Zap, Copy, Download, ExternalLink } from 'lucide-react'
 import { Header } from '@/components/header'
-import { Badge } from '@/components/ui/badge'
-import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { Badge, Button, Input, Card, CardContent, CardHeader, CardTitle } from '@lightmind/ui'
 import { 
   getAllCategories, 
   getComponentStats, 

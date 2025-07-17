@@ -1,15 +1,13 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { Button } from '@/components/ui/button'
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu'
-import { styles } from '@/registry/registry-styles'
+import { Button, DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@lightmind/ui'
 import { Check, Palette } from 'lucide-react'
+
+const styles = [
+  { name: 'default', label: 'Default' },
+  { name: 'new-york', label: 'New York' }
+]
 
 export function StyleSwitcher() {
   const [currentStyle, setCurrentStyle] = useState<string>('default')

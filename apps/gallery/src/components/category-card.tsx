@@ -7,8 +7,7 @@
 
 import { ArrowRight, Grid3x3, FileText, Navigation, MessageCircle, Layout } from 'lucide-react'
 import Link from 'next/link'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { Badge } from '@/components/ui/badge'
+import { Card, CardContent, CardHeader, CardTitle, Badge } from '@lightmind/ui'
 import { cn } from '@/lib/utils'
 import { CategoryInfo } from '@/lib/component-registry'
 
