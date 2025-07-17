@@ -14,7 +14,8 @@
     "clean": "rm -rf node_modules package-lock.json && npm install",
     "docker:down": "docker compose down",
     "docker:logs": "docker compose logs -f gallery",
-    "docker:rebuild": "docker compose build --no-cache"
+    "docker:rebuild": "docker compose build --no-cache",
+    "add-component": "node scripts/add-component.cjs"
   },
   "devDependencies": {
     "@types/node": "^24.0.14",
@@ -23,7 +24,7 @@
     "typescript": "^5.8.3",
     "zod": "^3.23.8"
   },
-  "packageManager": "npm@11.4.2",
+  "packageManager": "npm@10.8.2",
   "workspaces": [
     "packages/*",
     "apps/*"

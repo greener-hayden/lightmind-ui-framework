@@ -19,14 +19,15 @@ import {
 } from '@/lib/component-registry'
 
 interface CategoryPageProps {
-  params: {
+  params: Promise<{
     category: string
-  }
+  }>
 }
 
 // Generate metadata for SEO
 export async function generateMetadata({ params }: CategoryPageProps): Promise<Metadata> {
-  const category = getCategoryById(params.category as CategoryId)
+  const { category: categoryParam } = await params
+  const category = getCategoryById(categoryParam as CategoryId)
   
   if (!category) {
     return {
@@ -59,14 +60,15 @@ export function generateStaticParams() {
   ]
 }
 
-export default function CategoryPage({ params }: CategoryPageProps) {
-  const category = getCategoryById(params.category as CategoryId)
+export default async function CategoryPage({ params }: CategoryPageProps) {
+  const { category: categoryParam } = await params
+  const category = getCategoryById(categoryParam as CategoryId)
   
   if (!category) {
     notFound()
   }
 
-  const components = getComponentsByCategory(params.category as CategoryId)
+  const components = getComponentsByCategory(categoryParam as CategoryId)
   const stats = getComponentStats()
   
   // Group components by complexity
@@ -241,7 +243,7 @@ export default function CategoryPage({ params }: CategoryPageProps) {
             <h3 className="text-lg font-semibold mb-4">Explore Other Categories</h3>
             <div className="flex flex-wrap gap-2">
               {['form', 'display', 'navigation', 'feedback', 'layout']
-                .filter(cat => cat !== params.category)
+                .filter(cat => cat !== categoryParam)
                 .map((categoryId) => {
                   const otherCategory = getCategoryById(categoryId as CategoryId)
                   return otherCategory ? (

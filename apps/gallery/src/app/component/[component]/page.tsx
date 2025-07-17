@@ -17,14 +17,15 @@ import {
 } from '@/lib/component-registry'
 
 interface ComponentPageProps {
-  params: {
+  params: Promise<{
     component: string
-  }
+  }>
 }
 
 // Generate metadata for SEO
 export async function generateMetadata({ params }: ComponentPageProps): Promise<Metadata> {
-  const component = getComponentById(params.component)
+  const { component: componentParam } = await params
+  const component = getComponentById(componentParam)
   
   if (!component) {
     return {
@@ -63,8 +64,9 @@ export function generateStaticParams() {
   }));
 }
 
-export default function ComponentPage({ params }: ComponentPageProps) {
-  const component = getComponentById(params.component)
+export default async function ComponentPage({ params }: ComponentPageProps) {
+  const { component: componentParam } = await params
+  const component = getComponentById(componentParam)
   
   if (!component) {
     notFound()

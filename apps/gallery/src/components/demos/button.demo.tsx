@@ -2,6 +2,7 @@
 
 import * as React from "react"
 import { Button } from "@lightmind/ui"
+import { cn } from "@/lib/utils"
 import { 
   ChevronRight, 
   Download, 
@@ -325,7 +326,3 @@ export function ButtonDemo() {
   )
 }
 
-// Helper function for class names (if not imported from utils)
-function cn(...inputs: (string | undefined | null | false)[]) {
-  return inputs.filter(Boolean).join(' ')
-}

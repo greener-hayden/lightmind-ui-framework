@@ -6,6 +6,9 @@ WORKDIR /app
 # Install dependencies for better performance
 RUN apk add --no-cache git
 
+# Enable corepack for yarn
+RUN corepack enable
+
 # Copy package files first for better caching
 COPY package*.json ./
 COPY tsconfig.json ./

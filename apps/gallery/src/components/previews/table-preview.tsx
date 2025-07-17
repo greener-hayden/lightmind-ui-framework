@@ -1,0 +1,11 @@
+export const TablePreview = () => null
+export const TableVariantsPreview = () => null
+export const TableSizesPreview = () => null
+export const TableSortablePreview = () => null
+export const TableUsersPreview = () => null
+export const TableInvoicesPreview = () => null
+export const TableAnalyticsPreview = () => null
+export const TableResponsivePreview = () => null
+export const TableSelectablePreview = () => null
+export const TableFilterablePreview = () => null
+export const TablePaginatedPreview = () => null
