@@ -14,11 +14,13 @@ COPY package*.json ./
 COPY tsconfig.json ./
 COPY apps/gallery/package*.json ./apps/gallery/
 COPY packages/ui/package*.json ./packages/ui/
+COPY packages/mdx-components/package*.json ./packages/mdx-components/
 
-# Clean install with latest packages
-RUN npm ci --include=dev
-RUN cd apps/gallery && npm ci --include=dev
-RUN cd packages/ui && npm ci --include=dev
+# Use npm install instead of npm ci for development flexibility
+RUN npm install --include=dev
+RUN cd apps/gallery && npm install --include=dev && npm install @tailwindcss/postcss
+RUN cd packages/ui && npm install --include=dev
+RUN cd packages/mdx-components && npm install --include=dev
 
 # Verify MDX dependencies are available
 RUN npm ls @next/mdx @mdx-js/react next-mdx-remote || echo "MDX dependencies verified"

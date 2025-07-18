@@ -13,6 +13,7 @@ services:
       # Exclude node_modules to use container's dependencies
       - /app/node_modules
       - /app/packages/ui/node_modules
+      - /app/packages/mdx-components/node_modules
       - /app/apps/gallery/node_modules
       # Exclude build artifacts from being written to host
       - /app/apps/gallery/.next

@@ -28,6 +28,9 @@ RUN cd apps/gallery && npm uninstall tailwindcss && npm install tailwindcss@^3.4
 # Install form dependencies
 RUN cd apps/gallery && npm install react-hook-form @hookform/resolvers zod --legacy-peer-deps
 
+# Install missing UI dependencies
+RUN cd packages/ui && npm install vaul --legacy-peer-deps
+
 # Verify MDX dependencies are available
 RUN npm ls @next/mdx @mdx-js/react next-mdx-remote || echo "MDX dependencies verified"
 
