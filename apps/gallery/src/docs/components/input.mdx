@@ -1,0 +1,95 @@
+---
+title: "Input"
+description: "A versatile input component for React applications"
+category: "form"
+status: "stable"
+complexity: "simple"
+tags: ["input", "form", "ui", "component"]
+---
+
+import { InputDemo } from "@/components/demos/input.demo"
+
+# Input Component
+
+A versatile input component that provides essential functionality for modern web applications.
+
+## Preview
+
+<div className="space-y-6">
+  <InputDemo />
+</div>
+
+## Installation
+
+```bash
+npm install @lightmind/ui
+```
+
+## Usage
+
+### Basic Usage
+
+```tsx
+import { Input } from '@lightmind/ui'
+
+export function Example() {
+  return <Input />
+}
+```
+
+### Advanced Example
+
+```tsx
+import { Input } from '@lightmind/ui'
+
+export function AdvancedExample() {
+  return (
+    <Input
+      className="custom-class"
+      // Add props here
+    >
+      Content goes here
+    </Input>
+  )
+}
+```
+
+## API Reference
+
+### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `className` | `string` | `undefined` | Additional CSS classes |
+| `children` | `React.ReactNode` | `undefined` | Child elements |
+
+## Usage Guidelines
+
+### Do's ✅
+
+- Use Input for its intended purpose
+- Apply consistent styling across your application
+- Consider accessibility when implementing
+- Test across different screen sizes and devices
+
+### Don'ts ❌
+
+- Don't override essential styles that affect functionality
+- Avoid nesting too many Input components
+- Don't use for unintended purposes
+
+### Best Practices
+
+Always ensure that your Input implementation follows accessibility guidelines and provides a good user experience across all devices.
+
+## Accessibility
+
+- Follows WAI-ARIA guidelines
+- Keyboard navigation support
+- Screen reader friendly
+- Proper focus management
+
+## Related Components
+
+- View other [form](/category/form) components
+- Explore the complete [component library](/search)

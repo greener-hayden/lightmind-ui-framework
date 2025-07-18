@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import Link from 'next/link'
 import { Moon, Sun, Github, ExternalLink } from 'lucide-react'
 import { StyleSwitcher } from './style-switcher'
 
@@ -41,9 +42,9 @@ export function Header() {
     <header className="border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container mx-auto flex h-16 items-center justify-between">
         <div className="flex items-center space-x-4">
-          <h2 className="text-2xl font-bold">
+          <Link href="/" className="text-2xl font-bold hover:opacity-80 transition-opacity cursor-pointer">
             <span className="text-primary">LightMind</span> UI
-          </h2>
+          </Link>
           <div className="hidden sm:flex items-center space-x-2 text-sm text-muted-foreground">
             <span>Built on</span>
             <a 
@@ -59,24 +60,18 @@ export function Header() {
         </div>
 
         <nav className="flex items-center space-x-4">
-          <a
-            href="/registry"
-            className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
-          >
-            Registry
-          </a>
-          <a
+          <Link
             href="/examples"
             className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
           >
             Examples
-          </a>
-          <a
+          </Link>
+          <Link
             href="/docs"
             className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
           >
             Documentation
-          </a>
+          </Link>
           <StyleSwitcher />
           <a
             href="https://github.com/HaydenGreener/lightmind-ui-framework"

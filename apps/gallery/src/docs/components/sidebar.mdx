@@ -1,0 +1,95 @@
+---
+title: "Sidebar"
+description: "A versatile sidebar component for React applications"
+category: "layout"
+status: "stable"
+complexity: "simple"
+tags: ["sidebar", "layout", "ui", "component"]
+---
+
+import { SidebarDemo } from "@/components/demos/sidebar.demo"
+
+# Sidebar Component
+
+A versatile sidebar component that provides essential functionality for modern web applications.
+
+## Preview
+
+<div className="space-y-6">
+  <SidebarDemo />
+</div>
+
+## Installation
+
+```bash
+npm install @lightmind/ui
+```
+
+## Usage
+
+### Basic Usage
+
+```tsx
+import { Sidebar } from '@lightmind/ui'
+
+export function Example() {
+  return <Sidebar />
+}
+```
+
+### Advanced Example
+
+```tsx
+import { Sidebar } from '@lightmind/ui'
+
+export function AdvancedExample() {
+  return (
+    <Sidebar
+      className="custom-class"
+      // Add props here
+    >
+      Content goes here
+    </Sidebar>
+  )
+}
+```
+
+## API Reference
+
+### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `className` | `string` | `undefined` | Additional CSS classes |
+| `children` | `React.ReactNode` | `undefined` | Child elements |
+
+## Usage Guidelines
+
+### Do's ✅
+
+- Use Sidebar for its intended purpose
+- Apply consistent styling across your application
+- Consider accessibility when implementing
+- Test across different screen sizes and devices
+
+### Don'ts ❌
+
+- Don't override essential styles that affect functionality
+- Avoid nesting too many Sidebar components
+- Don't use for unintended purposes
+
+### Best Practices
+
+Always ensure that your Sidebar implementation follows accessibility guidelines and provides a good user experience across all devices.
+
+## Accessibility
+
+- Follows WAI-ARIA guidelines
+- Keyboard navigation support
+- Screen reader friendly
+- Proper focus management
+
+## Related Components
+
+- View other [layout](/category/layout) components
+- Explore the complete [component library](/search)

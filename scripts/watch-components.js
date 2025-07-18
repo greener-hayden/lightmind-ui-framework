@@ -31,30 +31,62 @@ function categorizeComponent(name) {
   return 'layout';
 }
 
+// Check for MDX file and extract metadata
+async function getMDXMetadata(componentName) {
+  const mdxPath = join(__dirname, '../apps/gallery/src/docs/components', `${componentName}.mdx`);
+  try {
+    const mdxContent = await readFile(mdxPath, 'utf-8');
+    const frontmatterMatch = mdxContent.match(/^---\n([\s\S]*?)\n---/);
+    if (frontmatterMatch) {
+      const frontmatter = frontmatterMatch[1];
+      const metadata = {};
+      frontmatter.split('\n').forEach(line => {
+        const [key, value] = line.split(':').map(s => s.trim());
+        if (key && value) {
+          // Parse arrays and remove quotes
+          if (value.startsWith('[') && value.endsWith(']')) {
+            metadata[key] = value.slice(1, -1).split(',').map(s => s.trim().replace(/['"]/g, ''));
+          } else {
+            metadata[key] = value.replace(/['"]/g, '');
+          }
+        }
+      });
+      return metadata;
+    }
+  } catch (e) {
+    // MDX file doesn't exist
+  }
+  return null;
+}
+
 // Generate component registry
 async function generateComponentRegistry() {
   try {
     const files = await readdir(COMPONENTS_DIR);
     const componentFiles = files.filter(f => f.endsWith('.tsx') && !f.includes('.test.')).sort();
     
-    const components = componentFiles.map(file => {
+    const components = await Promise.all(componentFiles.map(async file => {
       const componentName = file.replace('.tsx', '');
       const capitalizedName = componentName.split('-').map(word => 
         word.charAt(0).toUpperCase() + word.slice(1)
       ).join('');
       
+      // Check for MDX metadata first
+      const mdxMetadata = await getMDXMetadata(componentName);
+      
       return {
         id: componentName,
-        name: capitalizedName,
-        description: `${capitalizedName} component`,
-        category: categorizeComponent(componentName),
-        complexity: 'simple',
-        status: 'stable',
-        tags: [componentName],
+        name: mdxMetadata?.title || capitalizedName,
+        description: mdxMetadata?.description || `${capitalizedName} component`,
+        category: mdxMetadata?.category || categorizeComponent(componentName),
+        complexity: mdxMetadata?.complexity || 'simple',
+        status: mdxMetadata?.status || 'stable',
+        tags: mdxMetadata?.tags || [componentName],
         preview: componentName,
-        codeExample: `import { ${capitalizedName} } from '@lightmind/ui';\n\n<${capitalizedName} />`
+        codeExample: `import { ${capitalizedName} } from '@lightmind/ui';\n\n<${capitalizedName} />`,
+        hasMDX: !!mdxMetadata
       };
-    });
+    }));
     
     const categoryStats = {
       form: components.filter(c => c.category === 'form').length,
@@ -79,6 +111,7 @@ export interface ComponentInfo {
   tags: string[]
   preview: string
   codeExample: string
+  hasMDX?: boolean
   apiDocumentation?: {
     props?: Array<{
       name: string

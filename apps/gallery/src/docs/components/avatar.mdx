@@ -1,0 +1,95 @@
+---
+title: "Avatar"
+description: "A versatile avatar component for React applications"
+category: "display"
+status: "stable"
+complexity: "simple"
+tags: ["avatar", "display", "ui", "component"]
+---
+
+import { AvatarDemo } from "@/components/demos/avatar.demo"
+
+# Avatar Component
+
+A versatile avatar component that provides essential functionality for modern web applications.
+
+## Preview
+
+<div className="space-y-6">
+  <AvatarDemo />
+</div>
+
+## Installation
+
+```bash
+npm install @lightmind/ui
+```
+
+## Usage
+
+### Basic Usage
+
+```tsx
+import { Avatar } from '@lightmind/ui'
+
+export function Example() {
+  return <Avatar />
+}
+```
+
+### Advanced Example
+
+```tsx
+import { Avatar } from '@lightmind/ui'
+
+export function AdvancedExample() {
+  return (
+    <Avatar
+      className="custom-class"
+      // Add props here
+    >
+      Content goes here
+    </Avatar>
+  )
+}
+```
+
+## API Reference
+
+### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `className` | `string` | `undefined` | Additional CSS classes |
+| `children` | `React.ReactNode` | `undefined` | Child elements |
+
+## Usage Guidelines
+
+### Do's ✅
+
+- Use Avatar for its intended purpose
+- Apply consistent styling across your application
+- Consider accessibility when implementing
+- Test across different screen sizes and devices
+
+### Don'ts ❌
+
+- Don't override essential styles that affect functionality
+- Avoid nesting too many Avatar components
+- Don't use for unintended purposes
+
+### Best Practices
+
+Always ensure that your Avatar implementation follows accessibility guidelines and provides a good user experience across all devices.
+
+## Accessibility
+
+- Follows WAI-ARIA guidelines
+- Keyboard navigation support
+- Screen reader friendly
+- Proper focus management
+
+## Related Components
+
+- View other [display](/category/display) components
+- Explore the complete [component library](/search)

@@ -1,0 +1,95 @@
+---
+title: "Command"
+description: "A versatile command component for React applications"
+category: "form"
+status: "stable"
+complexity: "simple"
+tags: ["command", "form", "ui", "component"]
+---
+
+import { CommandDemo } from "@/components/demos/command.demo"
+
+# Command Component
+
+A versatile command component that provides essential functionality for modern web applications.
+
+## Preview
+
+<div className="space-y-6">
+  <CommandDemo />
+</div>
+
+## Installation
+
+```bash
+npm install @lightmind/ui
+```
+
+## Usage
+
+### Basic Usage
+
+```tsx
+import { Command } from '@lightmind/ui'
+
+export function Example() {
+  return <Command />
+}
+```
+
+### Advanced Example
+
+```tsx
+import { Command } from '@lightmind/ui'
+
+export function AdvancedExample() {
+  return (
+    <Command
+      className="custom-class"
+      // Add props here
+    >
+      Content goes here
+    </Command>
+  )
+}
+```
+
+## API Reference
+
+### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `className` | `string` | `undefined` | Additional CSS classes |
+| `children` | `React.ReactNode` | `undefined` | Child elements |
+
+## Usage Guidelines
+
+### Do's ✅
+
+- Use Command for its intended purpose
+- Apply consistent styling across your application
+- Consider accessibility when implementing
+- Test across different screen sizes and devices
+
+### Don'ts ❌
+
+- Don't override essential styles that affect functionality
+- Avoid nesting too many Command components
+- Don't use for unintended purposes
+
+### Best Practices
+
+Always ensure that your Command implementation follows accessibility guidelines and provides a good user experience across all devices.
+
+## Accessibility
+
+- Follows WAI-ARIA guidelines
+- Keyboard navigation support
+- Screen reader friendly
+- Proper focus management
+
+## Related Components
+
+- View other [form](/category/form) components
+- Explore the complete [component library](/search)

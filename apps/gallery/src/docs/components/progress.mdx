@@ -1,0 +1,95 @@
+---
+title: "Progress"
+description: "A versatile progress component for React applications"
+category: "layout"
+status: "stable"
+complexity: "simple"
+tags: ["progress", "layout", "ui", "component"]
+---
+
+import { ProgressDemo } from "@/components/demos/progress.demo"
+
+# Progress Component
+
+A versatile progress component that provides essential functionality for modern web applications.
+
+## Preview
+
+<div className="space-y-6">
+  <ProgressDemo />
+</div>
+
+## Installation
+
+```bash
+npm install @lightmind/ui
+```
+
+## Usage
+
+### Basic Usage
+
+```tsx
+import { Progress } from '@lightmind/ui'
+
+export function Example() {
+  return <Progress />
+}
+```
+
+### Advanced Example
+
+```tsx
+import { Progress } from '@lightmind/ui'
+
+export function AdvancedExample() {
+  return (
+    <Progress
+      className="custom-class"
+      // Add props here
+    >
+      Content goes here
+    </Progress>
+  )
+}
+```
+
+## API Reference
+
+### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `className` | `string` | `undefined` | Additional CSS classes |
+| `children` | `React.ReactNode` | `undefined` | Child elements |
+
+## Usage Guidelines
+
+### Do's ✅
+
+- Use Progress for its intended purpose
+- Apply consistent styling across your application
+- Consider accessibility when implementing
+- Test across different screen sizes and devices
+
+### Don'ts ❌
+
+- Don't override essential styles that affect functionality
+- Avoid nesting too many Progress components
+- Don't use for unintended purposes
+
+### Best Practices
+
+Always ensure that your Progress implementation follows accessibility guidelines and provides a good user experience across all devices.
+
+## Accessibility
+
+- Follows WAI-ARIA guidelines
+- Keyboard navigation support
+- Screen reader friendly
+- Proper focus management
+
+## Related Components
+
+- View other [layout](/category/layout) components
+- Explore the complete [component library](/search)

@@ -1,0 +1,95 @@
+---
+title: "Sonner"
+description: "A versatile sonner component for React applications"
+category: "feedback"
+status: "stable"
+complexity: "simple"
+tags: ["sonner", "feedback", "ui", "component"]
+---
+
+import { SonnerDemo } from "@/components/demos/sonner.demo"
+
+# Sonner Component
+
+A versatile sonner component that provides essential functionality for modern web applications.
+
+## Preview
+
+<div className="space-y-6">
+  <SonnerDemo />
+</div>
+
+## Installation
+
+```bash
+npm install @lightmind/ui
+```
+
+## Usage
+
+### Basic Usage
+
+```tsx
+import { Sonner } from '@lightmind/ui'
+
+export function Example() {
+  return <Sonner />
+}
+```
+
+### Advanced Example
+
+```tsx
+import { Sonner } from '@lightmind/ui'
+
+export function AdvancedExample() {
+  return (
+    <Sonner
+      className="custom-class"
+      // Add props here
+    >
+      Content goes here
+    </Sonner>
+  )
+}
+```
+
+## API Reference
+
+### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `className` | `string` | `undefined` | Additional CSS classes |
+| `children` | `React.ReactNode` | `undefined` | Child elements |
+
+## Usage Guidelines
+
+### Do's ✅
+
+- Use Sonner for its intended purpose
+- Apply consistent styling across your application
+- Consider accessibility when implementing
+- Test across different screen sizes and devices
+
+### Don'ts ❌
+
+- Don't override essential styles that affect functionality
+- Avoid nesting too many Sonner components
+- Don't use for unintended purposes
+
+### Best Practices
+
+Always ensure that your Sonner implementation follows accessibility guidelines and provides a good user experience across all devices.
+
+## Accessibility
+
+- Follows WAI-ARIA guidelines
+- Keyboard navigation support
+- Screen reader friendly
+- Proper focus management
+
+## Related Components
+
+- View other [feedback](/category/feedback) components
+- Explore the complete [component library](/search)

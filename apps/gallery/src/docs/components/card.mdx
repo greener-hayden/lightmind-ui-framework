@@ -1,0 +1,444 @@
+---
+title: "Card"
+description: "A versatile card component for React applications"
+category: "display"
+status: "stable"
+complexity: "simple"
+tags: ["card", "display", "ui", "component"]
+---
+
+import { CardDemo } from "@/components/demos/card.demo"
+
+# Card Component
+
+A versatile card component that provides essential functionality for modern web applications.
+
+## Preview
+
+<div className="space-y-6">
+  <CardDemo />
+</div>
+
+## Installation
+
+```bash
+npm install @lightmind/ui
+```
+
+## Usage
+
+### Basic Card
+
+```tsx
+import { Card, CardContent } from '@lightmind/ui'
+
+export function BasicCard() {
+  return (
+    <Card>
+      <CardContent>
+        <p>Card content goes here</p>
+      </CardContent>
+    </Card>
+  )
+}
+```
+
+### Card with Header
+
+```tsx
+import { 
+  Card, 
+  CardHeader, 
+  CardTitle, 
+  CardDescription, 
+  CardContent 
+} from '@lightmind/ui'
+
+export function CardWithHeader() {
+  return (
+    <Card>
+      <CardHeader>
+        <CardTitle>Card Title</CardTitle>
+        <CardDescription>Card description goes here</CardDescription>
+      </CardHeader>
+      <CardContent>
+        <p>This is the card content.</p>
+      </CardContent>
+    </Card>
+  )
+}
+```
+
+### Complete Card Structure
+
+```tsx
+import { 
+  Card, 
+  CardHeader, 
+  CardTitle, 
+  CardDescription, 
+  CardContent, 
+  CardFooter 
+} from '@lightmind/ui'
+import { Button } from '@lightmind/ui'
+
+export function CompleteCard() {
+  return (
+    <Card className="w-[350px]">
+      <CardHeader>
+        <CardTitle>Create Project</CardTitle>
+        <CardDescription>
+          Deploy your new project in one-click.
+        </CardDescription>
+      </CardHeader>
+      <CardContent>
+        <form>
+          <div className="grid w-full items-center gap-4">
+            <div className="flex flex-col space-y-1.5">
+              <label htmlFor="name">Name</label>
+              <input id="name" placeholder="Name of your project" />
+            </div>
+            <div className="flex flex-col space-y-1.5">
+              <label htmlFor="framework">Framework</label>
+              <select id="framework">
+                <option value="">Select</option>
+                <option value="next">Next.js</option>
+                <option value="sveltekit">SvelteKit</option>
+                <option value="astro">Astro</option>
+                <option value="nuxt">Nuxt.js</option>
+              </select>
+            </div>
+          </div>
+        </form>
+      </CardContent>
+      <CardFooter className="flex justify-between">
+        <Button variant="outline">Cancel</Button>
+        <Button>Deploy</Button>
+      </CardFooter>
+    </Card>
+  )
+}
+```
+
+### Card with Custom Styling
+
+```tsx
+import { Card, CardContent } from '@lightmind/ui'
+
+export function CustomCard() {
+  return (
+    <Card className="w-full max-w-md mx-auto bg-gradient-to-r from-blue-50 to-indigo-50 border-blue-200">
+      <CardContent className="p-6">
+        <div className="flex items-center space-x-4">
+          <div className="flex-shrink-0">
+            <div className="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center">
+              <span className="text-white font-semibold">JD</span>
+            </div>
+          </div>
+          <div className="flex-1 min-w-0">
+            <p className="text-sm font-medium text-gray-900 truncate">
+              John Doe
+            </p>
+            <p className="text-sm text-gray-500 truncate">
+              john.doe@example.com
+            </p>
+          </div>
+        </div>
+      </CardContent>
+    </Card>
+  )
+}
+```
+
+## API Reference
+
+### Card
+
+The main container component that provides the card structure and styling.
+
+#### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `className` | `string` | `undefined` | Additional CSS classes to apply to the card |
+| `children` | `React.ReactNode` | `undefined` | Card content (typically CardHeader, CardContent, CardFooter) |
+| `...props` | `HTMLAttributes<HTMLDivElement>` | - | All standard HTML div attributes |
+
+#### CSS Variables
+
+| Variable | Description | Default Value |
+|----------|-------------|---------------|
+| `--card` | Card background color | `hsl(var(--card))` |
+| `--card-foreground` | Card text color | `hsl(var(--card-foreground))` |
+
+### CardHeader
+
+Container for card title and description, typically placed at the top of the card.
+
+#### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `className` | `string` | `undefined` | Additional CSS classes |
+| `children` | `React.ReactNode` | `undefined` | Header content (typically CardTitle and CardDescription) |
+| `...props` | `HTMLAttributes<HTMLDivElement>` | - | All standard HTML div attributes |
+
+### CardTitle
+
+The main heading for the card content.
+
+#### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `className` | `string` | `undefined` | Additional CSS classes |
+| `children` | `React.ReactNode` | `undefined` | Title content |
+| `...props` | `HTMLAttributes<HTMLHeadingElement>` | - | All standard HTML h3 attributes |
+
+### CardDescription
+
+Secondary text that provides additional context about the card content.
+
+#### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `className` | `string` | `undefined` | Additional CSS classes |
+| `children` | `React.ReactNode` | `undefined` | Description content |
+| `...props` | `HTMLAttributes<HTMLParagraphElement>` | - | All standard HTML p attributes |
+
+### CardContent
+
+The main content area of the card where primary information is displayed.
+
+#### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `className` | `string` | `undefined` | Additional CSS classes |
+| `children` | `React.ReactNode` | `undefined` | Main card content |
+| `...props` | `HTMLAttributes<HTMLDivElement>` | - | All standard HTML div attributes |
+
+### CardFooter
+
+Container for action buttons or additional information, typically placed at the bottom.
+
+#### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `className` | `string` | `undefined` | Additional CSS classes |
+| `children` | `React.ReactNode` | `undefined` | Footer content (typically buttons or links) |
+| `...props` | `HTMLAttributes<HTMLDivElement>` | - | All standard HTML div attributes |
+
+### Default Styling
+
+```css
+/* Card */
+.card {
+  border-radius: 0.5rem; /* 8px */
+  border: 1px solid hsl(var(--border));
+  background-color: hsl(var(--card));
+  color: hsl(var(--card-foreground));
+  box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+}
+
+/* CardHeader */
+.card-header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem; /* 6px */
+  padding: 1.5rem; /* 24px */
+}
+
+/* CardTitle */
+.card-title {
+  font-size: 1.5rem; /* 24px */
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.025em;
+}
+
+/* CardDescription */
+.card-description {
+  font-size: 0.875rem; /* 14px */
+  color: hsl(var(--muted-foreground));
+}
+
+/* CardContent */
+.card-content {
+  padding: 1.5rem; /* 24px */
+  padding-top: 0;
+}
+
+/* CardFooter */
+.card-footer {
+  display: flex;
+  align-items: center;
+  padding: 1.5rem; /* 24px */
+  padding-top: 0;
+}
+```
+
+## Usage Guidelines
+
+### Do's ✅
+
+#### Structure and Layout
+- **Use logical hierarchy**: Place CardHeader at the top, CardContent in the middle, and CardFooter at the bottom
+- **Group related content**: Use cards to group related information together
+- **Maintain consistent spacing**: Use the default padding or apply consistent custom spacing
+- **Keep content focused**: Each card should have a single, clear purpose
+
+#### Styling and Design
+- **Follow design system**: Use consistent card styling across your application
+- **Respect visual hierarchy**: Use CardTitle for main headings and CardDescription for supporting text
+- **Apply appropriate sizing**: Use responsive classes like `w-full`, `max-w-md` for proper sizing
+- **Use semantic colors**: Apply theme-aware colors using CSS variables
+
+#### Accessibility
+- **Include meaningful titles**: Always provide descriptive CardTitle content
+- **Add proper ARIA labels**: Use `aria-label` or `aria-labelledby` when needed
+- **Ensure keyboard navigation**: Make interactive elements within cards keyboard accessible
+- **Maintain color contrast**: Ensure sufficient contrast between text and background colors
+
+#### Performance
+- **Lazy load heavy content**: Use lazy loading for images or complex content within cards
+- **Optimize for mobile**: Ensure cards work well on smaller screens
+- **Use proper semantic HTML**: Let the components render with appropriate HTML elements
+
+### Don'ts ❌
+
+#### Structure and Layout
+- **Don't deeply nest cards**: Avoid placing cards inside other cards unnecessarily
+- **Don't overcrowd content**: Keep card content clean and scannable
+- **Don't ignore responsive design**: Always consider how cards will look on different screen sizes
+- **Don't break the visual hierarchy**: Maintain consistent header-content-footer structure
+
+#### Styling and Design
+- **Don't override core functionality**: Avoid CSS that breaks the card's basic behavior
+- **Don't use inconsistent styling**: Maintain visual consistency across all cards
+- **Don't ignore theming**: Respect light/dark mode and theme variables
+- **Don't use conflicting layouts**: Avoid CSS that conflicts with card's flexbox layout
+
+#### Content and Accessibility
+- **Don't use vague titles**: Avoid generic titles like "Card" or "Item"
+- **Don't ignore screen readers**: Always consider how content will be announced
+- **Don't rely only on color**: Use multiple indicators for important information
+- **Don't make cards inaccessible**: Ensure all interactive elements are reachable via keyboard
+
+### Best Practices
+
+#### Content Organization
+```tsx
+// ✅ Good: Clear hierarchy and purpose
+<Card>
+  <CardHeader>
+    <CardTitle>User Profile</CardTitle>
+    <CardDescription>Manage your account settings</CardDescription>
+  </CardHeader>
+  <CardContent>
+    {/* Profile information */}
+  </CardContent>
+  <CardFooter>
+    <Button>Edit Profile</Button>
+  </CardFooter>
+</Card>
+
+// ❌ Bad: Unclear purpose and missing structure
+<Card>
+  <div>Some content</div>
+  <div>Random text</div>
+</Card>
+```
+
+#### Responsive Design
+```tsx
+// ✅ Good: Responsive and flexible
+<Card className="w-full max-w-md mx-auto">
+  <CardContent className="p-4 sm:p-6">
+    {/* Content adapts to screen size */}
+  </CardContent>
+</Card>
+
+// ❌ Bad: Fixed width that doesn't adapt
+<Card className="w-[400px]">
+  <CardContent>
+    {/* Might overflow on small screens */}
+  </CardContent>
+</Card>
+```
+
+#### Action Placement
+```tsx
+// ✅ Good: Actions in footer for consistency
+<Card>
+  <CardHeader>
+    <CardTitle>Confirm Action</CardTitle>
+  </CardHeader>
+  <CardContent>
+    <p>Are you sure you want to proceed?</p>
+  </CardContent>
+  <CardFooter className="flex justify-end space-x-2">
+    <Button variant="outline">Cancel</Button>
+    <Button>Confirm</Button>
+  </CardFooter>
+</Card>
+
+// ❌ Bad: Actions scattered throughout
+<Card>
+  <CardHeader>
+    <CardTitle>Title <Button size="sm">Action</Button></CardTitle>
+  </CardHeader>
+  <CardContent>
+    Content with <Button variant="link">another action</Button>
+  </CardContent>
+</Card>
+```
+
+## Accessibility
+
+### Keyboard Navigation
+- **Tab order**: Interactive elements within cards follow logical tab order
+- **Focus management**: Focus is clearly visible on all interactive elements
+- **Escape handling**: Modal cards or expandable cards handle Escape key appropriately
+
+### Screen Reader Support
+- **Semantic structure**: Uses proper heading hierarchy (h3 for CardTitle)
+- **Descriptive content**: CardDescription provides context for screen readers
+- **Landmark roles**: Consider adding `role="region"` with `aria-labelledby` for complex cards
+
+### ARIA Attributes
+```tsx
+// Complex card with ARIA support
+<Card role="region" aria-labelledby="card-title">
+  <CardHeader>
+    <CardTitle id="card-title">Notification Settings</CardTitle>
+    <CardDescription>
+      Configure how you receive notifications
+    </CardDescription>
+  </CardHeader>
+  <CardContent>
+    {/* Form content with proper labels */}
+  </CardContent>
+</Card>
+```
+
+### Color and Contrast
+- **High contrast**: Meets WCAG AA standards for color contrast
+- **Color independence**: Information isn't conveyed by color alone
+- **Theme support**: Properly supports light and dark themes
+
+### Implementation Checklist
+- [ ] Card has meaningful title
+- [ ] Interactive elements are keyboard accessible
+- [ ] Color contrast meets accessibility standards
+- [ ] Content is properly structured semantically
+- [ ] ARIA labels are used where appropriate
+- [ ] Component works with screen readers
+- [ ] Focus management is implemented correctly
+
+## Related Components
+
+- View other [display](/category/display) components
+- Explore the complete [component library](/search)

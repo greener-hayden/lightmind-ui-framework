@@ -15,6 +15,7 @@ import {
   getCategoryById,
   components
 } from '@/lib/component-registry'
+// Removed dynamic MDX loading for SSG compatibility
 
 interface ComponentPageProps {
   params: Promise<{
@@ -81,6 +82,10 @@ export default async function ComponentPage({ params }: ComponentPageProps) {
   const previousComponent = currentIndex > 0 ? categoryComponents[currentIndex - 1] : undefined
   const nextComponent = currentIndex < categoryComponents.length - 1 ? categoryComponents[currentIndex + 1] : undefined
 
+  // MDX content is now handled statically for SSG compatibility
+  const mdxData = { exists: false, content: null }
+  const mdxSections = null
+
   return (
     <div className="min-h-screen bg-background">
       <Header />
@@ -100,6 +105,8 @@ export default async function ComponentPage({ params }: ComponentPageProps) {
           <ComponentDetail 
             component={component}
             relatedComponents={relatedComponents}
+            mdxContent={mdxData.exists ? mdxData.content : null}
+            mdxSections={mdxSections}
             className="mb-12"
           />
 

@@ -1,0 +1,95 @@
+---
+title: "DropdownMenu"
+description: "A versatile dropdownmenu component for React applications"
+category: "navigation"
+status: "stable"
+complexity: "simple"
+tags: ["dropdown-menu", "navigation", "ui", "component"]
+---
+
+import { DropdownMenuDemo } from "@/components/demos/dropdown-menu.demo"
+
+# DropdownMenu Component
+
+A versatile dropdownmenu component that provides essential functionality for modern web applications.
+
+## Preview
+
+<div className="space-y-6">
+  <DropdownMenuDemo />
+</div>
+
+## Installation
+
+```bash
+npm install @lightmind/ui
+```
+
+## Usage
+
+### Basic Usage
+
+```tsx
+import { DropdownMenu } from '@lightmind/ui'
+
+export function Example() {
+  return <DropdownMenu />
+}
+```
+
+### Advanced Example
+
+```tsx
+import { DropdownMenu } from '@lightmind/ui'
+
+export function AdvancedExample() {
+  return (
+    <DropdownMenu
+      className="custom-class"
+      // Add props here
+    >
+      Content goes here
+    </DropdownMenu>
+  )
+}
+```
+
+## API Reference
+
+### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `className` | `string` | `undefined` | Additional CSS classes |
+| `children` | `React.ReactNode` | `undefined` | Child elements |
+
+## Usage Guidelines
+
+### Do's ✅
+
+- Use DropdownMenu for its intended purpose
+- Apply consistent styling across your application
+- Consider accessibility when implementing
+- Test across different screen sizes and devices
+
+### Don'ts ❌
+
+- Don't override essential styles that affect functionality
+- Avoid nesting too many DropdownMenu components
+- Don't use for unintended purposes
+
+### Best Practices
+
+Always ensure that your DropdownMenu implementation follows accessibility guidelines and provides a good user experience across all devices.
+
+## Accessibility
+
+- Follows WAI-ARIA guidelines
+- Keyboard navigation support
+- Screen reader friendly
+- Proper focus management
+
+## Related Components
+
+- View other [navigation](/category/navigation) components
+- Explore the complete [component library](/search)

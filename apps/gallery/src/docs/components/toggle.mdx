@@ -1,0 +1,426 @@
+---
+title: "Toggle"
+description: "A versatile toggle component for React applications"
+category: "layout"
+status: "stable"
+complexity: "simple"
+tags: ["toggle", "layout", "ui", "component"]
+---
+
+import { Toggle, Label } from '@lightmind/ui'
+import { 
+  Bold, 
+  Italic, 
+  Underline,
+  Mic,
+  MicOff,
+  Video,
+  VideoOff,
+  Bell,
+  BellOff,
+  Eye,
+  EyeOff,
+  Moon,
+  Sun,
+  Volume2,
+  VolumeX,
+  Wifi,
+  WifiOff,
+  Lock,
+  Unlock,
+  Heart,
+  Star,
+  Bookmark,
+  ThumbsUp,
+  MessageSquare,
+  Share2,
+  Download,
+  Settings,
+  Shield,
+  Zap
+} from 'lucide-react'
+
+# Toggle Component
+
+A versatile toggle component that provides essential functionality for modern web applications.
+
+## Variants
+
+<VariantShowcase
+  title="Toggle Variants"
+  description="Different visual styles for various contexts"
+  variants={[
+    { 
+      name: "Default", 
+      description: "Standard toggle with subtle styling",
+      component: <Toggle><Bold className="h-4 w-4" /></Toggle>,
+      code: `<Toggle><Bold className="h-4 w-4" /></Toggle>`
+    },
+    { 
+      name: "Outline", 
+      description: "Toggle with outline styling",
+      component: <Toggle variant="outline"><Download className="h-4 w-4" /></Toggle>,
+      code: `<Toggle variant="outline"><Download className="h-4 w-4" /></Toggle>`
+    },
+    { 
+      name: "With Text", 
+      description: "Toggle with text label",
+      component: <Toggle><Bell className="h-4 w-4 mr-2" />Notifications</Toggle>,
+      code: `<Toggle><Bell className="h-4 w-4 mr-2" />Notifications</Toggle>`
+    },
+    { 
+      name: "Pressed State", 
+      description: "Toggle in pressed state",
+      component: <Toggle pressed><Star className="h-4 w-4" /></Toggle>,
+      code: `<Toggle pressed><Star className="h-4 w-4" /></Toggle>`
+    }
+  ]}
+/>
+
+## Sizes
+
+<SizeDemo
+  title="Toggle Sizes"
+  description="Three size options for different contexts"
+  sizes={[
+    { 
+      name: "Small", 
+      description: "Compact toggle",
+      component: <Toggle size="sm"><Settings className="h-3 w-3" /></Toggle> 
+    },
+    { 
+      name: "Default", 
+      description: "Standard size",
+      component: <Toggle size="default"><Settings className="h-4 w-4" /></Toggle> 
+    },
+    { 
+      name: "Large", 
+      description: "Larger toggle",
+      component: <Toggle size="lg"><Settings className="h-5 w-5" /></Toggle> 
+    }
+  ]}
+/>
+
+## States
+
+<StateDemo
+  title="Toggle States"
+  description="Different interaction states"
+  states={[
+    {
+      name: "Default",
+      description: "Standard unpressed state",
+      component: <Toggle><Wifi className="h-4 w-4" /></Toggle>
+    },
+    {
+      name: "Pressed",
+      description: "Active/pressed state",
+      component: <Toggle pressed><Wifi className="h-4 w-4" /></Toggle>
+    },
+    {
+      name: "Disabled",
+      description: "Non-interactive state",
+      component: <Toggle disabled><WifiOff className="h-4 w-4" /></Toggle>
+    },
+    {
+      name: "Pressed + Disabled",
+      description: "Pressed but disabled",
+      component: <Toggle pressed disabled><Lock className="h-4 w-4" /></Toggle>
+    }
+  ]}
+/>
+
+## Icon Patterns
+
+<IconDemo
+  title="Toggle with Icons"
+  description="Common icon patterns for different use cases"
+  icons={[
+    {
+      name: "Text Formatting",
+      description: "Text editor controls",
+      position: "only",
+      component: (
+        <div className="flex gap-2">
+          <Toggle><Bold className="h-4 w-4" /></Toggle>
+          <Toggle><Italic className="h-4 w-4" /></Toggle>
+          <Toggle><Underline className="h-4 w-4" /></Toggle>
+        </div>
+      )
+    },
+    {
+      name: "Media Controls",
+      description: "Audio/video toggle states",
+      position: "only",
+      component: (
+        <div className="flex gap-2">
+          <Toggle><Mic className="h-4 w-4" /></Toggle>
+          <Toggle><Video className="h-4 w-4" /></Toggle>
+          <Toggle><Volume2 className="h-4 w-4" /></Toggle>
+        </div>
+      )
+    },
+    {
+      name: "Social Actions",
+      description: "Like, bookmark, share buttons",
+      position: "only",
+      component: (
+        <div className="flex gap-2">
+          <Toggle className="data-[state=on]:text-red-500"><Heart className="h-4 w-4" /></Toggle>
+          <Toggle className="data-[state=on]:text-yellow-500"><Star className="h-4 w-4" /></Toggle>
+          <Toggle className="data-[state=on]:text-blue-500"><Bookmark className="h-4 w-4" /></Toggle>
+        </div>
+      )
+    },
+    {
+      name: "With Text Labels",
+      description: "Icon and text combinations",
+      position: "left",
+      component: (
+        <div className="flex gap-2">
+          <Toggle><Bell className="h-4 w-4 mr-2" />Notifications</Toggle>
+          <Toggle><Shield className="h-4 w-4 mr-2" />Security</Toggle>
+        </div>
+      )
+    }
+  ]}
+/>
+
+## Usage Examples
+
+<UsageDemo
+  title="Real-world Implementation Examples"
+  description="Common toggle patterns in applications"
+  examples={[
+    {
+      name: "Text Editor Toolbar",
+      description: "Text formatting controls",
+      category: "common",
+      context: "Text editors, rich text components",
+      component: (
+        <div className="flex gap-1 p-2 border rounded-lg">
+          <Toggle><Bold className="h-4 w-4" /></Toggle>
+          <Toggle><Italic className="h-4 w-4" /></Toggle>
+          <Toggle><Underline className="h-4 w-4" /></Toggle>
+        </div>
+      ),
+      code: `<div className="flex gap-1 p-2 border rounded-lg">
+  <Toggle><Bold className="h-4 w-4" /></Toggle>
+  <Toggle><Italic className="h-4 w-4" /></Toggle>
+  <Toggle><Underline className="h-4 w-4" /></Toggle>
+</div>`
+    },
+    {
+      name: "Settings Panel",
+      description: "Feature toggles in settings",
+      category: "common",
+      context: "Settings pages, preference panels",
+      component: (
+        <div className="space-y-3 p-4 border rounded-lg max-w-sm">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <Bell className="h-4 w-4 text-muted-foreground" />
+              <span className="text-sm">Notifications</span>
+            </div>
+            <Toggle size="sm"><Bell className="h-3 w-3" /></Toggle>
+          </div>
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <Moon className="h-4 w-4 text-muted-foreground" />
+              <span className="text-sm">Dark Mode</span>
+            </div>
+            <Toggle size="sm"><Moon className="h-3 w-3" /></Toggle>
+          </div>
+        </div>
+      ),
+      code: `<div className="space-y-3 p-4 border rounded-lg">
+  <div className="flex items-center justify-between">
+    <div className="flex items-center gap-2">
+      <Bell className="h-4 w-4 text-muted-foreground" />
+      <span className="text-sm">Notifications</span>
+    </div>
+    <Toggle size="sm"><Bell className="h-3 w-3" /></Toggle>
+  </div>
+  <div className="flex items-center justify-between">
+    <div className="flex items-center gap-2">
+      <Moon className="h-4 w-4 text-muted-foreground" />
+      <span className="text-sm">Dark Mode</span>
+    </div>
+    <Toggle size="sm"><Moon className="h-3 w-3" /></Toggle>
+  </div>
+</div>`
+    },
+    {
+      name: "Media Controls",
+      description: "Audio/video toggle controls",
+      category: "advanced",
+      context: "Video calls, media players",
+      component: (
+        <div className="flex gap-2">
+          <Toggle><Mic className="h-4 w-4" /></Toggle>
+          <Toggle><Video className="h-4 w-4" /></Toggle>
+          <Toggle><Volume2 className="h-4 w-4" /></Toggle>
+        </div>
+      ),
+      code: `<div className="flex gap-2">
+  <Toggle><Mic className="h-4 w-4" /></Toggle>
+  <Toggle><Video className="h-4 w-4" /></Toggle>
+  <Toggle><Volume2 className="h-4 w-4" /></Toggle>
+</div>`
+    },
+    {
+      name: "Social Actions",
+      description: "Like, bookmark, share buttons",
+      category: "advanced",
+      context: "Social media, content platforms",
+      component: (
+        <div className="flex gap-2">
+          <Toggle className="data-[state=on]:text-red-500">
+            <Heart className="h-4 w-4" />
+          </Toggle>
+          <Toggle className="data-[state=on]:text-yellow-500">
+            <Star className="h-4 w-4" />
+          </Toggle>
+          <Toggle className="data-[state=on]:text-blue-500">
+            <Bookmark className="h-4 w-4" />
+          </Toggle>
+          <Toggle>
+            <Share2 className="h-4 w-4" />
+          </Toggle>
+        </div>
+      ),
+      code: `<div className="flex gap-2">
+  <Toggle className="data-[state=on]:text-red-500">
+    <Heart className="h-4 w-4" />
+  </Toggle>
+  <Toggle className="data-[state=on]:text-yellow-500">
+    <Star className="h-4 w-4" />
+  </Toggle>
+  <Toggle className="data-[state=on]:text-blue-500">
+    <Bookmark className="h-4 w-4" />
+  </Toggle>
+  <Toggle>
+    <Share2 className="h-4 w-4" />
+  </Toggle>
+</div>`
+    }
+  ]}
+/>
+
+## Interactive Demo
+
+<ComponentPreview title="Try Different Configurations" description="Experiment with toggle variants, sizes, and states">
+  <div className="space-y-6">
+    <div className="space-y-4">
+      <div className="space-y-2">
+        <Label>Basic Toggles</Label>
+        <div className="flex gap-2">
+          <Toggle><Bold className="h-4 w-4" /></Toggle>
+          <Toggle><Italic className="h-4 w-4" /></Toggle>
+          <Toggle><Underline className="h-4 w-4" /></Toggle>
+        </div>
+      </div>
+      
+      <div className="space-y-2">
+        <Label>With Text</Label>
+        <div className="flex gap-2">
+          <Toggle><Bell className="h-4 w-4 mr-2" />Notifications</Toggle>
+          <Toggle><Shield className="h-4 w-4 mr-2" />Security</Toggle>
+        </div>
+      </div>
+      
+      <div className="space-y-2">
+        <Label>Sizes</Label>
+        <div className="flex gap-2 items-center">
+          <Toggle size="sm"><Settings className="h-3 w-3" /></Toggle>
+          <Toggle size="default"><Settings className="h-4 w-4" /></Toggle>
+          <Toggle size="lg"><Settings className="h-5 w-5" /></Toggle>
+        </div>
+      </div>
+      
+      <div className="space-y-2">
+        <Label>States</Label>
+        <div className="flex gap-2">
+          <Toggle><Wifi className="h-4 w-4" /></Toggle>
+          <Toggle pressed><Wifi className="h-4 w-4" /></Toggle>
+          <Toggle disabled><WifiOff className="h-4 w-4" /></Toggle>
+        </div>
+      </div>
+    </div>
+  </div>
+</ComponentPreview>
+
+## Installation
+
+```bash
+npm install @lightmind/ui
+```
+
+## Usage
+
+### Basic Usage
+
+```tsx
+import { Toggle } from '@lightmind/ui'
+
+export function Example() {
+  return <Toggle />
+}
+```
+
+### Advanced Example
+
+```tsx
+import { Toggle } from '@lightmind/ui'
+
+export function AdvancedExample() {
+  return (
+    <Toggle
+      className="custom-class"
+      // Add props here
+    >
+      Content goes here
+    </Toggle>
+  )
+}
+```
+
+## API Reference
+
+### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `className` | `string` | `undefined` | Additional CSS classes |
+| `children` | `React.ReactNode` | `undefined` | Child elements |
+
+## Usage Guidelines
+
+### Do's ✅
+
+- Use Toggle for its intended purpose
+- Apply consistent styling across your application
+- Consider accessibility when implementing
+- Test across different screen sizes and devices
+
+### Don'ts ❌
+
+- Don't override essential styles that affect functionality
+- Avoid nesting too many Toggle components
+- Don't use for unintended purposes
+
+### Best Practices
+
+Always ensure that your Toggle implementation follows accessibility guidelines and provides a good user experience across all devices.
+
+## Accessibility
+
+- Follows WAI-ARIA guidelines
+- Keyboard navigation support
+- Screen reader friendly
+- Proper focus management
+
+## Related Components
+
+- View other [layout](/category/layout) components
+- Explore the complete [component library](/search)

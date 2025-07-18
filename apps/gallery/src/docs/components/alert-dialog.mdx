@@ -1,0 +1,95 @@
+---
+title: "AlertDialog"
+description: "A versatile alertdialog component for React applications"
+category: "feedback"
+status: "stable"
+complexity: "simple"
+tags: ["alert-dialog", "feedback", "ui", "component"]
+---
+
+import { AlertDialogDemo } from "@/components/demos/alert-dialog.demo"
+
+# AlertDialog Component
+
+A versatile alertdialog component that provides essential functionality for modern web applications.
+
+## Preview
+
+<div className="space-y-6">
+  <AlertDialogDemo />
+</div>
+
+## Installation
+
+```bash
+npm install @lightmind/ui
+```
+
+## Usage
+
+### Basic Usage
+
+```tsx
+import { AlertDialog } from '@lightmind/ui'
+
+export function Example() {
+  return <AlertDialog />
+}
+```
+
+### Advanced Example
+
+```tsx
+import { AlertDialog } from '@lightmind/ui'
+
+export function AdvancedExample() {
+  return (
+    <AlertDialog
+      className="custom-class"
+      // Add props here
+    >
+      Content goes here
+    </AlertDialog>
+  )
+}
+```
+
+## API Reference
+
+### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `className` | `string` | `undefined` | Additional CSS classes |
+| `children` | `React.ReactNode` | `undefined` | Child elements |
+
+## Usage Guidelines
+
+### Do's ✅
+
+- Use AlertDialog for its intended purpose
+- Apply consistent styling across your application
+- Consider accessibility when implementing
+- Test across different screen sizes and devices
+
+### Don'ts ❌
+
+- Don't override essential styles that affect functionality
+- Avoid nesting too many AlertDialog components
+- Don't use for unintended purposes
+
+### Best Practices
+
+Always ensure that your AlertDialog implementation follows accessibility guidelines and provides a good user experience across all devices.
+
+## Accessibility
+
+- Follows WAI-ARIA guidelines
+- Keyboard navigation support
+- Screen reader friendly
+- Proper focus management
+
+## Related Components
+
+- View other [feedback](/category/feedback) components
+- Explore the complete [component library](/search)

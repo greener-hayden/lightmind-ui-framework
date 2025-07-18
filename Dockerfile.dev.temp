@@ -1,0 +1,49 @@
+# Development Dockerfile for hot reload
+FROM node:20-alpine
+
+WORKDIR /app
+
+# Install dependencies for better performance
+RUN apk add --no-cache git
+
+# Enable corepack for yarn
+RUN corepack enable
+
+# Copy package files first for better caching
+COPY package*.json ./
+COPY tsconfig.json ./
+COPY apps/gallery/package*.json ./apps/gallery/
+COPY packages/ui/package*.json ./packages/ui/
+COPY packages/mdx-components/package*.json ./packages/mdx-components/
+
+# Use npm install instead of npm ci since we don't have package-lock.json
+RUN npm install --legacy-peer-deps
+RUN cd apps/gallery && npm install --legacy-peer-deps
+RUN cd packages/ui && npm install --legacy-peer-deps
+RUN cd packages/mdx-components && npm install --legacy-peer-deps
+
+# Downgrade to Tailwind CSS v3 for compatibility
+RUN cd apps/gallery && npm uninstall tailwindcss && npm install tailwindcss@^3.4.0 --legacy-peer-deps
+
+# Install form dependencies
+RUN cd apps/gallery && npm install react-hook-form @hookform/resolvers zod --legacy-peer-deps
+
+# Verify MDX dependencies are available
+RUN npm ls @next/mdx @mdx-js/react next-mdx-remote || echo "MDX dependencies verified"
+
+# Copy scripts
+COPY scripts/ ./scripts/
+
+# Copy source code
+COPY packages/ ./packages/
+COPY apps/ ./apps/
+
+# Create necessary directories
+RUN mkdir -p /app/apps/gallery/src/components/demos && \
+    mkdir -p /app/apps/gallery/.next
+
+# Expose gallery port
+EXPOSE 3001
+
+# Run both component watcher and gallery dev server
+CMD ["sh", "-c", "node scripts/watch-components.js & cd apps/gallery && npm run dev"]

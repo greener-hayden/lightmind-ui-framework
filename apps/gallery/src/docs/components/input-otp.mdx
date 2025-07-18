@@ -1,0 +1,95 @@
+---
+title: "InputOtp"
+description: "A versatile inputotp component for React applications"
+category: "form"
+status: "stable"
+complexity: "simple"
+tags: ["input-otp", "form", "ui", "component"]
+---
+
+import { InputOtpDemo } from "@/components/demos/input-otp.demo"
+
+# InputOtp Component
+
+A versatile inputotp component that provides essential functionality for modern web applications.
+
+## Preview
+
+<div className="space-y-6">
+  <InputOtpDemo />
+</div>
+
+## Installation
+
+```bash
+npm install @lightmind/ui
+```
+
+## Usage
+
+### Basic Usage
+
+```tsx
+import { InputOtp } from '@lightmind/ui'
+
+export function Example() {
+  return <InputOtp />
+}
+```
+
+### Advanced Example
+
+```tsx
+import { InputOtp } from '@lightmind/ui'
+
+export function AdvancedExample() {
+  return (
+    <InputOtp
+      className="custom-class"
+      // Add props here
+    >
+      Content goes here
+    </InputOtp>
+  )
+}
+```
+
+## API Reference
+
+### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `className` | `string` | `undefined` | Additional CSS classes |
+| `children` | `React.ReactNode` | `undefined` | Child elements |
+
+## Usage Guidelines
+
+### Do's ✅
+
+- Use InputOtp for its intended purpose
+- Apply consistent styling across your application
+- Consider accessibility when implementing
+- Test across different screen sizes and devices
+
+### Don'ts ❌
+
+- Don't override essential styles that affect functionality
+- Avoid nesting too many InputOtp components
+- Don't use for unintended purposes
+
+### Best Practices
+
+Always ensure that your InputOtp implementation follows accessibility guidelines and provides a good user experience across all devices.
+
+## Accessibility
+
+- Follows WAI-ARIA guidelines
+- Keyboard navigation support
+- Screen reader friendly
+- Proper focus management
+
+## Related Components
+
+- View other [form](/category/form) components
+- Explore the complete [component library](/search)

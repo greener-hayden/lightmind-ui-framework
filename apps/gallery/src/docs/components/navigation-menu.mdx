@@ -1,0 +1,95 @@
+---
+title: "NavigationMenu"
+description: "A versatile navigationmenu component for React applications"
+category: "navigation"
+status: "stable"
+complexity: "simple"
+tags: ["navigation-menu", "navigation", "ui", "component"]
+---
+
+import { NavigationMenuDemo } from "@/components/demos/navigation-menu.demo"
+
+# NavigationMenu Component
+
+A versatile navigationmenu component that provides essential functionality for modern web applications.
+
+## Preview
+
+<div className="space-y-6">
+  <NavigationMenuDemo />
+</div>
+
+## Installation
+
+```bash
+npm install @lightmind/ui
+```
+
+## Usage
+
+### Basic Usage
+
+```tsx
+import { NavigationMenu } from '@lightmind/ui'
+
+export function Example() {
+  return <NavigationMenu />
+}
+```
+
+### Advanced Example
+
+```tsx
+import { NavigationMenu } from '@lightmind/ui'
+
+export function AdvancedExample() {
+  return (
+    <NavigationMenu
+      className="custom-class"
+      // Add props here
+    >
+      Content goes here
+    </NavigationMenu>
+  )
+}
+```
+
+## API Reference
+
+### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `className` | `string` | `undefined` | Additional CSS classes |
+| `children` | `React.ReactNode` | `undefined` | Child elements |
+
+## Usage Guidelines
+
+### Do's ✅
+
+- Use NavigationMenu for its intended purpose
+- Apply consistent styling across your application
+- Consider accessibility when implementing
+- Test across different screen sizes and devices
+
+### Don'ts ❌
+
+- Don't override essential styles that affect functionality
+- Avoid nesting too many NavigationMenu components
+- Don't use for unintended purposes
+
+### Best Practices
+
+Always ensure that your NavigationMenu implementation follows accessibility guidelines and provides a good user experience across all devices.
+
+## Accessibility
+
+- Follows WAI-ARIA guidelines
+- Keyboard navigation support
+- Screen reader friendly
+- Proper focus management
+
+## Related Components
+
+- View other [navigation](/category/navigation) components
+- Explore the complete [component library](/search)

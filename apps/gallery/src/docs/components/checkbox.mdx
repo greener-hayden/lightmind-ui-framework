@@ -1,0 +1,95 @@
+---
+title: "Checkbox"
+description: "A versatile checkbox component for React applications"
+category: "form"
+status: "stable"
+complexity: "simple"
+tags: ["checkbox", "form", "ui", "component"]
+---
+
+import { CheckboxDemo } from "@/components/demos/checkbox.demo"
+
+# Checkbox Component
+
+A versatile checkbox component that provides essential functionality for modern web applications.
+
+## Preview
+
+<div className="space-y-6">
+  <CheckboxDemo />
+</div>
+
+## Installation
+
+```bash
+npm install @lightmind/ui
+```
+
+## Usage
+
+### Basic Usage
+
+```tsx
+import { Checkbox } from '@lightmind/ui'
+
+export function Example() {
+  return <Checkbox />
+}
+```
+
+### Advanced Example
+
+```tsx
+import { Checkbox } from '@lightmind/ui'
+
+export function AdvancedExample() {
+  return (
+    <Checkbox
+      className="custom-class"
+      // Add props here
+    >
+      Content goes here
+    </Checkbox>
+  )
+}
+```
+
+## API Reference
+
+### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `className` | `string` | `undefined` | Additional CSS classes |
+| `children` | `React.ReactNode` | `undefined` | Child elements |
+
+## Usage Guidelines
+
+### Do's ✅
+
+- Use Checkbox for its intended purpose
+- Apply consistent styling across your application
+- Consider accessibility when implementing
+- Test across different screen sizes and devices
+
+### Don'ts ❌
+
+- Don't override essential styles that affect functionality
+- Avoid nesting too many Checkbox components
+- Don't use for unintended purposes
+
+### Best Practices
+
+Always ensure that your Checkbox implementation follows accessibility guidelines and provides a good user experience across all devices.
+
+## Accessibility
+
+- Follows WAI-ARIA guidelines
+- Keyboard navigation support
+- Screen reader friendly
+- Proper focus management
+
+## Related Components
+
+- View other [form](/category/form) components
+- Explore the complete [component library](/search)

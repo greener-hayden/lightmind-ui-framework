@@ -1,0 +1,95 @@
+---
+title: "ScrollArea"
+description: "A versatile scrollarea component for React applications"
+category: "layout"
+status: "stable"
+complexity: "simple"
+tags: ["scroll-area", "layout", "ui", "component"]
+---
+
+import { ScrollAreaDemo } from "@/components/demos/scroll-area.demo"
+
+# ScrollArea Component
+
+A versatile scrollarea component that provides essential functionality for modern web applications.
+
+## Preview
+
+<div className="space-y-6">
+  <ScrollAreaDemo />
+</div>
+
+## Installation
+
+```bash
+npm install @lightmind/ui
+```
+
+## Usage
+
+### Basic Usage
+
+```tsx
+import { ScrollArea } from '@lightmind/ui'
+
+export function Example() {
+  return <ScrollArea />
+}
+```
+
+### Advanced Example
+
+```tsx
+import { ScrollArea } from '@lightmind/ui'
+
+export function AdvancedExample() {
+  return (
+    <ScrollArea
+      className="custom-class"
+      // Add props here
+    >
+      Content goes here
+    </ScrollArea>
+  )
+}
+```
+
+## API Reference
+
+### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `className` | `string` | `undefined` | Additional CSS classes |
+| `children` | `React.ReactNode` | `undefined` | Child elements |
+
+## Usage Guidelines
+
+### Do's ✅
+
+- Use ScrollArea for its intended purpose
+- Apply consistent styling across your application
+- Consider accessibility when implementing
+- Test across different screen sizes and devices
+
+### Don'ts ❌
+
+- Don't override essential styles that affect functionality
+- Avoid nesting too many ScrollArea components
+- Don't use for unintended purposes
+
+### Best Practices
+
+Always ensure that your ScrollArea implementation follows accessibility guidelines and provides a good user experience across all devices.
+
+## Accessibility
+
+- Follows WAI-ARIA guidelines
+- Keyboard navigation support
+- Screen reader friendly
+- Proper focus management
+
+## Related Components
+
+- View other [layout](/category/layout) components
+- Explore the complete [component library](/search)

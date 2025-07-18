@@ -1,0 +1,384 @@
+---
+title: "Slider"
+description: "A versatile slider component for React applications"
+category: "layout"
+status: "stable"
+complexity: "simple"
+tags: ["slider", "layout", "ui", "component"]
+---
+
+import { Slider, Label, Badge, Button } from '@lightmind/ui'
+import { Volume2, Thermometer, Gauge, ZoomIn, DollarSign } from 'lucide-react'
+
+# Slider Component
+
+A versatile slider component that provides essential functionality for modern web applications.
+
+## Variants
+
+<VariantShowcase
+  title="Slider Variants"
+  description="Different visual styles for various use cases"
+  variants={[
+    { 
+      name: "Default", 
+      description: "Standard slider with neutral styling",
+      component: <Slider defaultValue={[50]} max={100} className="w-full" />,
+      code: `<Slider defaultValue={[50]} max={100} />`
+    },
+    { 
+      name: "Primary", 
+      description: "Prominent slider with primary color",
+      component: <Slider defaultValue={[60]} max={100} variant="primary" className="w-full" />,
+      code: `<Slider defaultValue={[60]} max={100} variant="primary" />`
+    },
+    { 
+      name: "Success", 
+      description: "Success state slider",
+      component: <Slider defaultValue={[75]} max={100} variant="success" className="w-full" />,
+      code: `<Slider defaultValue={[75]} max={100} variant="success" />`
+    },
+    { 
+      name: "Warning", 
+      description: "Warning state slider",
+      component: <Slider defaultValue={[30]} max={100} variant="warning" className="w-full" />,
+      code: `<Slider defaultValue={[30]} max={100} variant="warning" />`
+    },
+    { 
+      name: "Destructive", 
+      description: "Destructive state slider",
+      component: <Slider defaultValue={[90]} max={100} variant="destructive" className="w-full" />,
+      code: `<Slider defaultValue={[90]} max={100} variant="destructive" />`
+    }
+  ]}
+/>
+
+## Sizes
+
+<SizeDemo
+  title="Slider Sizes"
+  description="Four size options for different contexts"
+  sizes={[
+    { 
+      name: "Small", 
+      description: "Compact slider",
+      component: <Slider defaultValue={[40]} max={100} size="sm" className="w-full" /> 
+    },
+    { 
+      name: "Default", 
+      description: "Standard size",
+      component: <Slider defaultValue={[50]} max={100} size="default" className="w-full" /> 
+    },
+    { 
+      name: "Large", 
+      description: "Larger slider",
+      component: <Slider defaultValue={[60]} max={100} size="lg" className="w-full" /> 
+    },
+    { 
+      name: "Extra Large", 
+      description: "Maximum size",
+      component: <Slider defaultValue={[70]} max={100} size="xl" className="w-full" /> 
+    }
+  ]}
+/>
+
+## States
+
+<StateDemo
+  title="Slider States"
+  description="Different states for user interaction"
+  states={[
+    {
+      name: "Default",
+      description: "Standard interactive state",
+      component: <Slider defaultValue={[50]} max={100} className="w-full" />
+    },
+    {
+      name: "With Tooltip",
+      description: "Shows value on hover",
+      component: <Slider defaultValue={[65]} max={100} showTooltip className="w-full" />
+    },
+    {
+      name: "With Marks",
+      description: "Shows position markers",
+      component: <Slider defaultValue={[50]} max={100} showMarks marks={[
+        { value: 0, label: "0" },
+        { value: 50, label: "50" },
+        { value: 100, label: "100" }
+      ]} className="w-full" />
+    },
+    {
+      name: "Disabled",
+      description: "Non-interactive state",
+      component: <Slider defaultValue={[25]} max={100} disabled className="w-full" />
+    }
+  ]}
+/>
+
+## Usage Examples
+
+<UsageDemo
+  title="Real-world Implementation Examples"
+  description="Common slider patterns in applications"
+  examples={[
+    {
+      name: "Volume Control",
+      description: "Audio volume adjustment",
+      category: "common",
+      context: "Media players, audio apps",
+      component: (
+        <div className="space-y-3">
+          <div className="flex items-center justify-between">
+            <Label className="flex items-center gap-2">
+              <Volume2 className="h-4 w-4" />
+              Volume
+            </Label>
+            <span className="text-sm font-medium">75%</span>
+          </div>
+          <Slider defaultValue={[75]} max={100} showTooltip />
+        </div>
+      ),
+      code: `<div className="space-y-3">
+  <div className="flex items-center justify-between">
+    <Label className="flex items-center gap-2">
+      <Volume2 className="h-4 w-4" />
+      Volume
+    </Label>
+    <span className="text-sm font-medium">75%</span>
+  </div>
+  <Slider 
+    defaultValue={[75]} 
+    max={100} 
+    showTooltip 
+ 
+  />
+</div>`
+    },
+    {
+      name: "Temperature Control",
+      description: "Room temperature adjustment",
+      category: "common",
+      context: "Smart home, HVAC systems",
+      component: (
+        <div className="space-y-3">
+          <div className="flex items-center justify-between">
+            <Label className="flex items-center gap-2">
+              <Thermometer className="h-4 w-4" />
+              Temperature
+            </Label>
+            <span className="text-sm font-medium">21°C</span>
+          </div>
+          <Slider 
+            defaultValue={[21]} 
+            min={16} 
+            max={30} 
+            step={0.5} 
+            variant="success" 
+            showTooltip 
+ 
+          />
+        </div>
+      ),
+      code: `<Slider 
+  defaultValue={[21]} 
+  min={16} 
+  max={30} 
+  step={0.5} 
+  variant="success" 
+  showTooltip 
+ 
+/>`
+    },
+    {
+      name: "Range Selection",
+      description: "Budget or price range",
+      category: "advanced",
+      context: "E-commerce, filtering",
+      component: (
+        <div className="space-y-3">
+          <div className="flex items-center justify-between">
+            <Label className="flex items-center gap-2">
+              <DollarSign className="h-4 w-4" />
+              Price Range
+            </Label>
+            <span className="text-sm font-medium">$250 - $750</span>
+          </div>
+          <Slider 
+            defaultValue={[250, 750]} 
+            min={0} 
+            max={1000} 
+            step={50} 
+            variant="primary" 
+            showTooltip 
+ 
+          />
+        </div>
+      ),
+      code: `<Slider 
+  defaultValue={[250, 750]} 
+  min={0} 
+  max={1000} 
+  step={50} 
+  variant="primary" 
+  showTooltip 
+ 
+/>`
+    },
+    {
+      name: "Playback Speed",
+      description: "Video/audio playback control",
+      category: "advanced",
+      context: "Media players, video apps",
+      component: (
+        <div className="space-y-3">
+          <div className="flex items-center justify-between">
+            <Label className="flex items-center gap-2">
+              <Gauge className="h-4 w-4" />
+              Speed
+            </Label>
+            <span className="text-sm font-medium">1x</span>
+          </div>
+          <Slider 
+            defaultValue={[1]} 
+            min={0.25} 
+            max={2} 
+            step={0.25} 
+            showTooltip 
+            showMarks
+            marks={[
+              { value: 0.5, label: "0.5x" },
+              { value: 1, label: "1x" },
+              { value: 1.5, label: "1.5x" },
+              { value: 2, label: "2x" }
+            ]} 
+          />
+        </div>
+      ),
+      code: `<Slider 
+  defaultValue={[1]} 
+  min={0.25} 
+  max={2} 
+  step={0.25} 
+  showTooltip 
+  showMarks
+  marks={[
+    { value: 0.5, label: "0.5x" },
+    { value: 1, label: "1x" },
+    { value: 1.5, label: "1.5x" },
+    { value: 2, label: "2x" }
+  ]} 
+/>`
+    }
+  ]}
+/>
+
+## Interactive Demo
+
+<ComponentPreview title="Try Different Configurations" description="Experiment with slider variants, sizes, and options">
+  <div className="space-y-6">
+    <div className="space-y-4">
+      <div className="space-y-2">
+        <Label>Basic Slider</Label>
+        <Slider defaultValue={[50]} max={100} />
+      </div>
+      <div className="space-y-2">
+        <Label>With Tooltip</Label>
+        <Slider defaultValue={[60]} max={100} showTooltip />
+      </div>
+      <div className="space-y-2">
+        <Label>Range Slider</Label>
+        <Slider defaultValue={[25, 75]} max={100} />
+      </div>
+      <div className="space-y-2">
+        <Label>With Marks</Label>
+        <Slider 
+          defaultValue={[50]} 
+          max={100} 
+          showMarks 
+          marks={[
+            { value: 0, label: "0" },
+            { value: 25, label: "25" },
+            { value: 50, label: "50" },
+            { value: 75, label: "75" },
+            { value: 100, label: "100" }
+          ]} 
+        />
+      </div>
+    </div>
+  </div>
+</ComponentPreview>
+
+## Installation
+
+```bash
+npm install @lightmind/ui
+```
+
+## Usage
+
+### Basic Usage
+
+```tsx
+import { Slider } from '@lightmind/ui'
+
+export function Example() {
+  return <Slider />
+}
+```
+
+### Advanced Example
+
+```tsx
+import { Slider } from '@lightmind/ui'
+
+export function AdvancedExample() {
+  return (
+    <Slider
+      className="custom-class"
+      // Add props here
+    >
+      Content goes here
+    </Slider>
+  )
+}
+```
+
+## API Reference
+
+### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `className` | `string` | `undefined` | Additional CSS classes |
+| `children` | `React.ReactNode` | `undefined` | Child elements |
+
+## Usage Guidelines
+
+### Do's ✅
+
+- Use Slider for its intended purpose
+- Apply consistent styling across your application
+- Consider accessibility when implementing
+- Test across different screen sizes and devices
+
+### Don'ts ❌
+
+- Don't override essential styles that affect functionality
+- Avoid nesting too many Slider components
+- Don't use for unintended purposes
+
+### Best Practices
+
+Always ensure that your Slider implementation follows accessibility guidelines and provides a good user experience across all devices.
+
+## Accessibility
+
+- Follows WAI-ARIA guidelines
+- Keyboard navigation support
+- Screen reader friendly
+- Proper focus management
+
+## Related Components
+
+- View other [layout](/category/layout) components
+- Explore the complete [component library](/search)

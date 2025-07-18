@@ -7,118 +7,286 @@ complexity: "simple"
 tags: ["button", "form", "interactive"]
 ---
 
-import { ButtonDemo } from "@/components/demos/button.demo"
+import { Button } from '@lightmind/ui'
+import { 
+  Mail, Download, ChevronRight, Loader2, Plus, Trash2, Heart, Share2, 
+  Settings, Check, X, AlertCircle, ArrowRight, ExternalLink, Copy, 
+  Save, RefreshCw, LogOut, Upload, Search, Filter, Edit, MoreHorizontal 
+} from 'lucide-react'
 
 # Button Component
 
 A versatile button component with multiple variants and sizes for different use cases.
 
-## Preview
+## Variants
 
-<div className="space-y-6">
-  <ButtonDemo />
-</div>
+<VariantShowcase
+  title="Button Variants"
+  description="Six distinct visual styles for different use cases"
+  variants={[
+    { 
+      name: "Default", 
+      description: "Primary button with solid background",
+      component: <Button>Default</Button>,
+      code: `<Button>Default</Button>`
+    },
+    { 
+      name: "Secondary", 
+      description: "Secondary button with muted background",
+      component: <Button variant="secondary">Secondary</Button>,
+      code: `<Button variant="secondary">Secondary</Button>`
+    },
+    { 
+      name: "Destructive", 
+      description: "For dangerous actions",
+      component: <Button variant="destructive">Destructive</Button>,
+      code: `<Button variant="destructive">Destructive</Button>`
+    },
+    { 
+      name: "Outline", 
+      description: "Button with border and no background",
+      component: <Button variant="outline">Outline</Button>,
+      code: `<Button variant="outline">Outline</Button>`
+    },
+    { 
+      name: "Ghost", 
+      description: "Subtle button, visible on hover",
+      component: <Button variant="ghost">Ghost</Button>,
+      code: `<Button variant="ghost">Ghost</Button>`
+    },
+    { 
+      name: "Link", 
+      description: "Button styled as a link",
+      component: <Button variant="link">Link</Button>,
+      code: `<Button variant="link">Link</Button>`
+    }
+  ]}
+/>
 
-## Installation
+## Sizes
 
-```bash
-npm install @lightmind/ui
-```
+<SizeDemo
+  title="Button Sizes"
+  description="Four size options including icon-only buttons"
+  sizes={[
+    { 
+      name: "Large", 
+      description: "44px height",
+      component: <Button size="lg">Large</Button> 
+    },
+    { 
+      name: "Default", 
+      description: "40px height",
+      component: <Button size="default">Default</Button> 
+    },
+    { 
+      name: "Small", 
+      description: "32px height",
+      component: <Button size="sm">Small</Button> 
+    },
+    { 
+      name: "Icon", 
+      description: "40px × 40px",
+      component: <Button size="icon"><Heart className="h-4 w-4" /></Button> 
+    }
+  ]}
+/>
 
-## Usage
+## Icons
 
-### Basic Usage
+<IconDemo
+  title="Buttons with Icons"
+  description="Combine icons with text for enhanced visual communication"
+  icons={[
+    {
+      name: "Left Icon",
+      description: "Icon before text",
+      position: "left",
+      component: <Button><Mail className="mr-2 h-4 w-4" />Email</Button>
+    },
+    {
+      name: "Right Icon", 
+      description: "Icon after text",
+      position: "right",
+      component: <Button variant="outline">Continue <ChevronRight className="ml-2 h-4 w-4" /></Button>
+    },
+    {
+      name: "Icon Only",
+      description: "Just the icon",
+      position: "only", 
+      component: <Button size="icon"><Search className="h-4 w-4" /></Button>
+    },
+    {
+      name: "Download",
+      position: "left",
+      component: <Button variant="secondary"><Download className="mr-2 h-4 w-4" />Download</Button>
+    },
+    {
+      name: "Delete",
+      position: "left",
+      component: <Button variant="destructive"><Trash2 className="mr-2 h-4 w-4" />Delete</Button>
+    },
+    {
+      name: "Settings",
+      position: "only",
+      component: <Button variant="outline" size="icon"><Settings className="h-4 w-4" /></Button>
+    }
+  ]}
+/>
 
-```tsx
-import { Button } from '@lightmind/ui'
+## States
 
-export function Example() {
-  return <Button>Click me</Button>
-}
-```
+<StateDemo
+  title="Button States"
+  description="Different states including loading and disabled"
+  states={[
+    {
+      name: "Loading",
+      description: "Shows spinner during async operations",
+      component: <Button disabled><Loader2 className="mr-2 h-4 w-4 animate-spin" />Loading...</Button>
+    },
+    {
+      name: "Disabled",
+      description: "Unavailable for interaction",
+      component: <Button disabled>Disabled</Button>
+    },
+    {
+      name: "Active",
+      description: "Normal interactive state",
+      component: <Button>Active</Button>
+    },
+    {
+      name: "Processing",
+      description: "Small loading state",
+      component: <Button size="sm" disabled><Loader2 className="mr-2 h-3 w-3 animate-spin" />Processing</Button>
+    }
+  ]}
+/>
 
-### With Variants
+## Groups
 
-```tsx
-import { Button } from '@lightmind/ui'
+<GroupDemo
+  title="Button Groups"
+  description="Common button combinations and arrangements"
+  groups={[
+    {
+      name: "Dialog Actions",
+      description: "Cancel and confirm actions",
+      spacing: "normal",
+      components: <>
+        <Button variant="outline">Cancel</Button>
+        <Button>Save Changes</Button>
+      </>
+    },
+    {
+      name: "Destructive Confirmation", 
+      description: "Dangerous action confirmation",
+      spacing: "normal",
+      components: <>
+        <Button variant="ghost">Cancel</Button>
+        <Button variant="destructive"><Trash2 className="mr-2 h-4 w-4" />Delete Item</Button>
+      </>
+    },
+    {
+      name: "Navigation",
+      description: "Step-by-step navigation",
+      spacing: "normal", 
+      components: <>
+        <Button variant="outline">Back</Button>
+        <Button>Next <ArrowRight className="ml-2 h-4 w-4" /></Button>
+      </>
+    },
+    {
+      name: "Form Actions",
+      description: "Form submission options",
+      spacing: "normal",
+      components: <>
+        <Button variant="ghost" size="sm"><X className="mr-2 h-3 w-3" />Reset</Button>
+        <Button variant="outline" size="sm"><Save className="mr-2 h-3 w-3" />Save Draft</Button>
+        <Button size="sm"><Check className="mr-2 h-3 w-3" />Submit</Button>
+      </>
+    }
+  ]}
+/>
 
-export function VariantExample() {
-  return (
-    <div className="flex gap-2">
-      <Button variant="default">Default</Button>
+## Usage Examples
+
+<UsageDemo
+  title="Common Usage Patterns"
+  description="Real-world implementation examples"
+  examples={[
+    {
+      name: "Form Submission",
+      description: "Primary action in forms",
+      category: "common",
+      context: "Forms, dialogs, modals",
+      component: <Button type="submit">Submit Form</Button>,
+      code: `<Button type="submit">Submit Form</Button>`
+    },
+    {
+      name: "External Link",
+      description: "Link to external resources",
+      category: "common",
+      context: "Documentation, resources",
+      component: <Button variant="link" asChild><a href="https://example.com" target="_blank" rel="noopener noreferrer">View Docs <ExternalLink className="ml-2 h-3 w-3" /></a></Button>,
+      code: `<Button variant="link" asChild>
+  <a href="https://example.com" target="_blank" rel="noopener noreferrer">
+    View Docs <ExternalLink className="ml-2 h-3 w-3" />
+  </a>
+</Button>`
+    },
+    {
+      name: "Utility Action",
+      description: "Secondary utility actions",
+      category: "common",
+      context: "Toolbars, quick actions",
+      component: <Button variant="secondary" size="sm"><Copy className="mr-2 h-3 w-3" />Copy</Button>,
+      code: `<Button variant="secondary" size="sm">
+  <Copy className="mr-2 h-3 w-3" />Copy
+</Button>`
+    },
+    {
+      name: "Status Indicator",
+      description: "Visual status representation",
+      category: "advanced",
+      context: "Status displays, workflows",
+      component: <Button variant="outline" className="text-green-600 border-green-600 hover:bg-green-50"><Check className="mr-2 h-4 w-4" />Approved</Button>,
+      code: `<Button variant="outline" className="text-green-600 border-green-600 hover:bg-green-50">
+  <Check className="mr-2 h-4 w-4" />Approved
+</Button>`
+    }
+  ]}
+/>
+
+## Interactive Demo
+
+<ComponentPreview title="Try Different Configurations" description="Experiment with button variants, sizes, and states">
+  <div className="space-y-4">
+    <div className="flex flex-wrap gap-2">
+      <Button>Default</Button>
       <Button variant="secondary">Secondary</Button>
       <Button variant="destructive">Destructive</Button>
       <Button variant="outline">Outline</Button>
       <Button variant="ghost">Ghost</Button>
       <Button variant="link">Link</Button>
     </div>
-  )
-}
-```
-
-### With Icons
-
-```tsx
-import { Button } from '@lightmind/ui'
-import { Mail, Download, ChevronRight } from 'lucide-react'
-
-export function IconExample() {
-  return (
-    <div className="flex gap-2">
-      <Button>
-        <Mail className="mr-2 h-4 w-4" />
-        Email
-      </Button>
-      <Button variant="outline">
-        <Download className="mr-2 h-4 w-4" />
-        Download
-      </Button>
-      <Button variant="ghost">
-        Continue
-        <ChevronRight className="ml-2 h-4 w-4" />
-      </Button>
+    <div className="flex flex-wrap gap-2">
+      <Button size="sm">Small</Button>
+      <Button size="default">Default</Button>
+      <Button size="lg">Large</Button>
+      <Button size="icon"><Heart className="h-4 w-4" /></Button>
     </div>
-  )
-}
-```
-
-### Loading States
-
-```tsx
-import { Button } from '@lightmind/ui'
-import { Loader2 } from 'lucide-react'
-
-export function LoadingExample() {
-  return (
-    <div className="flex gap-2">
-      <Button disabled>
-        <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-        Loading...
-      </Button>
-      <Button variant="outline" disabled>
-        Processing...
-      </Button>
+    <div className="flex flex-wrap gap-2">
+      <Button disabled><Loader2 className="mr-2 h-4 w-4 animate-spin" />Loading...</Button>
+      <Button disabled>Disabled</Button>
     </div>
-  )
-}
-```
+  </div>
+</ComponentPreview>
 
-### As Child Component
+## Installation
 
-```tsx
-import { Button } from '@lightmind/ui'
-import { ExternalLink } from 'lucide-react'
-
-export function AsChildExample() {
-  return (
-    <Button variant="link" asChild>
-      <a href="https://example.com" target="_blank" rel="noopener noreferrer">
-        External Link
-        <ExternalLink className="ml-2 h-4 w-4" />
-      </a>
-    </Button>
-  )
-}
+```bash
+npm install @lightmind/ui
 ```
 
 ## API Reference
@@ -127,158 +295,38 @@ export function AsChildExample() {
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `variant` | `'default' \| 'secondary' \| 'destructive' \| 'outline' \| 'ghost' \| 'link'` | `'default'` | The visual style variant of the button |
-| `size` | `'sm' \| 'default' \| 'lg' \| 'icon'` | `'default'` | The size of the button |
-| `disabled` | `boolean` | `false` | Whether the button is disabled |
-| `asChild` | `boolean` | `false` | Render as a child element instead of a button |
-| `type` | `'button' \| 'submit' \| 'reset'` | `'button'` | The button type attribute |
-| `onClick` | `(event: React.MouseEvent) => void` | `undefined` | Click event handler |
-| `children` | `React.ReactNode` | `undefined` | The content to display inside the button |
+| `variant` | `'default' \| 'secondary' \| 'destructive' \| 'outline' \| 'ghost' \| 'link'` | `'default'` | Visual style variant |
+| `size` | `'sm' \| 'default' \| 'lg' \| 'icon'` | `'default'` | Button size |
+| `disabled` | `boolean` | `false` | Disable interaction |
+| `asChild` | `boolean` | `false` | Render as child element |
+| `type` | `'button' \| 'submit' \| 'reset'` | `'button'` | Button type |
+| `onClick` | `(event: React.MouseEvent) => void` | `undefined` | Click handler |
 | `className` | `string` | `undefined` | Additional CSS classes |
-
-### Variant Styles
-
-- **`default`**: Primary button with solid background
-- **`secondary`**: Secondary button with muted background
-- **`destructive`**: Destructive button for dangerous actions
-- **`outline`**: Button with border and no background
-- **`ghost`**: Button with no background, visible on hover
-- **`link`**: Button styled as a link
-
-### Size Options
-
-- **`sm`**: Small button (32px height)
-- **`default`**: Default button (40px height)
-- **`lg`**: Large button (44px height)
-- **`icon`**: Square button optimized for icons (40px × 40px)
-
-## Usage Guidelines
-
-### Do's ✅
-
-- Use primary buttons for main actions
-- Keep button text concise and action-oriented
-- Maintain consistent spacing between button groups
-- Use loading states for async operations
-- Provide clear visual feedback for interactions
-- Use appropriate variants for different contexts
-- Group related actions together
-- Use icon buttons for space-constrained interfaces
-
-### Don'ts ❌
-
-- Don't use multiple primary buttons in the same context
-- Avoid overly long button text
-- Don't nest interactive elements inside buttons
-- Avoid using destructive variant for non-destructive actions
-- Don't use buttons for navigation (use links instead)
-- Don't use disabled buttons without clear reason
-- Avoid inconsistent button sizes in groups
-
-### Best Practices
-
-#### Primary vs Secondary Actions
-
-Use the `default` variant for primary actions and `secondary` or `outline` for secondary actions:
-
-```tsx
-// Good
-<div className="flex gap-2">
-  <Button variant="outline">Cancel</Button>
-  <Button>Save Changes</Button>
-</div>
-
-// Bad - multiple primary buttons
-<div className="flex gap-2">
-  <Button>Cancel</Button>
-  <Button>Save Changes</Button>
-</div>
-```
-
-#### Button Groups
-
-When grouping buttons, maintain consistent sizing and appropriate spacing:
-
-```tsx
-// Good
-<div className="flex gap-2">
-  <Button variant="ghost" size="sm">Reset</Button>
-  <Button variant="outline" size="sm">Save Draft</Button>
-  <Button size="sm">Submit</Button>
-</div>
-```
-
-#### Loading States
-
-Always provide feedback for async operations:
-
-```tsx
-// Good
-<Button disabled={isLoading}>
-  {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-  {isLoading ? 'Saving...' : 'Save Changes'}
-</Button>
-```
-
-#### Icon Usage
-
-Use icons consistently and ensure they enhance rather than clutter the interface:
-
-```tsx
-// Good - meaningful icons
-<Button>
-  <Save className="mr-2 h-4 w-4" />
-  Save
-</Button>
-
-// Good - icon-only for space-constrained areas
-<Button size="icon" variant="ghost">
-  <Settings className="h-4 w-4" />
-</Button>
-```
 
 ## Accessibility
 
-### Keyboard Navigation
+- Keyboard navigation with Tab, Space, and Enter
+- Proper ARIA attributes for screen readers
+- Clear focus indicators
+- Loading states announced to assistive technology
 
-- Buttons are focusable via Tab key
-- Space and Enter keys activate buttons
-- Focus indicators are visible and clear
+## Best Practices
 
-### Screen Reader Support
+### Do's ✅
+- Use primary buttons for main actions
+- Keep button text concise and action-oriented
+- Provide loading states for async operations
+- Use appropriate variants for different contexts
 
-- Buttons have proper semantic meaning
-- Loading states are announced to screen readers
-- Disabled buttons are correctly identified
-
-### Color Contrast
-
-- All variants meet WCAG AA color contrast requirements
-- Focus indicators have sufficient contrast
-- Disabled states maintain adequate contrast
-
-### Implementation
-
-```tsx
-// Good - accessible button
-<Button 
-  disabled={isLoading}
-  aria-label={isLoading ? 'Saving changes...' : 'Save changes'}
->
-  {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-  {isLoading ? 'Saving...' : 'Save'}
-</Button>
-
-// Good - accessible icon button
-<Button size="icon" variant="ghost" aria-label="Open settings">
-  <Settings className="h-4 w-4" />
-</Button>
-```
+### Don'ts ❌
+- Don't use multiple primary buttons in same context
+- Avoid overly long button text
+- Don't nest interactive elements inside buttons
+- Don't use disabled buttons without clear reason
 
 ## Related Components
 
-- **[Input](/component/input)** - For text input fields
-- **[Label](/component/label)** - For form field labels  
-- **[Checkbox](/component/checkbox)** - For binary choices
-- **[RadioGroup](/component/radio-group)** - For single selection from options
-- **[Select](/component/select)** - For dropdown selections
+- [Input](/component/input) - For text input fields
+- [Label](/component/label) - For form field labels
+- [Checkbox](/component/checkbox) - For binary choices
+- [Select](/component/select) - For dropdown selections

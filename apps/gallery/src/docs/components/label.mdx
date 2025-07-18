@@ -1,0 +1,95 @@
+---
+title: "Label"
+description: "A versatile label component for React applications"
+category: "form"
+status: "stable"
+complexity: "simple"
+tags: ["label", "form", "ui", "component"]
+---
+
+import { LabelDemo } from "@/components/demos/label.demo"
+
+# Label Component
+
+A versatile label component that provides essential functionality for modern web applications.
+
+## Preview
+
+<div className="space-y-6">
+  <LabelDemo />
+</div>
+
+## Installation
+
+```bash
+npm install @lightmind/ui
+```
+
+## Usage
+
+### Basic Usage
+
+```tsx
+import { Label } from '@lightmind/ui'
+
+export function Example() {
+  return <Label />
+}
+```
+
+### Advanced Example
+
+```tsx
+import { Label } from '@lightmind/ui'
+
+export function AdvancedExample() {
+  return (
+    <Label
+      className="custom-class"
+      // Add props here
+    >
+      Content goes here
+    </Label>
+  )
+}
+```
+
+## API Reference
+
+### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `className` | `string` | `undefined` | Additional CSS classes |
+| `children` | `React.ReactNode` | `undefined` | Child elements |
+
+## Usage Guidelines
+
+### Do's ✅
+
+- Use Label for its intended purpose
+- Apply consistent styling across your application
+- Consider accessibility when implementing
+- Test across different screen sizes and devices
+
+### Don'ts ❌
+
+- Don't override essential styles that affect functionality
+- Avoid nesting too many Label components
+- Don't use for unintended purposes
+
+### Best Practices
+
+Always ensure that your Label implementation follows accessibility guidelines and provides a good user experience across all devices.
+
+## Accessibility
+
+- Follows WAI-ARIA guidelines
+- Keyboard navigation support
+- Screen reader friendly
+- Proper focus management
+
+## Related Components
+
+- View other [form](/category/form) components
+- Explore the complete [component library](/search)

@@ -1,0 +1,95 @@
+---
+title: "DataTable"
+description: "A versatile datatable component for React applications"
+category: "display"
+status: "stable"
+complexity: "simple"
+tags: ["data-table", "display", "ui", "component"]
+---
+
+import { DataTableDemo } from "@/components/demos/data-table.demo"
+
+# DataTable Component
+
+A versatile datatable component that provides essential functionality for modern web applications.
+
+## Preview
+
+<div className="space-y-6">
+  <DataTableDemo />
+</div>
+
+## Installation
+
+```bash
+npm install @lightmind/ui
+```
+
+## Usage
+
+### Basic Usage
+
+```tsx
+import { DataTable } from '@lightmind/ui'
+
+export function Example() {
+  return <DataTable />
+}
+```
+
+### Advanced Example
+
+```tsx
+import { DataTable } from '@lightmind/ui'
+
+export function AdvancedExample() {
+  return (
+    <DataTable
+      className="custom-class"
+      // Add props here
+    >
+      Content goes here
+    </DataTable>
+  )
+}
+```
+
+## API Reference
+
+### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `className` | `string` | `undefined` | Additional CSS classes |
+| `children` | `React.ReactNode` | `undefined` | Child elements |
+
+## Usage Guidelines
+
+### Do's ✅
+
+- Use DataTable for its intended purpose
+- Apply consistent styling across your application
+- Consider accessibility when implementing
+- Test across different screen sizes and devices
+
+### Don'ts ❌
+
+- Don't override essential styles that affect functionality
+- Avoid nesting too many DataTable components
+- Don't use for unintended purposes
+
+### Best Practices
+
+Always ensure that your DataTable implementation follows accessibility guidelines and provides a good user experience across all devices.
+
+## Accessibility
+
+- Follows WAI-ARIA guidelines
+- Keyboard navigation support
+- Screen reader friendly
+- Proper focus management
+
+## Related Components
+
+- View other [display](/category/display) components
+- Explore the complete [component library](/search)

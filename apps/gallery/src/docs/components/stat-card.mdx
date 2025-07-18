@@ -1,0 +1,95 @@
+---
+title: "StatCard"
+description: "A versatile statcard component for React applications"
+category: "display"
+status: "stable"
+complexity: "simple"
+tags: ["stat-card", "display", "ui", "component"]
+---
+
+import { StatCardDemo } from "@/components/demos/stat-card.demo"
+
+# StatCard Component
+
+A versatile statcard component that provides essential functionality for modern web applications.
+
+## Preview
+
+<div className="space-y-6">
+  <StatCardDemo />
+</div>
+
+## Installation
+
+```bash
+npm install @lightmind/ui
+```
+
+## Usage
+
+### Basic Usage
+
+```tsx
+import { StatCard } from '@lightmind/ui'
+
+export function Example() {
+  return <StatCard />
+}
+```
+
+### Advanced Example
+
+```tsx
+import { StatCard } from '@lightmind/ui'
+
+export function AdvancedExample() {
+  return (
+    <StatCard
+      className="custom-class"
+      // Add props here
+    >
+      Content goes here
+    </StatCard>
+  )
+}
+```
+
+## API Reference
+
+### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `className` | `string` | `undefined` | Additional CSS classes |
+| `children` | `React.ReactNode` | `undefined` | Child elements |
+
+## Usage Guidelines
+
+### Do's ✅
+
+- Use StatCard for its intended purpose
+- Apply consistent styling across your application
+- Consider accessibility when implementing
+- Test across different screen sizes and devices
+
+### Don'ts ❌
+
+- Don't override essential styles that affect functionality
+- Avoid nesting too many StatCard components
+- Don't use for unintended purposes
+
+### Best Practices
+
+Always ensure that your StatCard implementation follows accessibility guidelines and provides a good user experience across all devices.
+
+## Accessibility
+
+- Follows WAI-ARIA guidelines
+- Keyboard navigation support
+- Screen reader friendly
+- Proper focus management
+
+## Related Components
+
+- View other [display](/category/display) components
+- Explore the complete [component library](/search)

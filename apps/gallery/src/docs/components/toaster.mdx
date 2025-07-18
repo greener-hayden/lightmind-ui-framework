@@ -1,0 +1,95 @@
+---
+title: "Toaster"
+description: "A versatile toaster component for React applications"
+category: "feedback"
+status: "stable"
+complexity: "simple"
+tags: ["toaster", "feedback", "ui", "component"]
+---
+
+import { ToasterDemo } from "@/components/demos/toaster.demo"
+
+# Toaster Component
+
+A versatile toaster component that provides essential functionality for modern web applications.
+
+## Preview
+
+<div className="space-y-6">
+  <ToasterDemo />
+</div>
+
+## Installation
+
+```bash
+npm install @lightmind/ui
+```
+
+## Usage
+
+### Basic Usage
+
+```tsx
+import { Toaster } from '@lightmind/ui'
+
+export function Example() {
+  return <Toaster />
+}
+```
+
+### Advanced Example
+
+```tsx
+import { Toaster } from '@lightmind/ui'
+
+export function AdvancedExample() {
+  return (
+    <Toaster
+      className="custom-class"
+      // Add props here
+    >
+      Content goes here
+    </Toaster>
+  )
+}
+```
+
+## API Reference
+
+### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `className` | `string` | `undefined` | Additional CSS classes |
+| `children` | `React.ReactNode` | `undefined` | Child elements |
+
+## Usage Guidelines
+
+### Do's ✅
+
+- Use Toaster for its intended purpose
+- Apply consistent styling across your application
+- Consider accessibility when implementing
+- Test across different screen sizes and devices
+
+### Don'ts ❌
+
+- Don't override essential styles that affect functionality
+- Avoid nesting too many Toaster components
+- Don't use for unintended purposes
+
+### Best Practices
+
+Always ensure that your Toaster implementation follows accessibility guidelines and provides a good user experience across all devices.
+
+## Accessibility
+
+- Follows WAI-ARIA guidelines
+- Keyboard navigation support
+- Screen reader friendly
+- Proper focus management
+
+## Related Components
+
+- View other [feedback](/category/feedback) components
+- Explore the complete [component library](/search)

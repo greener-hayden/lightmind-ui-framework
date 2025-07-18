@@ -15,9 +15,9 @@
   "dependencies": {
     "@mdx-js/react": "^3.1.0",
     "@lightmind/ui": "file:../ui",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "lucide-react": "^0.263.1"
+    "lucide-react": "^0.263.1",
+    "clsx": "^2.1.1",
+    "tailwind-merge": "^3.3.1"
   },
   "devDependencies": {
     "@types/react": "^18.3.12",

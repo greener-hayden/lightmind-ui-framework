@@ -1,0 +1,95 @@
+---
+title: "ContextMenu"
+description: "A versatile contextmenu component for React applications"
+category: "navigation"
+status: "stable"
+complexity: "simple"
+tags: ["context-menu", "navigation", "ui", "component"]
+---
+
+import { ContextMenuDemo } from "@/components/demos/context-menu.demo"
+
+# ContextMenu Component
+
+A versatile contextmenu component that provides essential functionality for modern web applications.
+
+## Preview
+
+<div className="space-y-6">
+  <ContextMenuDemo />
+</div>
+
+## Installation
+
+```bash
+npm install @lightmind/ui
+```
+
+## Usage
+
+### Basic Usage
+
+```tsx
+import { ContextMenu } from '@lightmind/ui'
+
+export function Example() {
+  return <ContextMenu />
+}
+```
+
+### Advanced Example
+
+```tsx
+import { ContextMenu } from '@lightmind/ui'
+
+export function AdvancedExample() {
+  return (
+    <ContextMenu
+      className="custom-class"
+      // Add props here
+    >
+      Content goes here
+    </ContextMenu>
+  )
+}
+```
+
+## API Reference
+
+### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `className` | `string` | `undefined` | Additional CSS classes |
+| `children` | `React.ReactNode` | `undefined` | Child elements |
+
+## Usage Guidelines
+
+### Do's ✅
+
+- Use ContextMenu for its intended purpose
+- Apply consistent styling across your application
+- Consider accessibility when implementing
+- Test across different screen sizes and devices
+
+### Don'ts ❌
+
+- Don't override essential styles that affect functionality
+- Avoid nesting too many ContextMenu components
+- Don't use for unintended purposes
+
+### Best Practices
+
+Always ensure that your ContextMenu implementation follows accessibility guidelines and provides a good user experience across all devices.
+
+## Accessibility
+
+- Follows WAI-ARIA guidelines
+- Keyboard navigation support
+- Screen reader friendly
+- Proper focus management
+
+## Related Components
+
+- View other [navigation](/category/navigation) components
+- Explore the complete [component library](/search)

@@ -1,0 +1,95 @@
+---
+title: "Dialog"
+description: "A versatile dialog component for React applications"
+category: "feedback"
+status: "stable"
+complexity: "simple"
+tags: ["dialog", "feedback", "ui", "component"]
+---
+
+import { DialogDemo } from "@/components/demos/dialog.demo"
+
+# Dialog Component
+
+A versatile dialog component that provides essential functionality for modern web applications.
+
+## Preview
+
+<div className="space-y-6">
+  <DialogDemo />
+</div>
+
+## Installation
+
+```bash
+npm install @lightmind/ui
+```
+
+## Usage
+
+### Basic Usage
+
+```tsx
+import { Dialog } from '@lightmind/ui'
+
+export function Example() {
+  return <Dialog />
+}
+```
+
+### Advanced Example
+
+```tsx
+import { Dialog } from '@lightmind/ui'
+
+export function AdvancedExample() {
+  return (
+    <Dialog
+      className="custom-class"
+      // Add props here
+    >
+      Content goes here
+    </Dialog>
+  )
+}
+```
+
+## API Reference
+
+### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `className` | `string` | `undefined` | Additional CSS classes |
+| `children` | `React.ReactNode` | `undefined` | Child elements |
+
+## Usage Guidelines
+
+### Do's ✅
+
+- Use Dialog for its intended purpose
+- Apply consistent styling across your application
+- Consider accessibility when implementing
+- Test across different screen sizes and devices
+
+### Don'ts ❌
+
+- Don't override essential styles that affect functionality
+- Avoid nesting too many Dialog components
+- Don't use for unintended purposes
+
+### Best Practices
+
+Always ensure that your Dialog implementation follows accessibility guidelines and provides a good user experience across all devices.
+
+## Accessibility
+
+- Follows WAI-ARIA guidelines
+- Keyboard navigation support
+- Screen reader friendly
+- Proper focus management
+
+## Related Components
+
+- View other [feedback](/category/feedback) components
+- Explore the complete [component library](/search)

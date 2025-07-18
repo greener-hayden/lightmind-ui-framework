@@ -3,7 +3,7 @@
 import React, { useState, useCallback } from 'react'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, Button, Badge, Separator } from '@lightmind/ui'
 import { Copy, Check } from 'lucide-react'
-import { cn } from '@lightmind/ui/lib/utils'
+import { cn } from '../utils/cn'
 import { InteractiveDemoProps, ControlState } from '../types'
 import { DemoControls } from './DemoControls'
 import { generateComponentCode, generateCurrentSettingsText, getDefaultValues } from '../utils/codeGeneration'

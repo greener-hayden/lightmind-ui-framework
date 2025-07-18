@@ -1,7 +1,24 @@
 'use client'
 
-import { Button, Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter, Input } from '@lightmind/ui'
+import { Button, Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter, Input, Badge } from '@lightmind/ui'
 import { Header } from '@/components/header'
+import { 
+  BarChart3, 
+  ShoppingCart, 
+  Users, 
+  ArrowRight, 
+  ExternalLink,
+  Zap,
+  Package,
+  Settings,
+  Home,
+  Monitor,
+  Smartphone,
+  Palette,
+  Code,
+  Target,
+  CheckCircle
+} from 'lucide-react'
 
 export default function ExamplesPage() {
   return (
@@ -9,11 +26,186 @@ export default function ExamplesPage() {
       <Header />
       
       <div className="container mx-auto py-8">
-        <div className="mb-8">
-          <h1 className="text-4xl font-bold mb-4">Example Pages</h1>
-          <p className="text-muted-foreground text-lg">
-            See how LightMind UI components work together in real-world scenarios
+        <div className="mb-8 text-center">
+          <h1 className="text-4xl font-bold mb-4">Example Applications</h1>
+          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+            Explore comprehensive example applications that showcase the full potential of LightMind UI components in real-world scenarios
           </p>
+        </div>
+
+        {/* Featured Examples */}
+        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 mb-12">
+          <Card className="group hover:shadow-lg transition-all duration-300 border-2 hover:border-primary/20">
+            <CardHeader>
+              <div className="flex items-center justify-between">
+                <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
+                  <BarChart3 className="w-6 h-6 text-primary" />
+                </div>
+                <Badge variant="secondary">50+ Components</Badge>
+              </div>
+              <CardTitle className="text-xl">Enterprise Dashboard</CardTitle>
+              <CardDescription>
+                Complete analytics dashboard with charts, KPIs, team management, and real-time data visualization
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-3">
+                <div className="flex items-center text-sm text-muted-foreground">
+                  <CheckCircle className="w-4 h-4 mr-2 text-green-500" />
+                  Advanced data tables and filtering
+                </div>
+                <div className="flex items-center text-sm text-muted-foreground">
+                  <CheckCircle className="w-4 h-4 mr-2 text-green-500" />
+                  Interactive charts and graphs
+                </div>
+                <div className="flex items-center text-sm text-muted-foreground">
+                  <CheckCircle className="w-4 h-4 mr-2 text-green-500" />
+                  Team collaboration features
+                </div>
+                <div className="flex items-center text-sm text-muted-foreground">
+                  <CheckCircle className="w-4 h-4 mr-2 text-green-500" />
+                  Real-time notifications
+                </div>
+              </div>
+            </CardContent>
+            <CardFooter>
+              <Button asChild className="w-full group-hover:bg-primary/90 transition-colors">
+                <a href="/examples/dashboard" className="flex items-center">
+                  View Dashboard
+                  <ArrowRight className="w-4 h-4 ml-2" />
+                </a>
+              </Button>
+            </CardFooter>
+          </Card>
+
+          <Card className="group hover:shadow-lg transition-all duration-300 border-2 hover:border-primary/20">
+            <CardHeader>
+              <div className="flex items-center justify-between">
+                <div className="w-12 h-12 bg-blue-500/10 rounded-lg flex items-center justify-center">
+                  <ShoppingCart className="w-6 h-6 text-blue-500" />
+                </div>
+                <Badge variant="secondary">40+ Components</Badge>
+              </div>
+              <CardTitle className="text-xl">E-commerce Admin</CardTitle>
+              <CardDescription>
+                Comprehensive admin panel for managing products, orders, inventory, and customer data
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-3">
+                <div className="flex items-center text-sm text-muted-foreground">
+                  <CheckCircle className="w-4 h-4 mr-2 text-green-500" />
+                  Product management system
+                </div>
+                <div className="flex items-center text-sm text-muted-foreground">
+                  <CheckCircle className="w-4 h-4 mr-2 text-green-500" />
+                  Order tracking and fulfillment
+                </div>
+                <div className="flex items-center text-sm text-muted-foreground">
+                  <CheckCircle className="w-4 h-4 mr-2 text-green-500" />
+                  Advanced form components
+                </div>
+                <div className="flex items-center text-sm text-muted-foreground">
+                  <CheckCircle className="w-4 h-4 mr-2 text-green-500" />
+                  Multi-step workflows
+                </div>
+              </div>
+            </CardContent>
+            <CardFooter>
+              <Button asChild className="w-full group-hover:bg-blue-500/90 transition-colors" variant="outline">
+                <a href="/examples/ecommerce" className="flex items-center">
+                  View E-commerce
+                  <ArrowRight className="w-4 h-4 ml-2" />
+                </a>
+              </Button>
+            </CardFooter>
+          </Card>
+
+          <Card className="group hover:shadow-lg transition-all duration-300 border-2 hover:border-primary/20">
+            <CardHeader>
+              <div className="flex items-center justify-between">
+                <div className="w-12 h-12 bg-purple-500/10 rounded-lg flex items-center justify-center">
+                  <Zap className="w-6 h-6 text-purple-500" />
+                </div>
+                <Badge variant="secondary">60+ Components</Badge>
+              </div>
+              <CardTitle className="text-xl">SaaS Application</CardTitle>
+              <CardDescription>
+                Modern SaaS interface with sidebar navigation, command palette, and collaboration features
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-3">
+                <div className="flex items-center text-sm text-muted-foreground">
+                  <CheckCircle className="w-4 h-4 mr-2 text-green-500" />
+                  Advanced navigation patterns
+                </div>
+                <div className="flex items-center text-sm text-muted-foreground">
+                  <CheckCircle className="w-4 h-4 mr-2 text-green-500" />
+                  Command palette (⌘K)
+                </div>
+                <div className="flex items-center text-sm text-muted-foreground">
+                  <CheckCircle className="w-4 h-4 mr-2 text-green-500" />
+                  Real-time collaboration
+                </div>
+                <div className="flex items-center text-sm text-muted-foreground">
+                  <CheckCircle className="w-4 h-4 mr-2 text-green-500" />
+                  Complex sidebar layouts
+                </div>
+              </div>
+            </CardContent>
+            <CardFooter>
+              <Button asChild className="w-full group-hover:bg-purple-500/90 transition-colors" variant="outline">
+                <a href="/examples/saas" className="flex items-center">
+                  View SaaS App
+                  <ArrowRight className="w-4 h-4 ml-2" />
+                </a>
+              </Button>
+            </CardFooter>
+          </Card>
+        </div>
+
+        {/* What's Included */}
+        <div className="mb-12">
+          <h2 className="text-2xl font-bold mb-6 text-center">What's Included in Each Example</h2>
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+            <Card className="p-6 text-center">
+              <div className="w-12 h-12 bg-green-500/10 rounded-lg flex items-center justify-center mx-auto mb-4">
+                <Code className="w-6 h-6 text-green-500" />
+              </div>
+              <h3 className="font-semibold mb-2">Complete Source Code</h3>
+              <p className="text-sm text-muted-foreground">
+                Full TypeScript implementation with best practices
+              </p>
+            </Card>
+            <Card className="p-6 text-center">
+              <div className="w-12 h-12 bg-blue-500/10 rounded-lg flex items-center justify-center mx-auto mb-4">
+                <Smartphone className="w-6 h-6 text-blue-500" />
+              </div>
+              <h3 className="font-semibold mb-2">Responsive Design</h3>
+              <p className="text-sm text-muted-foreground">
+                Mobile-first approach with perfect tablet and desktop layouts
+              </p>
+            </Card>
+            <Card className="p-6 text-center">
+              <div className="w-12 h-12 bg-purple-500/10 rounded-lg flex items-center justify-center mx-auto mb-4">
+                <Palette className="w-6 h-6 text-purple-500" />
+              </div>
+              <h3 className="font-semibold mb-2">Theme Support</h3>
+              <p className="text-sm text-muted-foreground">
+                Dark/light mode with customizable color schemes
+              </p>
+            </Card>
+            <Card className="p-6 text-center">
+              <div className="w-12 h-12 bg-orange-500/10 rounded-lg flex items-center justify-center mx-auto mb-4">
+                <Target className="w-6 h-6 text-orange-500" />
+              </div>
+              <h3 className="font-semibold mb-2">Accessibility First</h3>
+              <p className="text-sm text-muted-foreground">
+                WCAG compliant with keyboard navigation and screen reader support
+              </p>
+            </Card>
+          </div>
         </div>
 
         <div className="grid gap-8">

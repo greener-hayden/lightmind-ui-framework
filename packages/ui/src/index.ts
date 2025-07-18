@@ -171,20 +171,20 @@ export {
   CommandShortcut,
   CommandSeparator,
 } from "./components/command"
-// export {
-//   HoverCard,
-//   HoverCardTrigger,
-//   HoverCardContent,
-// } from "./components/hover-card"
-// export {
-//   Collapsible,
-//   CollapsibleTrigger,
-//   CollapsibleContent,
-// } from "./components/collapsible"
-// export {
-//   Toggle,
-//   toggleVariants,
-// } from "./components/toggle"
+export {
+  HoverCard,
+  HoverCardTrigger,
+  HoverCardContent,
+} from "./components/hover-card"
+export {
+  Collapsible,
+  CollapsibleTrigger,
+  CollapsibleContent,
+} from "./components/collapsible"
+export {
+  Toggle,
+  toggleVariants,
+} from "./components/toggle"
 export {
   AlertDialog,
   AlertDialogPortal,

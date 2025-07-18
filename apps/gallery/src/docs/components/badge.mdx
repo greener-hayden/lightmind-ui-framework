@@ -1,0 +1,95 @@
+---
+title: "Badge"
+description: "A versatile badge component for React applications"
+category: "display"
+status: "stable"
+complexity: "simple"
+tags: ["badge", "display", "ui", "component"]
+---
+
+import { BadgeDemo } from "@/components/demos/badge.demo"
+
+# Badge Component
+
+A versatile badge component that provides essential functionality for modern web applications.
+
+## Preview
+
+<div className="space-y-6">
+  <BadgeDemo />
+</div>
+
+## Installation
+
+```bash
+npm install @lightmind/ui
+```
+
+## Usage
+
+### Basic Usage
+
+```tsx
+import { Badge } from '@lightmind/ui'
+
+export function Example() {
+  return <Badge />
+}
+```
+
+### Advanced Example
+
+```tsx
+import { Badge } from '@lightmind/ui'
+
+export function AdvancedExample() {
+  return (
+    <Badge
+      className="custom-class"
+      // Add props here
+    >
+      Content goes here
+    </Badge>
+  )
+}
+```
+
+## API Reference
+
+### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `className` | `string` | `undefined` | Additional CSS classes |
+| `children` | `React.ReactNode` | `undefined` | Child elements |
+
+## Usage Guidelines
+
+### Do's ✅
+
+- Use Badge for its intended purpose
+- Apply consistent styling across your application
+- Consider accessibility when implementing
+- Test across different screen sizes and devices
+
+### Don'ts ❌
+
+- Don't override essential styles that affect functionality
+- Avoid nesting too many Badge components
+- Don't use for unintended purposes
+
+### Best Practices
+
+Always ensure that your Badge implementation follows accessibility guidelines and provides a good user experience across all devices.
+
+## Accessibility
+
+- Follows WAI-ARIA guidelines
+- Keyboard navigation support
+- Screen reader friendly
+- Proper focus management
+
+## Related Components
+
+- View other [display](/category/display) components
+- Explore the complete [component library](/search)

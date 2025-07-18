@@ -13,6 +13,7 @@ export interface ComponentInfo {
   tags: string[]
   preview: string
   codeExample: string
+  hasMDX?: boolean
   apiDocumentation?: {
     props?: Array<{
       name: string
@@ -65,7 +66,8 @@ export const components: ComponentInfo[] = [
       "access-matrix-main"
     ],
     "preview": "access-matrix-main",
-    "codeExample": "import { AccessMatrixMain } from '@lightmind/ui';\n\n<AccessMatrixMain />"
+    "codeExample": "import { AccessMatrixMain } from '@lightmind/ui';\n\n<AccessMatrixMain />",
+    "hasMDX": false
   },
   {
     "id": "access-matrix",
@@ -78,98 +80,127 @@ export const components: ComponentInfo[] = [
       "access-matrix"
     ],
     "preview": "access-matrix",
-    "codeExample": "import { AccessMatrix } from '@lightmind/ui';\n\n<AccessMatrix />"
+    "codeExample": "import { AccessMatrix } from '@lightmind/ui';\n\n<AccessMatrix />",
+    "hasMDX": false
   },
   {
     "id": "accordion",
     "name": "Accordion",
-    "description": "Accordion component",
+    "description": "A versatile accordion component for React applications",
     "category": "layout",
     "complexity": "simple",
     "status": "stable",
     "tags": [
-      "accordion"
+      "accordion",
+      "layout",
+      "ui",
+      "component"
     ],
     "preview": "accordion",
-    "codeExample": "import { Accordion } from '@lightmind/ui';\n\n<Accordion />"
+    "codeExample": "import { Accordion } from '@lightmind/ui';\n\n<Accordion />",
+    "hasMDX": true
   },
   {
     "id": "alert-dialog",
     "name": "AlertDialog",
-    "description": "AlertDialog component",
-    "category": "layout",
+    "description": "A versatile alertdialog component for React applications",
+    "category": "feedback",
     "complexity": "simple",
     "status": "stable",
     "tags": [
-      "alert-dialog"
+      "alert-dialog",
+      "feedback",
+      "ui",
+      "component"
     ],
     "preview": "alert-dialog",
-    "codeExample": "import { AlertDialog } from '@lightmind/ui';\n\n<AlertDialog />"
+    "codeExample": "import { AlertDialog } from '@lightmind/ui';\n\n<AlertDialog />",
+    "hasMDX": true
   },
   {
     "id": "alert",
     "name": "Alert",
-    "description": "Alert component",
+    "description": "A versatile alert component for React applications",
     "category": "display",
     "complexity": "simple",
     "status": "stable",
     "tags": [
-      "alert"
+      "alert",
+      "display",
+      "ui",
+      "component"
     ],
     "preview": "alert",
-    "codeExample": "import { Alert } from '@lightmind/ui';\n\n<Alert />"
+    "codeExample": "import { Alert } from '@lightmind/ui';\n\n<Alert />",
+    "hasMDX": true
   },
   {
     "id": "aspect-ratio",
     "name": "AspectRatio",
-    "description": "AspectRatio component",
+    "description": "A versatile aspectratio component for React applications",
     "category": "layout",
     "complexity": "simple",
     "status": "stable",
     "tags": [
-      "aspect-ratio"
+      "aspect-ratio",
+      "layout",
+      "ui",
+      "component"
     ],
     "preview": "aspect-ratio",
-    "codeExample": "import { AspectRatio } from '@lightmind/ui';\n\n<AspectRatio />"
+    "codeExample": "import { AspectRatio } from '@lightmind/ui';\n\n<AspectRatio />",
+    "hasMDX": true
   },
   {
     "id": "avatar",
     "name": "Avatar",
-    "description": "Avatar component",
-    "category": "layout",
-    "complexity": "simple",
-    "status": "stable",
-    "tags": [
-      "avatar"
-    ],
-    "preview": "avatar",
-    "codeExample": "import { Avatar } from '@lightmind/ui';\n\n<Avatar />"
-  },
-  {
-    "id": "badge",
-    "name": "Badge",
-    "description": "Badge component",
+    "description": "A versatile avatar component for React applications",
     "category": "display",
     "complexity": "simple",
     "status": "stable",
     "tags": [
-      "badge"
+      "avatar",
+      "display",
+      "ui",
+      "component"
+    ],
+    "preview": "avatar",
+    "codeExample": "import { Avatar } from '@lightmind/ui';\n\n<Avatar />",
+    "hasMDX": true
+  },
+  {
+    "id": "badge",
+    "name": "Badge",
+    "description": "A versatile badge component for React applications",
+    "category": "display",
+    "complexity": "simple",
+    "status": "stable",
+    "tags": [
+      "badge",
+      "display",
+      "ui",
+      "component"
     ],
     "preview": "badge",
-    "codeExample": "import { Badge } from '@lightmind/ui';\n\n<Badge />"
+    "codeExample": "import { Badge } from '@lightmind/ui';\n\n<Badge />",
+    "hasMDX": true
   },
   {
     "id": "breadcrumb",
     "name": "Breadcrumb",
-    "description": "Breadcrumb component",
-    "category": "layout",
+    "description": "A versatile breadcrumb component for React applications",
+    "category": "navigation",
     "complexity": "simple",
     "status": "stable",
     "tags": [
-      "breadcrumb"
+      "breadcrumb",
+      "navigation",
+      "ui",
+      "component"
     ],
     "preview": "breadcrumb",
-    "codeExample": "import { Breadcrumb } from '@lightmind/ui';\n\n<Breadcrumb />"
+    "codeExample": "import { Breadcrumb } from '@lightmind/ui';\n\n<Breadcrumb />",
+    "hasMDX": true
   },
   {
     "id": "button",
@@ -182,540 +213,705 @@ export const components: ComponentInfo[] = [
       "button"
     ],
     "preview": "button",
-    "codeExample": "import { Button } from '@lightmind/ui';\n\n<Button />"
+    "codeExample": "import { Button } from '@lightmind/ui';\n\n<Button />",
+    "hasMDX": false
   },
   {
     "id": "calendar",
     "name": "Calendar",
-    "description": "Calendar component",
+    "description": "A versatile calendar component for React applications",
     "category": "layout",
     "complexity": "simple",
     "status": "stable",
     "tags": [
-      "calendar"
+      "calendar",
+      "layout",
+      "ui",
+      "component"
     ],
     "preview": "calendar",
-    "codeExample": "import { Calendar } from '@lightmind/ui';\n\n<Calendar />"
+    "codeExample": "import { Calendar } from '@lightmind/ui';\n\n<Calendar />",
+    "hasMDX": true
   },
   {
     "id": "card",
     "name": "Card",
-    "description": "Card component",
+    "description": "A versatile card component for React applications",
     "category": "display",
     "complexity": "simple",
     "status": "stable",
     "tags": [
-      "card"
+      "card",
+      "display",
+      "ui",
+      "component"
     ],
     "preview": "card",
-    "codeExample": "import { Card } from '@lightmind/ui';\n\n<Card />"
+    "codeExample": "import { Card } from '@lightmind/ui';\n\n<Card />",
+    "hasMDX": true
   },
   {
     "id": "checkbox",
     "name": "Checkbox",
-    "description": "Checkbox component",
+    "description": "A versatile checkbox component for React applications",
     "category": "form",
     "complexity": "simple",
     "status": "stable",
     "tags": [
-      "checkbox"
+      "checkbox",
+      "form",
+      "ui",
+      "component"
     ],
     "preview": "checkbox",
-    "codeExample": "import { Checkbox } from '@lightmind/ui';\n\n<Checkbox />"
+    "codeExample": "import { Checkbox } from '@lightmind/ui';\n\n<Checkbox />",
+    "hasMDX": true
   },
   {
     "id": "collapsible",
     "name": "Collapsible",
-    "description": "Collapsible component",
+    "description": "A versatile collapsible component for React applications",
     "category": "layout",
     "complexity": "simple",
     "status": "stable",
     "tags": [
-      "collapsible"
+      "collapsible",
+      "layout",
+      "ui",
+      "component"
     ],
     "preview": "collapsible",
-    "codeExample": "import { Collapsible } from '@lightmind/ui';\n\n<Collapsible />"
+    "codeExample": "import { Collapsible } from '@lightmind/ui';\n\n<Collapsible />",
+    "hasMDX": true
   },
   {
     "id": "combobox",
     "name": "Combobox",
-    "description": "Combobox component",
-    "category": "layout",
+    "description": "A versatile combobox component for React applications",
+    "category": "form",
     "complexity": "simple",
     "status": "stable",
     "tags": [
-      "combobox"
+      "combobox",
+      "form",
+      "ui",
+      "component"
     ],
     "preview": "combobox",
-    "codeExample": "import { Combobox } from '@lightmind/ui';\n\n<Combobox />"
+    "codeExample": "import { Combobox } from '@lightmind/ui';\n\n<Combobox />",
+    "hasMDX": true
   },
   {
     "id": "command",
     "name": "Command",
-    "description": "Command component",
-    "category": "layout",
+    "description": "A versatile command component for React applications",
+    "category": "form",
     "complexity": "simple",
     "status": "stable",
     "tags": [
-      "command"
+      "command",
+      "form",
+      "ui",
+      "component"
     ],
     "preview": "command",
-    "codeExample": "import { Command } from '@lightmind/ui';\n\n<Command />"
+    "codeExample": "import { Command } from '@lightmind/ui';\n\n<Command />",
+    "hasMDX": true
   },
   {
     "id": "context-menu",
     "name": "ContextMenu",
-    "description": "ContextMenu component",
-    "category": "layout",
+    "description": "A versatile contextmenu component for React applications",
+    "category": "navigation",
     "complexity": "simple",
     "status": "stable",
     "tags": [
-      "context-menu"
+      "context-menu",
+      "navigation",
+      "ui",
+      "component"
     ],
     "preview": "context-menu",
-    "codeExample": "import { ContextMenu } from '@lightmind/ui';\n\n<ContextMenu />"
+    "codeExample": "import { ContextMenu } from '@lightmind/ui';\n\n<ContextMenu />",
+    "hasMDX": true
   },
   {
     "id": "data-table",
     "name": "DataTable",
-    "description": "DataTable component",
-    "category": "layout",
+    "description": "A versatile datatable component for React applications",
+    "category": "display",
     "complexity": "simple",
     "status": "stable",
     "tags": [
-      "data-table"
+      "data-table",
+      "display",
+      "ui",
+      "component"
     ],
     "preview": "data-table",
-    "codeExample": "import { DataTable } from '@lightmind/ui';\n\n<DataTable />"
+    "codeExample": "import { DataTable } from '@lightmind/ui';\n\n<DataTable />",
+    "hasMDX": true
   },
   {
     "id": "dialog",
     "name": "Dialog",
-    "description": "Dialog component",
+    "description": "A versatile dialog component for React applications",
     "category": "feedback",
     "complexity": "simple",
     "status": "stable",
     "tags": [
-      "dialog"
+      "dialog",
+      "feedback",
+      "ui",
+      "component"
     ],
     "preview": "dialog",
-    "codeExample": "import { Dialog } from '@lightmind/ui';\n\n<Dialog />"
+    "codeExample": "import { Dialog } from '@lightmind/ui';\n\n<Dialog />",
+    "hasMDX": true
   },
   {
     "id": "drawer",
     "name": "Drawer",
-    "description": "Drawer component",
+    "description": "A versatile drawer component for React applications",
     "category": "layout",
     "complexity": "simple",
     "status": "stable",
     "tags": [
-      "drawer"
+      "drawer",
+      "layout",
+      "ui",
+      "component"
     ],
     "preview": "drawer",
-    "codeExample": "import { Drawer } from '@lightmind/ui';\n\n<Drawer />"
+    "codeExample": "import { Drawer } from '@lightmind/ui';\n\n<Drawer />",
+    "hasMDX": true
   },
   {
     "id": "dropdown-menu",
     "name": "DropdownMenu",
-    "description": "DropdownMenu component",
+    "description": "A versatile dropdownmenu component for React applications",
     "category": "navigation",
     "complexity": "simple",
     "status": "stable",
     "tags": [
-      "dropdown-menu"
+      "dropdown-menu",
+      "navigation",
+      "ui",
+      "component"
     ],
     "preview": "dropdown-menu",
-    "codeExample": "import { DropdownMenu } from '@lightmind/ui';\n\n<DropdownMenu />"
+    "codeExample": "import { DropdownMenu } from '@lightmind/ui';\n\n<DropdownMenu />",
+    "hasMDX": true
   },
   {
     "id": "form",
     "name": "Form",
-    "description": "Form component",
-    "category": "layout",
+    "description": "A versatile form component for React applications",
+    "category": "form",
     "complexity": "simple",
     "status": "stable",
     "tags": [
-      "form"
+      "form",
+      "form",
+      "ui",
+      "component"
     ],
     "preview": "form",
-    "codeExample": "import { Form } from '@lightmind/ui';\n\n<Form />"
+    "codeExample": "import { Form } from '@lightmind/ui';\n\n<Form />",
+    "hasMDX": true
   },
   {
     "id": "hover-card",
     "name": "HoverCard",
-    "description": "HoverCard component",
-    "category": "layout",
+    "description": "A versatile hovercard component for React applications",
+    "category": "feedback",
     "complexity": "simple",
     "status": "stable",
     "tags": [
-      "hover-card"
+      "hover-card",
+      "feedback",
+      "ui",
+      "component"
     ],
     "preview": "hover-card",
-    "codeExample": "import { HoverCard } from '@lightmind/ui';\n\n<HoverCard />"
+    "codeExample": "import { HoverCard } from '@lightmind/ui';\n\n<HoverCard />",
+    "hasMDX": true
   },
   {
     "id": "input-otp",
     "name": "InputOtp",
-    "description": "InputOtp component",
-    "category": "layout",
+    "description": "A versatile inputotp component for React applications",
+    "category": "form",
     "complexity": "simple",
     "status": "stable",
     "tags": [
-      "input-otp"
+      "input-otp",
+      "form",
+      "ui",
+      "component"
     ],
     "preview": "input-otp",
-    "codeExample": "import { InputOtp } from '@lightmind/ui';\n\n<InputOtp />"
+    "codeExample": "import { InputOtp } from '@lightmind/ui';\n\n<InputOtp />",
+    "hasMDX": true
   },
   {
     "id": "input",
     "name": "Input",
-    "description": "Input component",
+    "description": "A versatile input component for React applications",
     "category": "form",
     "complexity": "simple",
     "status": "stable",
     "tags": [
-      "input"
+      "input",
+      "form",
+      "ui",
+      "component"
     ],
     "preview": "input",
-    "codeExample": "import { Input } from '@lightmind/ui';\n\n<Input />"
+    "codeExample": "import { Input } from '@lightmind/ui';\n\n<Input />",
+    "hasMDX": true
   },
   {
     "id": "label",
     "name": "Label",
-    "description": "Label component",
+    "description": "A versatile label component for React applications",
     "category": "form",
     "complexity": "simple",
     "status": "stable",
     "tags": [
-      "label"
+      "label",
+      "form",
+      "ui",
+      "component"
     ],
     "preview": "label",
-    "codeExample": "import { Label } from '@lightmind/ui';\n\n<Label />"
+    "codeExample": "import { Label } from '@lightmind/ui';\n\n<Label />",
+    "hasMDX": true
   },
   {
     "id": "menubar",
     "name": "Menubar",
-    "description": "Menubar component",
-    "category": "layout",
-    "complexity": "simple",
-    "status": "stable",
-    "tags": [
-      "menubar"
-    ],
-    "preview": "menubar",
-    "codeExample": "import { Menubar } from '@lightmind/ui';\n\n<Menubar />"
-  },
-  {
-    "id": "navigation-menu",
-    "name": "NavigationMenu",
-    "description": "NavigationMenu component",
-    "category": "layout",
-    "complexity": "simple",
-    "status": "stable",
-    "tags": [
-      "navigation-menu"
-    ],
-    "preview": "navigation-menu",
-    "codeExample": "import { NavigationMenu } from '@lightmind/ui';\n\n<NavigationMenu />"
-  },
-  {
-    "id": "pagination",
-    "name": "Pagination",
-    "description": "Pagination component",
-    "category": "layout",
-    "complexity": "simple",
-    "status": "stable",
-    "tags": [
-      "pagination"
-    ],
-    "preview": "pagination",
-    "codeExample": "import { Pagination } from '@lightmind/ui';\n\n<Pagination />"
-  },
-  {
-    "id": "popover",
-    "name": "Popover",
-    "description": "Popover component",
+    "description": "A versatile menubar component for React applications",
     "category": "navigation",
     "complexity": "simple",
     "status": "stable",
     "tags": [
-      "popover"
+      "menubar",
+      "navigation",
+      "ui",
+      "component"
+    ],
+    "preview": "menubar",
+    "codeExample": "import { Menubar } from '@lightmind/ui';\n\n<Menubar />",
+    "hasMDX": true
+  },
+  {
+    "id": "navigation-menu",
+    "name": "NavigationMenu",
+    "description": "A versatile navigationmenu component for React applications",
+    "category": "navigation",
+    "complexity": "simple",
+    "status": "stable",
+    "tags": [
+      "navigation-menu",
+      "navigation",
+      "ui",
+      "component"
+    ],
+    "preview": "navigation-menu",
+    "codeExample": "import { NavigationMenu } from '@lightmind/ui';\n\n<NavigationMenu />",
+    "hasMDX": true
+  },
+  {
+    "id": "pagination",
+    "name": "Pagination",
+    "description": "A versatile pagination component for React applications",
+    "category": "navigation",
+    "complexity": "simple",
+    "status": "stable",
+    "tags": [
+      "pagination",
+      "navigation",
+      "ui",
+      "component"
+    ],
+    "preview": "pagination",
+    "codeExample": "import { Pagination } from '@lightmind/ui';\n\n<Pagination />",
+    "hasMDX": true
+  },
+  {
+    "id": "popover",
+    "name": "Popover",
+    "description": "A versatile popover component for React applications",
+    "category": "navigation",
+    "complexity": "simple",
+    "status": "stable",
+    "tags": [
+      "popover",
+      "navigation",
+      "ui",
+      "component"
     ],
     "preview": "popover",
-    "codeExample": "import { Popover } from '@lightmind/ui';\n\n<Popover />"
+    "codeExample": "import { Popover } from '@lightmind/ui';\n\n<Popover />",
+    "hasMDX": true
   },
   {
     "id": "progress",
     "name": "Progress",
-    "description": "Progress component",
+    "description": "A versatile progress component for React applications",
     "category": "layout",
     "complexity": "simple",
     "status": "stable",
     "tags": [
-      "progress"
+      "progress",
+      "layout",
+      "ui",
+      "component"
     ],
     "preview": "progress",
-    "codeExample": "import { Progress } from '@lightmind/ui';\n\n<Progress />"
+    "codeExample": "import { Progress } from '@lightmind/ui';\n\n<Progress />",
+    "hasMDX": true
   },
   {
     "id": "radio-group",
     "name": "RadioGroup",
-    "description": "RadioGroup component",
+    "description": "A versatile radiogroup component for React applications",
     "category": "form",
     "complexity": "simple",
     "status": "stable",
     "tags": [
-      "radio-group"
+      "radio-group",
+      "form",
+      "ui",
+      "component"
     ],
     "preview": "radio-group",
-    "codeExample": "import { RadioGroup } from '@lightmind/ui';\n\n<RadioGroup />"
+    "codeExample": "import { RadioGroup } from '@lightmind/ui';\n\n<RadioGroup />",
+    "hasMDX": true
   },
   {
     "id": "scroll-area",
     "name": "ScrollArea",
-    "description": "ScrollArea component",
+    "description": "A versatile scrollarea component for React applications",
     "category": "layout",
     "complexity": "simple",
     "status": "stable",
     "tags": [
-      "scroll-area"
+      "scroll-area",
+      "layout",
+      "ui",
+      "component"
     ],
     "preview": "scroll-area",
-    "codeExample": "import { ScrollArea } from '@lightmind/ui';\n\n<ScrollArea />"
+    "codeExample": "import { ScrollArea } from '@lightmind/ui';\n\n<ScrollArea />",
+    "hasMDX": true
   },
   {
     "id": "select",
     "name": "Select",
-    "description": "Select component",
+    "description": "A versatile select component for React applications",
     "category": "form",
     "complexity": "simple",
     "status": "stable",
     "tags": [
-      "select"
+      "select",
+      "form",
+      "ui",
+      "component"
     ],
     "preview": "select",
-    "codeExample": "import { Select } from '@lightmind/ui';\n\n<Select />"
+    "codeExample": "import { Select } from '@lightmind/ui';\n\n<Select />",
+    "hasMDX": true
   },
   {
     "id": "separator",
     "name": "Separator",
-    "description": "Separator component",
+    "description": "A versatile separator component for React applications",
     "category": "layout",
     "complexity": "simple",
     "status": "stable",
     "tags": [
-      "separator"
+      "separator",
+      "layout",
+      "ui",
+      "component"
     ],
     "preview": "separator",
-    "codeExample": "import { Separator } from '@lightmind/ui';\n\n<Separator />"
+    "codeExample": "import { Separator } from '@lightmind/ui';\n\n<Separator />",
+    "hasMDX": true
   },
   {
     "id": "sheet",
     "name": "Sheet",
-    "description": "Sheet component",
+    "description": "A versatile sheet component for React applications",
     "category": "layout",
     "complexity": "simple",
     "status": "stable",
     "tags": [
-      "sheet"
+      "sheet",
+      "layout",
+      "ui",
+      "component"
     ],
     "preview": "sheet",
-    "codeExample": "import { Sheet } from '@lightmind/ui';\n\n<Sheet />"
+    "codeExample": "import { Sheet } from '@lightmind/ui';\n\n<Sheet />",
+    "hasMDX": true
   },
   {
     "id": "sidebar",
     "name": "Sidebar",
-    "description": "Sidebar component",
+    "description": "A versatile sidebar component for React applications",
     "category": "layout",
     "complexity": "simple",
     "status": "stable",
     "tags": [
-      "sidebar"
+      "sidebar",
+      "layout",
+      "ui",
+      "component"
     ],
     "preview": "sidebar",
-    "codeExample": "import { Sidebar } from '@lightmind/ui';\n\n<Sidebar />"
+    "codeExample": "import { Sidebar } from '@lightmind/ui';\n\n<Sidebar />",
+    "hasMDX": true
   },
   {
     "id": "skeleton",
     "name": "Skeleton",
-    "description": "Skeleton component",
-    "category": "layout",
+    "description": "A versatile skeleton component for React applications",
+    "category": "display",
     "complexity": "simple",
     "status": "stable",
     "tags": [
-      "skeleton"
+      "skeleton",
+      "display",
+      "ui",
+      "component"
     ],
     "preview": "skeleton",
-    "codeExample": "import { Skeleton } from '@lightmind/ui';\n\n<Skeleton />"
+    "codeExample": "import { Skeleton } from '@lightmind/ui';\n\n<Skeleton />",
+    "hasMDX": true
   },
   {
     "id": "slider",
     "name": "Slider",
-    "description": "Slider component",
+    "description": "A versatile slider component for React applications",
     "category": "layout",
     "complexity": "simple",
     "status": "stable",
     "tags": [
-      "slider"
+      "slider",
+      "layout",
+      "ui",
+      "component"
     ],
     "preview": "slider",
-    "codeExample": "import { Slider } from '@lightmind/ui';\n\n<Slider />"
+    "codeExample": "import { Slider } from '@lightmind/ui';\n\n<Slider />",
+    "hasMDX": true
   },
   {
     "id": "sonner",
     "name": "Sonner",
-    "description": "Sonner component",
-    "category": "layout",
+    "description": "A versatile sonner component for React applications",
+    "category": "feedback",
     "complexity": "simple",
     "status": "stable",
     "tags": [
-      "sonner"
+      "sonner",
+      "feedback",
+      "ui",
+      "component"
     ],
     "preview": "sonner",
-    "codeExample": "import { Sonner } from '@lightmind/ui';\n\n<Sonner />"
+    "codeExample": "import { Sonner } from '@lightmind/ui';\n\n<Sonner />",
+    "hasMDX": true
   },
   {
     "id": "stat-card",
     "name": "StatCard",
-    "description": "StatCard component",
-    "category": "layout",
+    "description": "A versatile statcard component for React applications",
+    "category": "display",
     "complexity": "simple",
     "status": "stable",
     "tags": [
-      "stat-card"
+      "stat-card",
+      "display",
+      "ui",
+      "component"
     ],
     "preview": "stat-card",
-    "codeExample": "import { StatCard } from '@lightmind/ui';\n\n<StatCard />"
+    "codeExample": "import { StatCard } from '@lightmind/ui';\n\n<StatCard />",
+    "hasMDX": true
   },
   {
     "id": "switch",
     "name": "Switch",
-    "description": "Switch component",
+    "description": "A versatile switch component for React applications",
     "category": "form",
     "complexity": "simple",
     "status": "stable",
     "tags": [
-      "switch"
+      "switch",
+      "form",
+      "ui",
+      "component"
     ],
     "preview": "switch",
-    "codeExample": "import { Switch } from '@lightmind/ui';\n\n<Switch />"
+    "codeExample": "import { Switch } from '@lightmind/ui';\n\n<Switch />",
+    "hasMDX": true
   },
   {
     "id": "table",
     "name": "Table",
-    "description": "Table component",
+    "description": "A versatile table component for React applications",
     "category": "display",
     "complexity": "simple",
     "status": "stable",
     "tags": [
-      "table"
+      "table",
+      "display",
+      "ui",
+      "component"
     ],
     "preview": "table",
-    "codeExample": "import { Table } from '@lightmind/ui';\n\n<Table />"
+    "codeExample": "import { Table } from '@lightmind/ui';\n\n<Table />",
+    "hasMDX": true
   },
   {
     "id": "tabs",
     "name": "Tabs",
-    "description": "Tabs component",
-    "category": "layout",
+    "description": "A versatile tabs component for React applications",
+    "category": "navigation",
     "complexity": "simple",
     "status": "stable",
     "tags": [
-      "tabs"
+      "tabs",
+      "navigation",
+      "ui",
+      "component"
     ],
     "preview": "tabs",
-    "codeExample": "import { Tabs } from '@lightmind/ui';\n\n<Tabs />"
+    "codeExample": "import { Tabs } from '@lightmind/ui';\n\n<Tabs />",
+    "hasMDX": true
   },
   {
     "id": "textarea",
     "name": "Textarea",
-    "description": "Textarea component",
+    "description": "A versatile textarea component for React applications",
     "category": "form",
     "complexity": "simple",
     "status": "stable",
     "tags": [
-      "textarea"
+      "textarea",
+      "form",
+      "ui",
+      "component"
     ],
     "preview": "textarea",
-    "codeExample": "import { Textarea } from '@lightmind/ui';\n\n<Textarea />"
+    "codeExample": "import { Textarea } from '@lightmind/ui';\n\n<Textarea />",
+    "hasMDX": true
   },
   {
     "id": "toast",
     "name": "Toast",
-    "description": "Toast component",
-    "category": "layout",
+    "description": "A versatile toast component for React applications",
+    "category": "feedback",
     "complexity": "simple",
     "status": "stable",
     "tags": [
-      "toast"
+      "toast",
+      "feedback",
+      "ui",
+      "component"
     ],
     "preview": "toast",
-    "codeExample": "import { Toast } from '@lightmind/ui';\n\n<Toast />"
+    "codeExample": "import { Toast } from '@lightmind/ui';\n\n<Toast />",
+    "hasMDX": true
   },
   {
     "id": "toaster",
     "name": "Toaster",
-    "description": "Toaster component",
-    "category": "layout",
+    "description": "A versatile toaster component for React applications",
+    "category": "feedback",
     "complexity": "simple",
     "status": "stable",
     "tags": [
-      "toaster"
+      "toaster",
+      "feedback",
+      "ui",
+      "component"
     ],
     "preview": "toaster",
-    "codeExample": "import { Toaster } from '@lightmind/ui';\n\n<Toaster />"
+    "codeExample": "import { Toaster } from '@lightmind/ui';\n\n<Toaster />",
+    "hasMDX": true
   },
   {
     "id": "toggle-group",
     "name": "ToggleGroup",
-    "description": "ToggleGroup component",
+    "description": "A versatile togglegroup component for React applications",
     "category": "layout",
     "complexity": "simple",
     "status": "stable",
     "tags": [
-      "toggle-group"
+      "toggle-group",
+      "layout",
+      "ui",
+      "component"
     ],
     "preview": "toggle-group",
-    "codeExample": "import { ToggleGroup } from '@lightmind/ui';\n\n<ToggleGroup />"
+    "codeExample": "import { ToggleGroup } from '@lightmind/ui';\n\n<ToggleGroup />",
+    "hasMDX": true
   },
   {
     "id": "toggle",
     "name": "Toggle",
-    "description": "Toggle component",
+    "description": "A versatile toggle component for React applications",
     "category": "layout",
     "complexity": "simple",
     "status": "stable",
     "tags": [
-      "toggle"
+      "toggle",
+      "layout",
+      "ui",
+      "component"
     ],
     "preview": "toggle",
-    "codeExample": "import { Toggle } from '@lightmind/ui';\n\n<Toggle />"
+    "codeExample": "import { Toggle } from '@lightmind/ui';\n\n<Toggle />",
+    "hasMDX": true
   },
   {
     "id": "tooltip",
     "name": "Tooltip",
-    "description": "Tooltip component",
+    "description": "A versatile tooltip component for React applications",
     "category": "display",
     "complexity": "simple",
     "status": "stable",
     "tags": [
-      "tooltip"
+      "tooltip",
+      "display",
+      "ui",
+      "component"
     ],
     "preview": "tooltip",
-    "codeExample": "import { Tooltip } from '@lightmind/ui';\n\n<Tooltip />"
+    "codeExample": "import { Tooltip } from '@lightmind/ui';\n\n<Tooltip />",
+    "hasMDX": true
   },
   {
     "id": "typography",
     "name": "Typography",
-    "description": "Typography component",
+    "description": "A versatile typography component for React applications",
     "category": "layout",
     "complexity": "simple",
     "status": "stable",
     "tags": [
-      "typography"
+      "typography",
+      "layout",
+      "ui",
+      "component"
     ],
     "preview": "typography",
-    "codeExample": "import { Typography } from '@lightmind/ui';\n\n<Typography />"
+    "codeExample": "import { Typography } from '@lightmind/ui';\n\n<Typography />",
+    "hasMDX": true
   }
 ];
 
@@ -726,7 +922,7 @@ export const categories: CategoryInfo[] = [
     name: 'Form',
     description: 'Interactive form components',
     icon: 'form',
-    componentCount: 8,
+    componentCount: 12,
     color: 'bg-blue-500'
   },
   {
@@ -734,7 +930,7 @@ export const categories: CategoryInfo[] = [
     name: 'Display',
     description: 'Content display components',
     icon: 'display',
-    componentCount: 5,
+    componentCount: 9,
     color: 'bg-green-500'
   },
   {
@@ -742,7 +938,7 @@ export const categories: CategoryInfo[] = [
     name: 'Navigation',
     description: 'Navigation and menu components',
     icon: 'navigation',
-    componentCount: 2,
+    componentCount: 8,
     color: 'bg-purple-500'
   },
   {
@@ -750,7 +946,7 @@ export const categories: CategoryInfo[] = [
     name: 'Feedback',
     description: 'User feedback components',
     icon: 'feedback',
-    componentCount: 1,
+    componentCount: 6,
     color: 'bg-orange-500'
   },
   {
@@ -758,7 +954,7 @@ export const categories: CategoryInfo[] = [
     name: 'Layout',
     description: 'Layout and structure components',
     icon: 'layout',
-    componentCount: 35,
+    componentCount: 16,
     color: 'bg-pink-500'
   }
 ];

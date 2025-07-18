@@ -2,7 +2,7 @@
 
 import React from 'react'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@lightmind/ui'
-import { cn } from '@lightmind/ui/lib/utils'
+import { cn } from '../utils/cn'
 
 interface ComponentPreviewProps {
   title?: string

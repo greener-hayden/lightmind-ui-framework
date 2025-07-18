@@ -1,0 +1,95 @@
+---
+title: "Textarea"
+description: "A versatile textarea component for React applications"
+category: "form"
+status: "stable"
+complexity: "simple"
+tags: ["textarea", "form", "ui", "component"]
+---
+
+import { TextareaDemo } from "@/components/demos/textarea.demo"
+
+# Textarea Component
+
+A versatile textarea component that provides essential functionality for modern web applications.
+
+## Preview
+
+<div className="space-y-6">
+  <TextareaDemo />
+</div>
+
+## Installation
+
+```bash
+npm install @lightmind/ui
+```
+
+## Usage
+
+### Basic Usage
+
+```tsx
+import { Textarea } from '@lightmind/ui'
+
+export function Example() {
+  return <Textarea />
+}
+```
+
+### Advanced Example
+
+```tsx
+import { Textarea } from '@lightmind/ui'
+
+export function AdvancedExample() {
+  return (
+    <Textarea
+      className="custom-class"
+      // Add props here
+    >
+      Content goes here
+    </Textarea>
+  )
+}
+```
+
+## API Reference
+
+### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `className` | `string` | `undefined` | Additional CSS classes |
+| `children` | `React.ReactNode` | `undefined` | Child elements |
+
+## Usage Guidelines
+
+### Do's ✅
+
+- Use Textarea for its intended purpose
+- Apply consistent styling across your application
+- Consider accessibility when implementing
+- Test across different screen sizes and devices
+
+### Don'ts ❌
+
+- Don't override essential styles that affect functionality
+- Avoid nesting too many Textarea components
+- Don't use for unintended purposes
+
+### Best Practices
+
+Always ensure that your Textarea implementation follows accessibility guidelines and provides a good user experience across all devices.
+
+## Accessibility
+
+- Follows WAI-ARIA guidelines
+- Keyboard navigation support
+- Screen reader friendly
+- Proper focus management
+
+## Related Components
+
+- View other [form](/category/form) components
+- Explore the complete [component library](/search)
