@@ -30,7 +30,10 @@ import {
 import { PreviewComponent } from '@/components/preview-registry'
 // Note: Demo components have been removed in favor of MDX-based demos
 // Import Lucide React icons
-import * as LucideReact from 'lucide-react'
+import * as LucideReactAll from 'lucide-react'
+
+// Filter out non-component exports from Lucide React
+const { createLucideIcon, ...LucideReact } = LucideReactAll
 // Import UI components
 import { Button, Label, Slider, Toggle } from '@lightmind/ui'
 

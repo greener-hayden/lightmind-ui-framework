@@ -111,7 +111,6 @@ import {
   Star,
   Clock,
   User,
-  Team,
   Zap,
   Shield,
   CreditCard,
@@ -200,7 +199,7 @@ import {
   Palette,
   Brush,
   Eraser,
-  Eyedropper,
+  Droplet,
   Grid,
   Square as SquareIcon,
   Circle,
@@ -246,7 +245,6 @@ import {
   Sunset,
   Rainbow,
   Cloudy,
-  PartlyCloudy,
   Upload,
   LucideIcon
 } from 'lucide-react'
@@ -360,7 +358,7 @@ const sidebarItems = [
     ]
   },
   { 
-    label: "Team", 
+    label: "Users", 
     icon: Users, 
     href: "/team",
     items: [

@@ -6,7 +6,7 @@
 'use client'
 
 import { notFound } from 'next/navigation'
-import { useState, useMemo } from 'react'
+import React, { useState, useMemo } from 'react'
 import { 
   Search, 
   Filter, 
@@ -180,7 +180,7 @@ export default function EnhancedCategoryPage({ params }: CategoryPageProps) {
   const [selectedStatus, setSelectedStatus] = useState('all')
   const [sortBy, setSortBy] = useState('name')
   const [sortOrder, setSortOrder] = useState('asc')
-  const [viewMode, setViewMode] = useState('grid')
+  const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid')
   const [sidebarOpen, setSidebarOpen] = useState(true)
   const [selectedTags, setSelectedTags] = useState<string[]>([])
   const [favorites, setFavorites] = useState<string[]>([])
@@ -564,10 +564,7 @@ export default function EnhancedCategoryPage({ params }: CategoryPageProps) {
                     )}>
                       <ComponentCard 
                         component={component} 
-                        className={cn(
-                          "h-full transition-all duration-200",
-                          viewMode === 'list' && "flex-1"
-                        )}
+                        viewMode={viewMode}
                       />
                       
                       {/* Favorite Button */}

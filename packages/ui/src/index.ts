@@ -398,21 +398,21 @@ export type {
   PermissionType,
   PermissionValue
 } from "./components/access-matrix"
-export type {
-  AccessMatrixEnhancedProps,
-  AccessMatrixDataEnhanced,
-  AccessMatrixCellEnhanced,
-  AccessMatrixRowEnhanced,
-  UserContext,
-  CustomRule,
-  SelectionState,
-  MatrixDataSource,
-  ValidationResult,
-  ConfirmationConfig,
-  MatrixChangeLog,
-  UserRole,
-  PermissionLevel,
-} from "./components/access-matrix-enhanced"
+// export type {
+//   AccessMatrixEnhancedProps,
+//   AccessMatrixDataEnhanced,
+//   AccessMatrixCellEnhanced,
+//   AccessMatrixRowEnhanced,
+//   UserContext,
+//   CustomRule,
+//   SelectionState,
+//   MatrixDataSource,
+//   ValidationResult,
+//   ConfirmationConfig,
+//   MatrixChangeLog,
+//   UserRole,
+//   PermissionLevel,
+// } from "./components/access-matrix-enhanced"
 export type {
   StatCardProps
 } from "./components/stat-card"

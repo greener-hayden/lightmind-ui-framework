@@ -100,7 +100,7 @@ const sliderThumbVariants = cva(
 )
 
 export interface SliderProps
-  extends React.ComponentPropsWithoutRef<typeof SliderPrimitive.Root>,
+  extends Omit<React.ComponentPropsWithoutRef<typeof SliderPrimitive.Root>, 'orientation'>,
     VariantProps<typeof sliderVariants>,
     VariantProps<typeof sliderTrackVariants> {
   showTooltip?: boolean
@@ -152,8 +152,8 @@ const Slider = React.forwardRef<
     <div className="relative">
       <SliderPrimitive.Root
         ref={ref}
-        className={cn(sliderVariants({ orientation, size }), className)}
-        orientation={orientation}
+        className={cn(sliderVariants({ orientation }), className)}
+        orientation={orientation || undefined}
         value={localValue}
         onValueChange={handleValueChange}
         onPointerDown={() => setIsDragging(true)}

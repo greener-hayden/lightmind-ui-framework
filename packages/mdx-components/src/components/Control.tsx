@@ -152,11 +152,11 @@ export function Control({ config, value, onChange, className }: ControlProps) {
   
   return (
     <div className={cn("space-y-2", className)}>
-      {type !== 'switch' && (
+      {type === 'select' || type === 'input' || type === 'color' || type === 'slider' || type === 'multi-select' ? (
         <Label htmlFor={controlId} className="text-sm font-medium">
           {label}
         </Label>
-      )}
+      ) : null}
       {renderControl()}
       {description && (
         <p className="text-xs text-muted-foreground">{description}</p>

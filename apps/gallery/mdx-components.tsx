@@ -4,6 +4,9 @@ import * as UIComponents from '@lightmind/ui'
 import * as demos from '@/components/demos'
 import { PreviewComponent } from '@/components/preview-registry'
 
+// Filter out non-component exports from UI components (hooks, utilities, etc.)
+const { useSidebar, useFormField, useToast, toast, cn, ...UIComponentsFiltered } = UIComponents
+
 export function useMDXComponents(components: MDXComponents): MDXComponents {
   return {
     // HTML element overrides
@@ -37,8 +40,8 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     // Spread all MDX components from the library
     ...MDXComponentLib,
     
-    // Spread all UI components
-    ...UIComponents,
+    // Spread filtered UI components (excluding hooks)
+    ...UIComponentsFiltered,
     
     // Spread all demo components
     ...demos,
