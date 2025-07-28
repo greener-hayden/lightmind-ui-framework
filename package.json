@@ -22,7 +22,7 @@
     "prettier": "^3.6.2",
     "tsx": "^4.20.3",
     "typescript": "^5.8.3",
-    "zod": "^3.23.8",
+    "zod": "^4.0.10",
     "@next/mdx": "^15.1.6",
     "@mdx-js/loader": "^3.1.0",
     "@mdx-js/react": "^3.1.0",
