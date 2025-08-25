@@ -12,7 +12,7 @@
     "deploy:cloudflare": "npm run build:cloudflare && wrangler pages deploy out"
   },
   "dependencies": {
-    "@faker-js/faker": "^9.9.0",
+    "@faker-js/faker": "^10.0.0",
     "@hookform/resolvers": "^3.6.0",
     "@lightmind/mdx-components": "file:../../packages/mdx-components",
     "@mdx-js/loader": "^3.1.0",
