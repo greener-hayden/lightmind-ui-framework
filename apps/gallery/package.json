@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "@faker-js/faker": "^9.9.0",
-    "@hookform/resolvers": "^3.6.0",
+    "@hookform/resolvers": "^5.2.2",
     "@lightmind/mdx-components": "file:../../packages/mdx-components",
     "@mdx-js/loader": "^3.1.0",
     "@mdx-js/react": "^3.1.0",
